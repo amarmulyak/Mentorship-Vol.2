@@ -1,11 +1,8 @@
-"""
-Get list with items divided by 3 but not divided by 6
-
-10 -> [0, 3, 9]
-Do the same using filter()
-"""
+from typing import Callable
 
 # ***** Get list with items divided by 3 but not divided by 6 using List Comprehension *****
+# 10 -> [0, 3, 9]
+
 c1 = [x for x in range(0, 11) if x % 3 == 0 and not (x // 6 == 1 and x % 6 == 0)]
 # print(c1)
 
@@ -15,6 +12,7 @@ c2 = [x for x in range(0, 11) if x % 3 == 0 and x / 6 != 1]
 
 
 # ***** Get list with items divided by 3 but not divided by 6 using filter() *****
+
 f = filter(lambda x: x % 3 == 0 and x / 6 != 1, range(0, 11))
 # print(list(f))
 
@@ -31,7 +29,7 @@ filter_compr_method = [x for x in range(3, 8) if x >= 5]
 
 
 # function implementation
-def filter_comprehension(func, iterable):
+def filter_comprehension(func: Callable, iterable: [list, range]) -> list:
     return [x for x in iterable if func(x)]
 
 
@@ -50,12 +48,14 @@ map_compr_method = [x % 3 == 0 and x / 6 != 1 for x in range(0, 11)]
 
 
 # function implementation
-def map_comprehension(func, iterable):
+def map_comprehension(func: Callable, iterable: [list, range]) -> list:
     return [func(x) for x in iterable]
 
 
 res = map_comprehension(lambda x: x % 3 == 0 and x / 6 != 1, range(0, 11))
 # print(res)
+
+# print(type(map_comprehension))
 
 # ***** Implement enumerate() using list comprehension *****
 
@@ -83,4 +83,4 @@ def enumerate_comprehension(collection, start=0):
 
 
 enumerate_func_res = enumerate_comprehension(grocery, 15)
-print(enumerate_func_res)
+# print(enumerate_func_res)
