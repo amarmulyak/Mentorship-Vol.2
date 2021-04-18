@@ -1,3 +1,10 @@
+a_set = {1, 2, 3}
+b_iterator = iter(a_set)
+print(next(b_iterator))
+print(type(a_set))
+print(type(b_iterator))
+
+
 class Series(object):
     def __init__(self, low, high):
         self.current = low
@@ -15,4 +22,4 @@ class Series(object):
 
 
 n_list = Series(1, 10)
-print(list(n_list))
+# print(list(n_list))

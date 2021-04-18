@@ -54,8 +54,8 @@ for i in range(len(matrix[0])):
 
 transposed_c = [[row[i] for row in matrix] for i in range(len(matrix[0]))]
 
-print(transposed)
-print(transposed_c)
+# print(transposed)
+# print(transposed_c)
 
 # Set comprehension
 word = "programming"
@@ -70,7 +70,7 @@ for num in nums:
     square[num] = num ** 2
 
 square_c = {num: num ** 2 for num in nums}
-# print(square_c)
+print(square_c)
 
 
 # Dictionary comprehension (one more example)
