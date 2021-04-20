@@ -39,7 +39,18 @@
 #         yield low
 #         low += 1
 
+# from datetime import datetime
 
-grocery = ['bread', 'milk', 'butter']
+# print(datetime.now().strftime("%d/%m/%y %H:%M:%S"))
 
-print(grocery.index('bread'))
+import time
+
+
+def func(seconds):
+    while seconds >= 5:
+        print("Second is more then 5")
+        seconds -= 1
+
+
+
+func(5)
