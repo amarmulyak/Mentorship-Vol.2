@@ -13,7 +13,7 @@ l_map2 = list(map(lambda x: x * 2, lis))
 """
 Next example
 """
-from Exercises.Python.Examples.decorator_examples import debug
+from exercises.python.examples.decorator_examples import debug
 
 
 @debug
