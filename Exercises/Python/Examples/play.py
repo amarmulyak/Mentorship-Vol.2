@@ -52,5 +52,7 @@ def func(seconds):
         seconds -= 1
 
 
-
 func(5)
+
+i = 1/3
+print(round(i, 2))
