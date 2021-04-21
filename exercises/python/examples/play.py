@@ -46,13 +46,14 @@
 import time
 
 
-def func(seconds):
-    while seconds >= 5:
-        print("Second is more then 5")
-        seconds -= 1
+# def func(seconds):
+#     while seconds >= 5:
+#         print("Second is more then 5")
+#         seconds -= 1
+#
+#
+# func(5)
+#
+# i = 1/3
+# print(round(i, 2))
 
-
-func(5)
-
-i = 1/3
-print(round(i, 2))

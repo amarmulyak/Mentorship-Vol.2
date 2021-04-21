@@ -5,6 +5,10 @@ Write lambda function that checks if string starts with letter (not case-sensiti
 “Hi”, “b” -> False
 """
 
-lambda_function = lambda word, first_letter: word.lower().startswith(first_letter.lower())
-print(lambda_function('Hello', 'h'))
-print(lambda_function('Hi', 'b'))
+if __name__ == "__main__":
+    lambda_function = lambda word, first_letter: word.lower().startswith(first_letter.lower())
+    print(lambda_function('Hello', 'h'))
+    print(lambda_function('Hi', 'b'))
+
+
+
