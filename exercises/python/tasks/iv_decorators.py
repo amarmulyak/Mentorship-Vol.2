@@ -1,5 +1,6 @@
 from datetime import datetime
 import time
+import os.path
 
 
 #  Create decorator that prints function name, parameters, execution time.
@@ -29,8 +30,7 @@ def expecting_result(seconds: int, result):
                 func_result = func(*args, **kwargs)
                 if func_result == result:
                     return f'Actual is equal to expected ({func_result} = {result})'
-            else:
-                return f"Function didn't return {result!r} result"
+            return f"Function didn't return {result!r} result"
         return wrapper
     return decorator
 
@@ -41,6 +41,13 @@ def func_spell(word):
 
 
 # print(func_spell("Hello2"))
+
+@expecting_result(10, True)
+def func_file_exists(file_name):
+    return os.path.exists(file_name)
+
+
+print(func_file_exists("../examples/play.py"))
 
 
 def decorator_singleton(class_):
@@ -65,6 +72,6 @@ class SomeClass:
 
 my_class = SomeClass("Hello", "World")
 my_class2 = SomeClass("Hello2", "World2")
-print(my_class)
-print(my_class2)
-print(my_class is my_class2)
+# print(my_class)
+# print(my_class2)
+# print(my_class is my_class2)
