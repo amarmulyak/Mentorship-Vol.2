@@ -49,7 +49,7 @@ class FileManager:
 
 
 # Example 3
-from pymongo import MongoClient
+# from pymongo import MongoClient
 
 
 class MongoDBConnectionManager():
@@ -67,7 +67,24 @@ class MongoDBConnectionManager():
 
 
 # connecting with a localhost
-with MongoDBConnectionManager('localhost', '27017') as mongo:
-    collection = mongo.connection.SampleDb.test
-    data = collection.find({'_id': 1})
-    print(data.get('name'))
+# with MongoDBConnectionManager('localhost', '27017') as mongo:
+#     collection = mongo.connection.SampleDb.test
+#     data = collection.find({'_id': 1})
+#     print(data.get('name'))
+
+
+from contextlib import contextmanager
+
+
+@contextmanager
+def my_context_manager():
+    # Before yield as the enter method
+    print("Enter method called")
+    yield
+
+    # After yield as the exit method
+    print("Exit method called")
+
+
+with my_context_manager() as manager:
+    print('with statement block')
