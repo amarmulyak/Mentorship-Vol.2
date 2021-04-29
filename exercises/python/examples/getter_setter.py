@@ -116,3 +116,34 @@ class Celsius3:
 #   File "<string>", line 4, in __init__
 #   File "<string>", line 18, in temperature
 # ValueError: Temperature below -273 is not possible
+
+
+class Human2:
+    def __init__(self, sex="unknown", age=0):
+        self.age = age
+        self.sex = sex
+
+    @property
+    def age(self):
+        print("Getting age...")
+        return self._age
+
+    @age.setter
+    def age(self, value):
+        print("Setting age...")
+        self._age = value
+
+    @property
+    def sex(self):
+        print("Getting sex...")
+        return self._sex
+
+    @sex.setter
+    def sex(self, value):
+        print("Setting sex...")
+        self._sex = value
+
+
+h = Human2("Male", 31)
+print(h.age)
+print(h.sex)
