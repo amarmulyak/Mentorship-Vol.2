@@ -10,10 +10,9 @@ from contextlib import contextmanager
 
 
 class Timer:
-    def __init__(self):
-        self.start_time = time.time()
 
     def __enter__(self):
+        self.start_time = time.time()
         print("Timer start")
         return self
 
@@ -22,8 +21,8 @@ class Timer:
         print(f"Code block took {duration} seconds")
 
 
-# with Timer() as t:
-#     a = [x**100 for x in range(1, 1000000)]
+with Timer() as t:
+    a = [x**100 for x in range(1, 1000000)]
 
 
 @contextmanager
