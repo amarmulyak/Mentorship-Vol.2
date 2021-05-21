@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 
 
 class ABTestingPage(BasePage):
-    ab_page_title = (By.XPATH, "//div[@class = 'example']/h3")
+    ab_page_title = (By.XPATH, "//div[@class='example']/h3")
 
     def get_abtest_page(self):
         return self.driver.get(self.base_url + "abtest")
