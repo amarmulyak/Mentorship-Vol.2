@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 
 class HomePage(BasePage):
     home_page_title = (By.CLASS_NAME, "heading")
-    a_b_testing_link = (By.XPATH, "//a[contains(@href, '/abtest')]")
+    ab_testing_link = (By.XPATH, "//a[contains(@href, '/abtest')]")
 
     def get_home_page(self):
         return self.driver.get(self.base_url)
