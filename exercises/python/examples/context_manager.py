@@ -5,14 +5,14 @@
 # Example 1
 class ContextManager:
     def __init__(self):
-        print('init method called')
+        print("init method called")
 
     def __enter__(self):
-        print('enter method called')
+        print("enter method called")
         return self
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
-        print('exit method called')
+        print("exit method called")
 
 
 # with ContextManager() as manager:
@@ -52,7 +52,7 @@ class FileManager:
 # from pymongo import MongoClient
 
 
-class MongoDBConnectionManager():
+class MongoDBConnectionManager:
     def __init__(self, hostname, port):
         self.hostname = hostname
         self.port = port
@@ -87,4 +87,4 @@ def my_context_manager():
 
 
 with my_context_manager() as manager:
-    print('with statement block')
+    print("with statement block")

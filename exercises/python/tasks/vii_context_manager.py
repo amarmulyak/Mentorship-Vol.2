@@ -10,7 +10,6 @@ from contextlib import contextmanager
 
 
 class Timer:
-
     def __enter__(self):
         self.start_time = time.time()
         print("Timer start")
@@ -22,7 +21,7 @@ class Timer:
 
 
 with Timer() as t:
-    a = [x**100 for x in range(1, 1000000)]
+    a = [x ** 100 for x in range(1, 1000000)]
 
 
 @contextmanager

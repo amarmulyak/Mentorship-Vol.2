@@ -102,6 +102,7 @@ class MyIterable2:
         elif self.type_ == "inverse":
             return InverseIterator(self.number)
 
+
 #
 # sq = MyIterable2(10, "square")
 # inv = MyIterable2(7, "inverse")

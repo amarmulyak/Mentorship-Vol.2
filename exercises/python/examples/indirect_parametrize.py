@@ -4,18 +4,14 @@ import pytest
 # Example 1
 @pytest.fixture
 def fixture_name(request):
-    my_dict = {
-        "foo": "foo_",
-        "bar": "baz",
-        "some": "some"
-    }
+    my_dict = {"foo": "foo_", "bar": "baz", "some": "some"}
     print(request.param)
     return my_dict[request.param]
 
 
-@pytest.mark.parametrize('fixture_name', ['foo', 'bar'], indirect=True)
+@pytest.mark.parametrize("fixture_name", ["foo", "bar"], indirect=True)
 def test_indirect(fixture_name):
-    assert fixture_name == 'baz'
+    assert fixture_name == "baz"
 
 
 # Example 2

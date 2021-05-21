@@ -6,10 +6,13 @@ import os.path
 #  Create decorator that prints function name, parameters, execution time.
 def function_information(func):
     def wrapper(*args, **kwargs):
-        print(f'Function: {func.__name__} '
-              f'\nParameters: args - {args} kwargs - {kwargs}'
-              f'\nExecution time: {datetime.now().strftime("%d/%m/%y %H:%M:%S")}')
+        print(
+            f"Function: {func.__name__} "
+            f"\nParameters: args - {args} kwargs - {kwargs}"
+            f'\nExecution time: {datetime.now().strftime("%d/%m/%y %H:%M:%S")}'
+        )
         return func(*args, **kwargs)
+
     return wrapper
 
 
@@ -29,9 +32,11 @@ def expecting_result(seconds: int, result):
             while seconds - (time.time() - start) >= 0:
                 func_result = func(*args, **kwargs)
                 if func_result == result:
-                    return f'Actual is equal to expected ({func_result} = {result})'
+                    return f"Actual is equal to expected ({func_result} = {result})"
             return f"Function didn't return {result!r} result"
+
         return wrapper
+
     return decorator
 
 
@@ -41,6 +46,7 @@ def func_spell(word):
 
 
 # print(func_spell("Hello2"))
+
 
 @expecting_result(10, True)
 def func_file_exists(file_name):
@@ -57,6 +63,7 @@ def decorator_singleton(class_):
         if class_ not in instances:
             instances[class_] = class_(*args, **kwargs)
         return instances[class_]
+
     return get_instance
 
 

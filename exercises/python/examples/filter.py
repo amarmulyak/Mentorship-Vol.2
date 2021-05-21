@@ -15,4 +15,3 @@ print(list(filter(lambda x: (x + 1) * 3 / 3 % 3 == 0, numbers)))
 
 lis = ["Sun", "Moon", "Sea"]
 print(list(filter(filter_func, lis)))
-

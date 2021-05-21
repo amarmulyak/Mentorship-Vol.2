@@ -3,7 +3,7 @@ from copy import copy, deepcopy
 
 class A:
     def __init__(self):
-        print('init')
+        print("init")
         self.v = 10
         self.z = [2, 3, 4]
 
@@ -14,7 +14,7 @@ class A:
         return result
 
     def __deepcopy__(self, memo):
-        print('__deepcopy__(%s)' % str(memo))
+        print("__deepcopy__(%s)" % str(memo))
         cls = self.__class__
         result = cls.__new__(cls)
         memo[id(self)] = result
@@ -37,15 +37,15 @@ class MyClass:
         self.name = name
 
     def __copy__(self):
-        print('__copy__()')
+        print("__copy__()")
         return MyClass(self.name)
 
     def __deepcopy__(self, memo):
-        print('__deepcopy__(%s)' % str(memo))
+        print("__deepcopy__(%s)" % str(memo))
         return MyClass(deepcopy(self.name, memo))
 
 
-a = MyClass('a')
+a = MyClass("a")
 
 sc = copy(a)
 dc = deepcopy(a)

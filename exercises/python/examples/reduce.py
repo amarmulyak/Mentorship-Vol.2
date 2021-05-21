@@ -18,4 +18,3 @@ print(functools.reduce(predicate_func, lis))
 
 # Find max value in the list
 print(functools.reduce(lambda a, b: a if a > b else b, lis))
-

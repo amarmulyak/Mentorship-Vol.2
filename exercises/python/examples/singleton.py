@@ -8,15 +8,15 @@ class Singleton:
 
 
 class Singleton2:
-        obj = None  # attribute for storing a single copy
+    obj = None  # attribute for storing a single copy
 
-        def __new__(cls, *args, **kwargs):  # class Singleton
-            if cls.obj is None:
-                # If it does not yet exist, then
-                # call __new__ of the parent class
-                cls.obj = object. __new__(cls, *args, **kwargs)
+    def __new__(cls, *args, **kwargs):  # class Singleton
+        if cls.obj is None:
+            # If it does not yet exist, then
+            # call __new__ of the parent class
+            cls.obj = object.__new__(cls, *args, **kwargs)
 
-            return cls.obj  # will return Singleton
+        return cls.obj  # will return Singleton
 
 
 obj = Singleton2()
@@ -33,4 +33,5 @@ def decorator_singleton(class_):
         if class_ not in instances:
             instances[class_] = class_(*args, **kwargs)
         return instances[class_]
+
     return get_instance

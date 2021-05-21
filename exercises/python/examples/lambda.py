@@ -1,8 +1,8 @@
 (lambda x, y: x + y)(2, 5)
 
 
-full_name = lambda first, last: f'Full name: {first.title()} {last.title()}'
-full_name('guido', 'van rossum')
+full_name = lambda first, last: f"Full name: {first.title()} {last.title()}"
+full_name("guido", "van rossum")
 
 
 (lambda x: x + 1)(2)

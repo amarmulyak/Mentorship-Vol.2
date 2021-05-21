@@ -1,5 +1,5 @@
 def some_func(a):
-    return a*2
+    return a * 2
 
 
 lis = [1, 2, 3]

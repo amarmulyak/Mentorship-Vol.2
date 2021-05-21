@@ -1,4 +1,4 @@
-grocery = ['bread', 'milk', 'butter']
+grocery = ["bread", "milk", "butter"]
 enumerateGrocery = enumerate(grocery)
 
 print(type(enumerateGrocery))

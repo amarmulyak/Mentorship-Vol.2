@@ -9,7 +9,11 @@ c1 = [x for x in range(0, 20) if x % 3 == 0 and not (x // 6 > 0 and x % 6 == 0)]
 
 # Function implementation:
 def dev_3_not_dev_6(number):
-    return [x for x in range(0, number + 1) if x % 3 == 0 and not (x // 6 > 0 and x % 6 == 0)]
+    return [
+        x
+        for x in range(0, number + 1)
+        if x % 3 == 0 and not (x // 6 > 0 and x % 6 == 0)
+    ]
 
 
 # print(dev_3_not_dev_6(30))
@@ -24,7 +28,11 @@ f = filter(lambda x: x % 3 == 0 and not (x // 6 > 0 and x % 6 == 0), range(0, 11
 # Function implementation:
 def dev_3_not_dev_6_filter(number):
     return list(
-        filter(lambda x: x % 3 == 0 and not (x // 6 > 0 and x % 6 == 0), range(0, number + 1)))
+        filter(
+            lambda x: x % 3 == 0 and not (x // 6 > 0 and x % 6 == 0),
+            range(0, number + 1),
+        )
+    )
 
 
 # print(dev_3_not_dev_6_filter(20))
@@ -63,7 +71,9 @@ map_method = map(lambda x: x % 3 == 0 and not (x // 6 > 0 and x % 6 == 0), range
 # print(list(map_method))
 
 # List comprehension usage
-map_compr_method = [x % 3 == 0 and not (x // 6 > 0 and x % 6 == 0) for x in range(0, 11)]
+map_compr_method = [
+    x % 3 == 0 and not (x // 6 > 0 and x % 6 == 0) for x in range(0, 11)
+]
 # print(map_compr_method)
 
 
@@ -78,14 +88,16 @@ def map_comprehension(func: Callable, iterable: [List, range]) -> list:
     return [func(x) for x in iterable]
 
 
-res = map_comprehension(lambda x: x % 3 == 0 and not (x // 6 > 0 and x % 6 == 0), range(0, 11))
+res = map_comprehension(
+    lambda x: x % 3 == 0 and not (x // 6 > 0 and x % 6 == 0), range(0, 11)
+)
 # print(res)
 
 
 # ***** Implement enumerate() using list comprehension *****
 
 # enumerate() example
-grocery = ['bread', 'milk', 'butter']
+grocery = ["bread", "milk", "butter"]
 enumerate_res = enumerate(grocery)
 # print(list(enumerate_res))
 
