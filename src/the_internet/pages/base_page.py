@@ -46,11 +46,3 @@ class BasePage:
     def check_element_text(self, locator, text):
         element_text = self.find_element(locator).text
         assert element_text == text
-
-    def wait_until_alert_appear(self, time=10):
-        return WebDriverWait(self.driver, time).until(
-            EC.alert_is_present(), message="Alert is not present"
-        )
-
-    def wait_until_alert_disappear(self, time=10):
-        return WebDriverWait(self.driver, time).until_not(EC.alert_is_present())
