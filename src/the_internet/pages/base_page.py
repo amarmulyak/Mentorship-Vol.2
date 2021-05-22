@@ -1,8 +1,11 @@
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage:
+    page_title_locator = (By.XPATH, "//div[@class='example']/h3")
+
     def __init__(self, driver):
         self.driver = driver
         self.base_url = "https://the-internet.herokuapp.com/"
@@ -43,3 +46,11 @@ class BasePage:
     def check_element_text(self, locator, text):
         element_text = self.find_element(locator).text
         assert element_text == text
+
+    def wait_until_alert_appear(self, time=10):
+        return WebDriverWait(self.driver, time).until(
+            EC.alert_is_present(), message="Alert is not present"
+        )
+
+    def wait_until_alert_disappear(self, time=10):
+        return WebDriverWait(self.driver, time).until_not(EC.alert_is_present())
