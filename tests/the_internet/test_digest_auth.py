@@ -1,0 +1,13 @@
+from src.the_internet.pages.digest_auth_page import DigestAuthPage
+
+
+def test_basic_auth_valid_creds(driver):
+    digest_auth = DigestAuthPage(driver)
+    digest_auth.get_basic_auth_page(username="admin", password="admin")
+    digest_auth.check_digest_auth_title()
+
+
+def test_basic_auth_invalid_creds(driver):
+    digest_auth = DigestAuthPage(driver)
+    digest_auth.get_basic_auth_page(username="123", password="123")
+    digest_auth.check_digest_auth_title()
