@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from src.the_internet.pages.base_page import BasePage
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import ActionChains
+from selenium.common.exceptions import NoAlertPresentException
 
 
 class ContextMenuPage(BasePage):
@@ -16,3 +17,16 @@ class ContextMenuPage(BasePage):
         action = ActionChains(self.driver)
         return action.context_click(box).perform()
 
+    def check_alert_appear(self):
+        assert self.wait_until_alert_appear()
+
+    def check_alert_disappears_on_ok(self):
+        popup = self.driver.switch_to.alert
+        popup.accept()
+        self.wait_until_alert_disappear()
+        try:
+            self.driver.switch_to.alert
+            alert_not_shown = False
+        except NoAlertPresentException:
+            alert_not_shown = True
+        assert alert_not_shown
