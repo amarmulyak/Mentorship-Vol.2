@@ -5,3 +5,14 @@ def test_get_answer(driver):
     challenging_dom = ChallengingDomPage(driver)
     challenging_dom.get_challenging_dom_page()
     challenging_dom.get_answer()  # Can't get canvas.strokeText
+
+
+def test_cell_data(driver):
+    challenging_dom = ChallengingDomPage(driver)
+    challenging_dom.get_challenging_dom_page()
+    cell_data1 = challenging_dom.get_data_from_cell("1", "Lorem")
+    assert cell_data1 == "Iuvaret0"
+    cell_data2 = challenging_dom.get_data_from_cell("2", "Ipsum")
+    assert cell_data2 == "Apeirian1"
+    cell_data3 = challenging_dom.get_data_from_cell("3", "Dolor")
+    assert cell_data3 == "Adipisci2"
