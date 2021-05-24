@@ -16,7 +16,9 @@ class ContextMenuPage(BasePage):
         return action.context_click(box).perform()
 
     def check_alert_appear(self):
-        assert self.wait_until_alert_appear()
+        self.wait_until_alert_appear()
+        popup = self.driver.switch_to.alert
+        assert popup.text == "You selected a context menu"
 
     def check_alert_disappears_on_ok(self):
         popup = self.driver.switch_to.alert
