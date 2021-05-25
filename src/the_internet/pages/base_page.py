@@ -28,6 +28,12 @@ class BasePage:
             message=f"Locator {locator} is not visible",
         )
 
+    def wait_until_invisible(self, locator, time=10):
+        return WebDriverWait(self.driver, time).until(
+            EC.invisibility_of_element(locator),
+            message=f"Locator {locator} is not visible",
+        )
+
     def wait_until_text_in_element(self, locator, text, time=10):
         return WebDriverWait(self.driver, time).until(
             EC.text_to_be_present_in_element(locator, text),
