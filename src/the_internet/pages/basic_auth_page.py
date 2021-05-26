@@ -15,6 +15,7 @@ class BasicAuthPage(BasePage):
     #     self.check_element_text(self.basic_auth_title, "Basic Auth")
 
     def check_basic_auth_title(self):
+        # TODO Має повертати Тру або Фолс + передавати час очікування
         title_found = False
         try:
             title_found = self.check_element_text(self.basic_auth_title, "Basic Auth")

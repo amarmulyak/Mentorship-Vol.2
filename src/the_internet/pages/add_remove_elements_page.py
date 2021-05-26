@@ -20,6 +20,7 @@ class AddRemoveElementsPage(BasePage):
         return
 
     def get_delete_buttons(self, **kwargs):
+        # TODO Шукати елементи методом від драйвера
         delete_btns = []
         try:
             delete_btns = self.find_elements(self.delete_btns_locator, **kwargs)
@@ -28,6 +29,7 @@ class AddRemoveElementsPage(BasePage):
         return delete_btns
 
     def check_buttons_quantity(self, btns_quantity, **kwargs):
+        # TODO Винести всі ассерт мнетоди в тести, Чек методи до дупи можливо
         """
 
         :param btns_quantity: Expected number of buttons
@@ -38,6 +40,7 @@ class AddRemoveElementsPage(BasePage):
         assert len(delete_btns) == btns_quantity
 
     def delete_button(self, button_position):
+        # TODO Видаляти батон на базі ліста гет_деліт_батонс
         self.click_on_element(
             (
                 self.delete_btn_locator[0],

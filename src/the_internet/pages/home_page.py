@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 
 
 class HomePage(BasePage):
+    # TODO Додати переходи на дочірні сторінки + вертати інстанси пейджі
     home_page_title = (By.CLASS_NAME, "heading")
     ab_testing_link = (By.XPATH, "//a[contains(@href, '/abtest')]")
 

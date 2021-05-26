@@ -10,6 +10,7 @@ class BrokenImagesPage(BasePage):
         return self.driver.get(self.base_url + "broken_images")
 
     def check_for_broken_images(self):
+        # TODO Зробити гет брокен імеджес і гет не брокен імеджес
         images = self.find_elements(self.images_locator)
         for image in images:
             response = requests.get(image.get_attribute("src"))

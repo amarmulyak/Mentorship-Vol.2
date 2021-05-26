@@ -11,6 +11,7 @@ class DragAndDropPage(BasePage):
         return self.driver.get(self.base_url + "drag_and_drop")
 
     def drag_and_drop_column_a_to_b(self):
+        # TODO Попробувати бібліотеку drag_and_drop
         a = self.find_element(self.column_a_locator)
         b = self.find_element(self.column_b_locator)
         action_chains = ActionChains(self.driver)
