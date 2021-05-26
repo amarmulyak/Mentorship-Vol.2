@@ -8,7 +8,7 @@ class HomePage(BasePage):
     ab_testing_link = (By.XPATH, "//a[contains(@href, '/abtest')]")
 
     def get_home_page(self):
-        return self.driver.get(self.base_url)
+        return self.driver.get("https://the-internet.herokuapp.com/")
 
     def check_home_page_title(self):
         return self.check_element_text(self.home_page_title, "Welcome to the-internet")

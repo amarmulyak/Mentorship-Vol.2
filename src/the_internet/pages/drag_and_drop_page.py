@@ -8,7 +8,7 @@ class DragAndDropPage(BasePage):
     column_b_locator = (By.XPATH, "//div[@id='column-b']")
 
     def get_drag_and_drop_page(self):
-        return self.driver.get(self.base_url + "drag_and_drop")
+        return self.driver.get("https://the-internet.herokuapp.com/drag_and_drop")
 
     def drag_and_drop_column_a_to_b(self):
         # TODO Попробувати бібліотеку drag_and_drop

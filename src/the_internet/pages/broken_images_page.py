@@ -7,7 +7,7 @@ class BrokenImagesPage(BasePage):
     images_locator = (By.TAG_NAME, "img")
 
     def get_add_broken_images_page(self):
-        return self.driver.get(self.base_url + "broken_images")
+        return self.driver.get("https://the-internet.herokuapp.com/broken_images")
 
     def check_for_broken_images(self):
         # TODO Зробити гет брокен імеджес і гет не брокен імеджес

@@ -11,7 +11,7 @@ class DynamicControlsPage(BasePage):
     edit_field_locator = (By.XPATH, "//input[@type='text']")
 
     def get_dynamic_controls_page(self):
-        return self.driver.get(self.base_url + "dynamic_controls")
+        return self.driver.get("https://the-internet.herokuapp.com/dynamic_controls")
 
     def verify_checkbox_present(self, expected: bool):
         try:

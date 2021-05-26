@@ -8,7 +8,7 @@ class ContextMenuPage(BasePage):
     box_locator = (By.ID, "hot-spot")
 
     def get_context_menu_page(self):
-        return self.driver.get(self.base_url + "context_menu")
+        return self.driver.get("https://the-internet.herokuapp.com/context_menu")
 
     def right_mouse_click_on_box(self):
         box = self.find_element(self.box_locator)

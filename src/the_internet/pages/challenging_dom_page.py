@@ -10,7 +10,7 @@ class ChallengingDomPage(BasePage):
         "//div[@class='large-10 columns']/table/tbody/tr[position()={}]/td[position()=count(//div[@class='large-10 columns']/table/thead/tr/th[contains(., '{}')]/preceding-sibling::th)+1]")
 
     def get_challenging_dom_page(self):
-        return self.driver.get(self.base_url + "challenging_dom")
+        return self.driver.get("https://the-internet.herokuapp.com/challenging_dom")
 
     def get_answer(self):
         answer = self.driver.execute_script("return canvas;")

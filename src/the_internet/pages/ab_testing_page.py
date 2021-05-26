@@ -6,7 +6,7 @@ class ABTestingPage(BasePage):
     ab_page_title = (By.XPATH, "//div[@class='example']/h3")
 
     def get_abtest_page(self):
-        return self.driver.get(self.base_url + "abtest")
+        return self.driver.get("https://the-internet.herokuapp.com/abtest")
 
     def check_abtest_page_title(self):
         return self.check_element_text(self.ab_page_title, "A/B Test Variation 1")
