@@ -3,7 +3,7 @@ from selenium.common.exceptions import TimeoutException
 
 
 class DigestAuthPage(BasePage):
-    basic_auth_title = BasePage.page_title_locator
+    digest_auth_title_locator = BasePage.page_title_locator
 
     def get_basic_auth_page(self, username, password):
         url = "the-internet.herokuapp.com/digest_auth"
@@ -11,13 +11,12 @@ class DigestAuthPage(BasePage):
         password = password
         return self.driver.get(f"https://{username}:{password}@{url}")
 
-    # def check_basic_auth_title(self):
-    #     self.check_element_text(self.basic_auth_title, "Basic Auth")
+    def digest_auth_title_has_text(self, text):
+        return self.element_has_text(self.digest_auth_title_locator, text)
 
-    def check_digest_auth_title(self):
-        title_found = False
+    def digest_auth_page_reached(self):
         try:
-            title_found = self.check_element_text(self.basic_auth_title, "Digest Auth")
+            title_found = self.find_element(self.digest_auth_title_locator)
         except TimeoutException:
-            pass
+            title_found = False
         return title_found

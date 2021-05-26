@@ -56,7 +56,7 @@ class BasePage:
     def wait_until_alert_disappear(self, time=10):
         return WebDriverWait(self.driver, time).until_not(EC.alert_is_present())
 
-    def check_element_text(self, locator, text):
+    def element_has_text(self, locator, text):
         # TODO Змінити ассерт на ретурн
         element_text = self.find_element(locator).text
-        assert element_text == text
+        return element_text == text

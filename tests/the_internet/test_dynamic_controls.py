@@ -11,11 +11,11 @@ def test_checkbox(driver):
     dynamic_controls.click_add_remove_button()
     # Need advice here as I wait 10 extra seconds to find the element
     dynamic_controls.verify_checkbox_present(False)
-    dynamic_controls.check_message_text("It's gone!")
+    assert dynamic_controls.message_has_text("It's gone!")
 
     dynamic_controls.click_add_remove_button()
     dynamic_controls.verify_checkbox_present(True)
-    dynamic_controls.check_message_text("It's back!")
+    assert dynamic_controls.message_has_text("It's back!")
 
 
 def test_edit_field(driver):

@@ -25,11 +25,11 @@ class DynamicControlsPage(BasePage):
         self.click_on_element(self.add_remove_button_locator)
         return self.wait_until_invisible(self.loader_locator)
 
-    def check_message_text(self, text):
-        return self.check_element_text(self.message_locator, text)
+    def message_has_text(self, text):
+        return self.element_has_text(self.message_locator, text)
 
     def check_add_remove_button_caption(self, caption):
-        return self.check_element_text(self.add_remove_button_locator, caption)
+        return self.element_has_text(self.add_remove_button_locator, caption)
 
     def check_edit_field_enabled(self):
         # How to check properly if the field is enabled
