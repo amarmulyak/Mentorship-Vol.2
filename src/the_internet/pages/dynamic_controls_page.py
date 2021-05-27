@@ -13,13 +13,12 @@ class DynamicControlsPage(BasePage):
     def get_dynamic_controls_page(self):
         return self.driver.get("https://the-internet.herokuapp.com/dynamic_controls")
 
-    def verify_checkbox_present(self, expected: bool):
+    def checkbox_is_present(self):
         try:
-            self.find_element(self.checkbox_loctor)
-            checkbox_present = True
+            checkbox_present = self.find_element(self.checkbox_loctor)
         except TimeoutException:
             checkbox_present = False
-        assert checkbox_present == expected
+        return checkbox_present
 
     def click_add_remove_button(self):
         self.click_on_element(self.add_remove_button_locator)
@@ -28,11 +27,14 @@ class DynamicControlsPage(BasePage):
     def message_has_text(self, text):
         return self.element_has_text(self.message_locator, text)
 
-    def check_add_remove_button_caption(self, caption):
+    def add_remove_button_has_caption(self, caption):
         return self.element_has_text(self.add_remove_button_locator, caption)
 
-    def check_edit_field_enabled(self):
-        # How to check properly if the field is enabled
+    def edit_field_is_disabled(self):
+        """
+        Verify if the field enabled/disabled
+        :return: True if the field disabled; None if it's enabled
+        """
         edit_field = self.find_element(self.edit_field_locator)
-        enabled = edit_field.get_attribute("disabled")  # Returns None if the field is enabled
-        return enabled
+        is_disabled = edit_field.get_attribute("disabled")
+        return is_disabled
