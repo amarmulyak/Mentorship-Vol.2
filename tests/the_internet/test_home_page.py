@@ -15,4 +15,4 @@ def test_ab_testing_link(driver):
     abtest_page = ABTestingPage(driver)
     home_page.get_home_page()
     home_page.click_on_element(home_page.ab_testing_link_locator)
-    abtest_page.abtest_page_title_has_text()
+    assert abtest_page.abtest_page_reached()
