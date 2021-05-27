@@ -1,5 +1,4 @@
 from src.the_internet.pages.base_page import BasePage
-from selenium.common.exceptions import TimeoutException
 
 
 class DigestAuthPage(BasePage):
@@ -11,12 +10,8 @@ class DigestAuthPage(BasePage):
         password = password
         return self.driver.get(f"https://{username}:{password}@{url}")
 
-    def digest_auth_title_has_text(self, text):
-        return self.element_has_text(self.digest_auth_title_locator, text)
+    def digest_auth_title_equal(self, text):
+        return self.element_text_equal(self.digest_auth_title_locator, text)
 
-    def digest_auth_page_reached(self):
-        try:
-            title_found = self.find_element(self.digest_auth_title_locator)
-        except TimeoutException:
-            title_found = False
-        return title_found
+    def digest_auth_page_reached(self, wait_time=10):
+        return self.element_is_present(self.digest_auth_title_locator, wait_time)

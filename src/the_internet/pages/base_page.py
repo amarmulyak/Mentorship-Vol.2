@@ -1,3 +1,4 @@
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -56,7 +57,14 @@ class BasePage:
     def wait_until_alert_disappear(self, time=10):
         return WebDriverWait(self.driver, time).until_not(EC.alert_is_present())
 
-    def element_has_text(self, locator, text):
-        # TODO Змінити ассерт на ретурн
+    def element_text_equal(self, locator, text):
         element_text = self.find_element(locator).text
         return element_text == text
+
+    def element_is_present(self, locator, wait_time=10):
+        try:
+            self.find_element(locator, time=wait_time)
+            element_found = True
+        except TimeoutException:
+            element_found = False
+        return element_found

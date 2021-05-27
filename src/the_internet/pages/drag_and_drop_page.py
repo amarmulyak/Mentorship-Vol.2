@@ -16,4 +16,6 @@ class DragAndDropPage(BasePage):
         b = self.find_element(self.column_b_locator)
         action_chains = ActionChains(self.driver)
         # action_chains.drag_and_drop(a, b).perform()
-        action_chains.move_to_element(a).click_and_hold().move_by_offset(280, 150).release().perform()
+        action_chains.move_to_element(a).click_and_hold().move_by_offset(
+            280, 150
+        ).release().perform()

@@ -13,22 +13,18 @@ class DynamicControlsPage(BasePage):
     def get_dynamic_controls_page(self):
         return self.driver.get("https://the-internet.herokuapp.com/dynamic_controls")
 
-    def checkbox_is_present(self):
-        try:
-            checkbox_present = self.find_element(self.checkbox_loctor)
-        except TimeoutException:
-            checkbox_present = False
-        return checkbox_present
+    def checkbox_is_present(self, wait_time=10):
+        return self.element_is_present(self.checkbox_loctor, wait_time)
 
     def click_add_remove_button(self):
         self.click_on_element(self.add_remove_button_locator)
         return self.wait_until_invisible(self.loader_locator)
 
-    def message_has_text(self, text):
-        return self.element_has_text(self.message_locator, text)
+    def message_equal(self, text):
+        return self.element_text_equal(self.message_locator, text)
 
     def add_remove_button_has_caption(self, caption):
-        return self.element_has_text(self.add_remove_button_locator, caption)
+        return self.element_text_equal(self.add_remove_button_locator, caption)
 
     def edit_field_is_disabled(self):
         """

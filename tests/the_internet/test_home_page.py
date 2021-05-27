@@ -6,7 +6,7 @@ import pytest
 def test_home_page_title(driver):
     home_page = HomePage(driver)
     home_page.get_home_page()
-    assert home_page.home_page_title_has_text("Welcome to the-internet")
+    assert home_page.home_page_title_equal("Welcome to the-internet")
 
 
 @pytest.mark.flaky(reruns=5)

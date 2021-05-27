@@ -9,7 +9,9 @@ class AddRemoveElementsPage(BasePage):
     delete_btn_locator = (By.XPATH, "//div[@id='elements']/button[{}]")
 
     def get_add_remove_elements_page(self):
-        return self.driver.get("https://the-internet.herokuapp.com/add_remove_elements/")
+        return self.driver.get(
+            "https://the-internet.herokuapp.com/add_remove_elements/"
+        )
 
     def add_element(self):
         return self.click_on_element(self.add_element_btn_locator)

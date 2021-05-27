@@ -11,13 +11,8 @@ class BasicAuthPage(BasePage):
         password = password
         return self.driver.get(f"https://{username}:{password}@{url}")
 
-    def basic_auth_title_has_text(self, text):
-        return self.element_has_text(self.basic_auth_title_locator, text)
+    def basic_auth_title_equal(self, text):
+        return self.element_text_equal(self.basic_auth_title_locator, text)
 
-    def basic_auth_page_reached(self):
-        # TODO Має повертати Тру або Фолс + передавати час очікування
-        try:
-            title_found = self.find_element(self.basic_auth_title_locator)
-        except TimeoutException:
-            title_found = False
-        return title_found
+    def basic_auth_page_reached(self, wait_time=10):
+        return self.element_is_present(self.basic_auth_title_locator, wait_time)

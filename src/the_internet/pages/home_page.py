@@ -10,5 +10,5 @@ class HomePage(BasePage):
     def get_home_page(self):
         return self.driver.get("https://the-internet.herokuapp.com/")
 
-    def home_page_title_has_text(self, text):
-        return self.element_has_text(self.home_page_title_locator, text)
+    def home_page_title_equal(self, text):
+        return self.element_text_equal(self.home_page_title_locator, text)
