@@ -9,7 +9,7 @@ def driver():
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
     driver = webdriver.Chrome(
-        executable_path=f"{cur_path}/drivers/chromedriver", chrome_options=options
+        executable_path=f"{cur_path}/drivers/chromedriver", options=options
     )
     yield driver
     driver.quit()
