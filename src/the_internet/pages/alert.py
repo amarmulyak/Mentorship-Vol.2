@@ -7,7 +7,7 @@ class Alert:
     def __init__(self, driver):
         self.driver = driver
 
-    def alert_is_present(self, wait_time=10):
+    def is_present(self, wait_time=10):
         try:
             self._wait_until_alert_appear(time=wait_time)
             alert_appear = True
@@ -15,12 +15,12 @@ class Alert:
             alert_appear = False
         return alert_appear
 
-    def alert_text_equal(self, text):
+    def text_equal(self, text):
         self._wait_until_alert_appear()
         popup = self.driver.switch_to.alert
         return popup.text == text
 
-    def alert_accept(self):
+    def accept(self):
         self._wait_until_alert_appear()
         popup = self.driver.switch_to.alert
         popup.accept()
