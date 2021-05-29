@@ -9,5 +9,3 @@ def test_broken_images(driver):
     not_broken_images, broken_images = broken_images.get_images()
     assert not_broken_images
     assert not broken_images
-
-
