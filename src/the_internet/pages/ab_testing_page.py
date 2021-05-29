@@ -11,5 +11,5 @@ class ABTestingPage(BasePage):
     def abtest_page_title_equal(self, text):
         return self.element_text_equal(self.ab_page_title_locator, text)
 
-    def abtest_page_reached(self, wait_time=10):
-        return self.element_is_present(self.ab_page_title_locator, wait_time)
+    def abtest_page_reached(self):
+        return self.element_is_present(self.ab_page_title_locator)
