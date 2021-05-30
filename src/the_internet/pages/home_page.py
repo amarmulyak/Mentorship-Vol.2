@@ -13,7 +13,6 @@ from src.the_internet.pages.dynamic_controls_page import DynamicControlsPage
 
 class HomePage(BasePage):
     home_page_title_locator = (By.CLASS_NAME, "heading")
-    ab_testing_link_locator = (By.XPATH, "//a[contains(text(), 'A/B Testing')]")
     example_link_locator = (By.XPATH, "//a[contains(text(), '{}')]")
 
     def get_home_page(self):
