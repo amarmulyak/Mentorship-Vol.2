@@ -1,5 +1,4 @@
 from src.the_internet.pages.base_page import BasePage
-from selenium.common.exceptions import TimeoutException
 
 
 class BasicAuthPage(BasePage):

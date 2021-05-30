@@ -1,6 +1,5 @@
-from selenium.common.exceptions import TimeoutException
-from src.the_internet.pages.base_page import BasePage
 from selenium.webdriver.common.by import By
+from src.the_internet.pages.base_page import BasePage
 
 
 class DynamicControlsPage(BasePage):
@@ -27,10 +26,9 @@ class DynamicControlsPage(BasePage):
         return self.element_text_equal(self.add_remove_button_locator, caption)
 
     def edit_field_is_disabled(self):
-        """
-        Verify if the field enabled/disabled
-        :return: True if the field disabled; None if it's enabled
-        """
         edit_field = self.find_element(self.edit_field_locator)
-        is_disabled = edit_field.get_attribute("disabled")
+        if edit_field.get_attribute("disabled"):
+            is_disabled = True
+        else:
+            is_disabled = False
         return is_disabled
