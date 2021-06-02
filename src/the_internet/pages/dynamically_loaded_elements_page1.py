@@ -3,7 +3,6 @@ from src.the_internet.pages.base_page import BasePage
 
 
 class DynamicallyLoadedElementsPage1(BasePage):
-    # TODO Зробити капсом і протектед
     _START_BUTTON_SECTION = (By.XPATH, "//div[@id='start']")
     _START_BUTTON = (By.XPATH, "//div[@id='start']/button")
     _DYNAMIC_TEXT_SECTION = (By.XPATH, "//div[@id='finish']")
