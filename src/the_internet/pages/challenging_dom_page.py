@@ -3,9 +3,9 @@ from src.the_internet.pages.base_page import BasePage
 
 
 class ChallengingDomPage(BasePage):
-    answer_locator = (By.ID, "canvas")
-    answer_text_locaotr = (By.XPATH, "//script/text()")
-    cell_data_locator = (
+    _ANSWER = (By.ID, "canvas")
+    _ANSWER_TEXT = (By.XPATH, "//script/text()")
+    _CELL_DATA = (
         By.XPATH,
         "//div[@class='large-10 columns']/table/tbody/tr[position()={}]/td[position()=count(//div[@class='large-10 columns']/table/thead/tr/th[contains(., '{}')]/preceding-sibling::th)+1]",
     )
@@ -20,7 +20,7 @@ class ChallengingDomPage(BasePage):
     def get_data_from_cell(self, row_number, title_name):
         return self.find_element(
             (
-                self.cell_data_locator[0],
-                self.cell_data_locator[1].format(row_number, title_name),
+                self._CELL_DATA[0],
+                self._CELL_DATA[1].format(row_number, title_name),
             )
         ).text

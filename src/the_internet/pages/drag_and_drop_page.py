@@ -4,28 +4,28 @@ from src.the_internet.pages.base_page import BasePage
 
 
 class DragAndDropPage(BasePage):
-    column_a_locator = (By.XPATH, "//div[@id='column-a']")
-    column_b_locator = (By.XPATH, "//div[@id='column-b']")
+    _COLUMN_A = (By.XPATH, "//div[@id='column-a']")
+    _COLUMN_B = (By.XPATH, "//div[@id='column-b']")
 
     def get_drag_and_drop_page(self):
         return self.driver.get("https://the-internet.herokuapp.com/drag_and_drop")
 
     def column_a_text_equal(self, text):
-        return self.element_text_equal(self.column_a_locator, text)
+        return self.element_text_equal(self._COLUMN_A, text)
 
     def column_b_text_equal(self, text):
-        return self.element_text_equal(self.column_b_locator, text)
+        return self.element_text_equal(self._COLUMN_B, text)
 
     def drag_and_drop_column_a_to_b(self):
         return self._drag_and_drop(
-            self.column_a_locator,
-            self.column_b_locator
+            self._COLUMN_A,
+            self._COLUMN_B
         )
 
     def drag_and_drop_column_b_to_a(self):
         return self._drag_and_drop(
-            self.column_b_locator,
-            self.column_a_locator
+            self._COLUMN_B,
+            self._COLUMN_A
         )
 
     def _drag_and_drop(self, source_locator, target_locator):

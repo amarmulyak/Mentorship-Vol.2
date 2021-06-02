@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage:
-    page_title_locator = (By.XPATH, "//div[@class='example']/h3")
+    _PAGE_TITLE = (By.XPATH, "//div[@class='example']/h3")
 
     def __init__(self, driver):
         self.driver = driver

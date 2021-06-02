@@ -2,7 +2,7 @@ from src.the_internet.pages.base_page import BasePage
 
 
 class BasicAuthPage(BasePage):
-    basic_auth_title_locator = BasePage.page_title_locator
+    _BASIC_AUTH_TITLE = BasePage._PAGE_TITLE
 
     def get_basic_auth_page(self, username, password):
         url = "the-internet.herokuapp.com/basic_auth"
@@ -11,7 +11,7 @@ class BasicAuthPage(BasePage):
         return self.driver.get(f"https://{username}:{password}@{url}")
 
     def basic_auth_title_equal(self, text):
-        return self.element_text_equal(self.basic_auth_title_locator, text)
+        return self.element_text_equal(self._BASIC_AUTH_TITLE, text)
 
     def basic_auth_page_reached(self, wait_time=10):
-        return self.element_is_present(self.basic_auth_title_locator, wait_time)
+        return self.element_is_present(self._BASIC_AUTH_TITLE, wait_time)

@@ -3,9 +3,9 @@ from src.the_internet.pages.base_page import BasePage
 
 
 class AddRemoveElementsPage(BasePage):
-    add_element_btn_locator = (By.XPATH, "//div[@class='example']/button")
-    delete_btns_locator = (By.CLASS_NAME, "added-manually")
-    delete_btn_locator = (By.XPATH, "//div[@id='elements']/button[{}]")
+    _ADD_ELEMENT_BTN = (By.XPATH, "//div[@class='example']/button")
+    _DELETE_BTNS = (By.CLASS_NAME, "added-manually")
+    _DELETE_BTN = (By.XPATH, "//div[@id='elements']/button[{}]")
 
     def get_add_remove_elements_page(self):
         return self.driver.get(
@@ -13,20 +13,20 @@ class AddRemoveElementsPage(BasePage):
         )
 
     def add_element(self):
-        return self.click_on_element(self.add_element_btn_locator)
+        return self.click_on_element(self._ADD_ELEMENT_BTN)
 
     def add_elements(self, number_of_elements: int):
         for number in range(number_of_elements):
             self.add_element()
 
     def get_delete_buttons(self):
-        return self.driver.find_elements(*self.delete_btns_locator)
+        return self.driver.find_elements(*self._DELETE_BTNS)
 
     def delete_button(self, button_position):
         self.click_on_element(
             (
-                self.delete_btn_locator[0],
-                self.delete_btn_locator[1].format(button_position),
+                self._DELETE_BTN[0],
+                self._DELETE_BTN[1].format(button_position),
             )
         )
 
