@@ -13,7 +13,7 @@ class DynamicControlsPage(BasePage):
     _INPUT_MESSAGE = (By.XPATH, "//form[@id='input-example']/p[@id='message']")
 
     def get_dynamic_controls_page(self):
-        return self.driver.get("https://the-internet.herokuapp.com/dynamic_controls")
+        return self.driver.get(f"{self.path}/dynamic_controls")
 
     def checkbox_is_present(self, wait_time=10):
         return self.element_is_present(self._CHECKBOX, wait_time)
@@ -22,11 +22,11 @@ class DynamicControlsPage(BasePage):
         self.click_on_element(self._CHECKBOX_ADD_REMOVE_BUTTON)
         return self.wait_until_invisible(self._CHECKBOX_LOADER)
 
-    def checkbox_message_equal(self, text):
-        return self.element_text_equal(self._CHECKBOX_MESSAGE, text)
+    def checkbox_message_text(self):
+        return self.element_text(self._CHECKBOX_MESSAGE)
 
-    def add_remove_button_caption_equal(self, caption):
-        return self.element_text_equal(self._CHECKBOX_ADD_REMOVE_BUTTON, caption)
+    def add_remove_button_caption(self):
+        return self.element_text(self._CHECKBOX_ADD_REMOVE_BUTTON)
 
     def input_field_is_disabled(self):
         edit_field = self.find_element(self._INPUT_FIELD)
@@ -36,13 +36,13 @@ class DynamicControlsPage(BasePage):
             is_disabled = False
         return is_disabled
 
-    def enable_disable_button_caption_equal(self, caption):
-        return self.element_text_equal(self._INPUT_ENABLE_DISABLE_BTN, caption)
+    def enable_disable_button_caption(self):
+        return self.element_text(self._INPUT_ENABLE_DISABLE_BTN)
 
     def click_enable_disable_button(self):
         self.click_on_element(self._INPUT_ENABLE_DISABLE_BTN)
         return self.wait_until_invisible(self._INPUT_LOADER)
 
-    def input_message_equal(self, text):
-        return self.element_text_equal(self._INPUT_MESSAGE, text)
+    def input_message_text(self):
+        return self.element_text(self._INPUT_MESSAGE)
 

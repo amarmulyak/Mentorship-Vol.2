@@ -10,7 +10,7 @@ class DynamicallyLoadedElementsPage1(BasePage):
     _LOADER = (By.ID, "loading")
 
     def get_dynamically_loaded_elements_page1(self):
-        return self.driver.get("https://the-internet.herokuapp.com/dynamic_loading/1")
+        return self.driver.get(f"{self.path}/dynamic_loading/1")
 
     def start_button_is_displayed(self):
         return self._element_displayed(self._START_BUTTON_SECTION)
@@ -23,11 +23,11 @@ class DynamicallyLoadedElementsPage1(BasePage):
         self.click_on_element(self._START_BUTTON)
         self.wait_until_invisible(self._LOADER)
 
-    def start_button_caption_equal(self, text):
-        return self.element_text_equal(self._START_BUTTON, text)
+    def start_button_caption(self):
+        return self.element_text(self._START_BUTTON)
 
-    def dynamic_text_equal(self, text):
-        return self.element_text_equal(self._DYNAMIC_TEXT, text)
+    def dynamic_text(self):
+        return self.element_text(self._DYNAMIC_TEXT)
 
     def _element_displayed(self, locator):
         element = self.find_element(locator)

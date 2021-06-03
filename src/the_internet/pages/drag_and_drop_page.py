@@ -8,13 +8,13 @@ class DragAndDropPage(BasePage):
     _COLUMN_B = (By.XPATH, "//div[@id='column-b']")
 
     def get_drag_and_drop_page(self):
-        return self.driver.get("https://the-internet.herokuapp.com/drag_and_drop")
+        return self.driver.get(f"{self.path}/drag_and_drop")
 
-    def column_a_text_equal(self, text):
-        return self.element_text_equal(self._COLUMN_A, text)
+    def column_a_text(self):
+        return self.element_text(self._COLUMN_A)
 
-    def column_b_text_equal(self, text):
-        return self.element_text_equal(self._COLUMN_B, text)
+    def column_b_text(self):
+        return self.element_text(self._COLUMN_B)
 
     def drag_and_drop_column_a_to_b(self):
         return self._drag_and_drop(

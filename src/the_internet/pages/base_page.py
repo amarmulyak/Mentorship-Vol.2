@@ -50,9 +50,8 @@ class BasePage:
     def click_on_element(self, locator):
         return self.find_element(locator).click()
 
-    def element_text_equal(self, locator, text):
-        element_text = self.find_element(locator).text
-        return element_text == text
+    def element_text(self, locator):
+        return self.find_element(locator).text
 
     def element_is_present(self, locator, wait_time=10):
         try:

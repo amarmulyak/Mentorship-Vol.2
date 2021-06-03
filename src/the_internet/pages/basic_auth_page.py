@@ -10,8 +10,8 @@ class BasicAuthPage(BasePage):
         password = password
         return self.driver.get(f"https://{username}:{password}@{url}")
 
-    def basic_auth_title_equal(self, text):
-        return self.element_text_equal(self._BASIC_AUTH_TITLE, text)
+    def basic_auth_title_text(self):
+        return self.element_text(self._BASIC_AUTH_TITLE)
 
     def basic_auth_page_reached(self, wait_time=10):
         return self.element_is_present(self._BASIC_AUTH_TITLE, wait_time)

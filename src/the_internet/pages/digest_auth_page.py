@@ -10,8 +10,8 @@ class DigestAuthPage(BasePage):
         password = password
         return self.driver.get(f"https://{username}:{password}@{url}")
 
-    def digest_auth_title_equal(self, text):
-        return self.element_text_equal(self._DIGEST_AUTH_TITLE, text)
+    def digest_auth_title_text(self):
+        return self.element_text(self._DIGEST_AUTH_TITLE)
 
     def digest_auth_page_reached(self, wait_time=10):
         return self.element_is_present(self._DIGEST_AUTH_TITLE, wait_time)

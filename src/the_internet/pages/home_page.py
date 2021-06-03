@@ -16,17 +16,17 @@ class HomePage(BasePage):
     example_link_locator = (By.XPATH, "//a[contains(text(), '{}')]")
 
     def get_home_page(self):
-        return self.driver.get("https://the-internet.herokuapp.com/")
+        return self.driver.get(f"{self.path}")
 
-    def home_page_title_equal(self, text):
-        return self.element_text_equal(self.home_page_title_locator, text)
+    def home_page_title(self):
+        return self.element_text(self.home_page_title_locator)
 
     def click_ab_testing_link(self):
         self.click_on_element((
             self.example_link_locator[0],
             self.example_link_locator[1].format("A/B Testing")
         ))
-        return ABTestingPage(self.driver)
+        return ABTestingPage(self.driver, self.path)
 
     def click_add_remove_elements_link(self):
         self.click_on_element((
@@ -40,28 +40,28 @@ class HomePage(BasePage):
             self.example_link_locator[0],
             self.example_link_locator[1].format("Basic Auth")
         ))
-        return BasicAuthPage(self.driver)
+        return BasicAuthPage(self.driver, self.path)
 
     def click_broken_images_link(self):
         self.click_on_element((
             self.example_link_locator[0],
             self.example_link_locator[1].format("Broken Images")
         ))
-        return BrokenImagesPage(self.driver)
+        return BrokenImagesPage(self.driver, self.path)
 
     def click_challenging_dom_link(self):
         self.click_on_element((
             self.example_link_locator[0],
             self.example_link_locator[1].format("Challenging DOM")
         ))
-        return ChallengingDomPage(self.driver)
+        return ChallengingDomPage(self.driver, self.path)
 
     def click_context_menu_link(self):
         self.click_on_element((
             self.example_link_locator[0],
             self.example_link_locator[1].format("Context Menu")
         ))
-        return ContextMenuPage(self.driver)
+        return ContextMenuPage(self.driver, self.path)
 
     def click_digest_auth_link(self):
         self.click_on_element((
@@ -75,11 +75,11 @@ class HomePage(BasePage):
             self.example_link_locator[0],
             self.example_link_locator[1].format("Drag and Drop")
         ))
-        return DragAndDropPage(self.driver)
+        return DragAndDropPage(self.driver, self.path)
 
     def click_dynamic_controls_link(self):
         self.click_on_element((
             self.example_link_locator[0],
             self.example_link_locator[1].format("Dynamic Controls")
         ))
-        return DynamicControlsPage(self.driver)
+        return DynamicControlsPage(self.driver, self.path)
