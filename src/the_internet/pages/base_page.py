@@ -60,3 +60,11 @@ class BasePage:
         except TimeoutException:
             element_found = False
         return element_found
+
+    def element_is_visible(self, locator, wait_time=10):
+        try:
+            self.wait_until_visible(locator, time=wait_time)
+            element_visible = True
+        except TimeoutException:
+            element_visible = False
+        return element_visible

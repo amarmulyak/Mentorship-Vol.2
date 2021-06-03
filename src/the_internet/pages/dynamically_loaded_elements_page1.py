@@ -12,12 +12,11 @@ class DynamicallyLoadedElementsPage1(BasePage):
     def get_dynamically_loaded_elements_page1(self):
         return self.driver.get(f"{self.path}/dynamic_loading/1")
 
-    def start_button_is_displayed(self):
-        return self._element_displayed(self._START_BUTTON_SECTION)
+    def start_button_is_visible(self, wait_time=10):
+        return self.element_is_visible(self._START_BUTTON_SECTION, wait_time)
 
-    def dynamic_text_is_displayed(self):
-        return self.wait_until_visible(self._DYNAMIC_TEXT)
-        # return self._element_displayed(self.dynamic_text_section_locator)
+    def dynamic_text_is_visible(self, wait_time=10):
+        return self.element_is_visible(self._DYNAMIC_TEXT, wait_time)
 
     def click_start_button(self):
         self.click_on_element(self._START_BUTTON)
