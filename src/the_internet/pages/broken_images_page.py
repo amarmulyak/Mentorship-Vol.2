@@ -7,17 +7,24 @@ class BrokenImagesPage(BasePage):
     _IMAGES = (By.TAG_NAME, "img")
 
     def get_add_broken_images_page(self):
-        return self.driver.get("https://the-internet.herokuapp.com/broken_images")
+        return self.driver.get(f"{self.path}/broken_images")
 
-    def get_images(self):
+    def get_correct_images(self):
         images = self.driver.find_elements(*self._IMAGES)
-        not_broken_images_list = []
-        broken_images_list = []
+        correct_images_list = []
         if images:
             for image in images:
                 response = requests.get(image.get_attribute("src"))
                 if response.status_code == 200:
-                    not_broken_images_list.append(image)
-                else:
+                    correct_images_list.append(image)
+        return correct_images_list
+
+    def get_broken_images(self):
+        images = self.driver.find_elements(*self._IMAGES)
+        broken_images_list = []
+        if images:
+            for image in images:
+                response = requests.get(image.get_attribute("src"))
+                if response.status_code != 200:
                     broken_images_list.append(image)
-        return not_broken_images_list, broken_images_list
+        return broken_images_list
