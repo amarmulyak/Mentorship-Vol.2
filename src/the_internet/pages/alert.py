@@ -15,10 +15,10 @@ class Alert:
             alert_appear = False
         return alert_appear
 
-    def text_equal(self, text):
+    def text(self):
         self._wait_until_alert_appear()
         popup = self.driver.switch_to.alert
-        return popup.text == text
+        return popup.text
 
     def accept(self):
         self._wait_until_alert_appear()
