@@ -20,7 +20,7 @@ def test_delete_element(driver, cfg):
     add_remove_elements.get_add_remove_elements_page()
     add_remove_elements.add_elements(1)
     assert len(add_remove_elements.get_delete_buttons()) == 1
-    add_remove_elements.delete_button(1)
+    add_remove_elements.delete_button(button_index=0)
     assert len(add_remove_elements.get_delete_buttons()) == 0
 
 
@@ -29,8 +29,8 @@ def test_delete_random_elements(driver, cfg):
     add_remove_elements.get_add_remove_elements_page()
     add_remove_elements.add_elements(5)
     assert len(add_remove_elements.get_delete_buttons()) == 5
-    add_remove_elements.delete_button(5)
-    add_remove_elements.delete_button(3)
+    add_remove_elements.delete_button(button_index=4)
+    add_remove_elements.delete_button(button_index=2)
     assert len(add_remove_elements.get_delete_buttons()) == 3
 
 

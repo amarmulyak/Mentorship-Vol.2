@@ -22,7 +22,8 @@ class AddRemoveElementsPage(BasePage):
     def get_delete_buttons(self):
         return self.driver.find_elements(*self._DELETE_BTNS)
 
-    def delete_button(self, button_position):
+    def delete_button(self, button_index):
+        button_position = button_index + 1
         self.click_on_element(
             (
                 self._DELETE_BTN[0],
