@@ -4,9 +4,10 @@ from src.the_internet.pages.base_page import BasePage
 
 class EntryAd(BasePage):
     _MODAL = (By.CLASS_NAME, "modal")
-    _MODAL_TITLE = (By.CLASS_NAME, "modal-title")
-    _MODAL_BODY = (By.CLASS_NAME, "modal-body")
+    _MODAL_TITLE = (By.XPATH, "//div[@class='modal-title']/h3")
+    _MODAL_BODY = (By.XPATH, "//div[@class='modal-body']/p")
     _MODAL_CLOSE_BTN = (By.XPATH, "//div[@class='modal-footer']/p")
+    _RESTART_ADD = (By.ID, "restart-ad")
 
     def get_entry_ad_page(self):
         self.driver.get(f"{self.url}/entry_ad")
@@ -17,3 +18,14 @@ class EntryAd(BasePage):
     def close_modal(self):
         self.click_on_element(self._MODAL_CLOSE_BTN)
         self.wait_until_invisible(self._MODAL)
+
+    def modal_title_text(self):
+        self.wait_until_visible(self._MODAL)
+        return self.element_text(self._MODAL_TITLE)
+
+    def modal_body_text(self):
+        self.wait_until_visible(self._MODAL)
+        return self.element_text(self._MODAL_BODY)
+
+    def click_restart_add(self):
+        return self.click_on_element(self._RESTART_ADD)
