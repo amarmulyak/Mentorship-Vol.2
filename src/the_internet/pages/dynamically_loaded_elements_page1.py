@@ -3,9 +3,7 @@ from src.the_internet.pages.base_page import BasePage
 
 
 class DynamicallyLoadedElementsPage1(BasePage):
-    # _START_BUTTON_SECTION = (By.XPATH, "//div[@id='start']")
     _START_BUTTON = (By.XPATH, "//div[@id='start']/button")
-    # _DYNAMIC_TEXT_SECTION = (By.XPATH, "//div[@id='finish']")
     _DYNAMIC_TEXT = (By.XPATH, "//div[@id='finish']/h4")
     _LOADER = (By.ID, "loading")
 
@@ -27,12 +25,3 @@ class DynamicallyLoadedElementsPage1(BasePage):
 
     def dynamic_text(self):
         return self.element_text(self._DYNAMIC_TEXT)
-
-    # def _element_displayed(self, locator):
-    #     element = self.find_element(locator)
-    #     style = element.get_attribute("style")
-    #     if style == "display: none;":
-    #         element_displayed = False
-    #     else:
-    #         element_displayed = True
-    #     return element_displayed
