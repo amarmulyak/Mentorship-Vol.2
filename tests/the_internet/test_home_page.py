@@ -1,6 +1,5 @@
 from src.the_internet.pages.home_page import HomePage
 from src.the_internet.pages.ab_testing_page import ABTestingPage
-from src.the_internet.pages.dynamically_loaded_elements_page import DynamicallyLoadedElementsPage
 
 
 def test_home_page_title(driver, cfg):
