@@ -11,4 +11,9 @@ class EntryAd(BasePage):
     def get_entry_ad_page(self):
         self.driver.get(f"{self.url}/entry_ad")
 
+    def modal_is_visible(self, wait_time=10):
+        return self.element_is_visible(self._MODAL, wait_time=wait_time)
 
+    def close_modal(self):
+        self.click_on_element(self._MODAL_CLOSE_BTN)
+        self.wait_until_invisible(self._MODAL)
