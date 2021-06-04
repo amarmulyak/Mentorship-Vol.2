@@ -13,8 +13,8 @@ class DynamicallyLoadedElementsPage(BasePage):
 
     def click_example_1_link(self):
         self.click_on_element(self._EXAMPLE_1_LINK)
-        return DynamicallyLoadedElementsPageE1(self.driver, self.path)
+        return DynamicallyLoadedElementsPageE1(self.driver, self.url)
 
     def click_example_2_link(self):
         self.click_on_element(self._EXAMPLE_2_LINK)
-        return DynamicallyLoadedElementsPageE2(self.driver, self.path)
+        return DynamicallyLoadedElementsPageE2(self.driver, self.url)

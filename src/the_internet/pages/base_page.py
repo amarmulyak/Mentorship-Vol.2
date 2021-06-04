@@ -7,9 +7,9 @@ from selenium.webdriver.support import expected_conditions as EC
 class BasePage:
     _PAGE_TITLE = (By.XPATH, "//div[@class='example']/h3")
 
-    def __init__(self, driver, path):
+    def __init__(self, driver, url):
         self.driver = driver
-        self.path = path
+        self.url = url
 
     def find_element(self, locator, time=10):
         return WebDriverWait(self.driver, time).until(

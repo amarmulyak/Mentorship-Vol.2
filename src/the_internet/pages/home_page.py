@@ -17,7 +17,7 @@ class HomePage(BasePage):
     example_link_locator = (By.XPATH, "//a[contains(text(), '{}')]")
 
     def get_home_page(self):
-        return self.driver.get(f"{self.path}")
+        return self.driver.get(f"{self.url}")
 
     def home_page_title(self):
         return self.element_text(self.home_page_title_locator)
@@ -27,67 +27,67 @@ class HomePage(BasePage):
             self.example_link_locator[0],
             self.example_link_locator[1].format("A/B Testing")
         ))
-        return ABTestingPage(self.driver, self.path)
+        return ABTestingPage(self.driver, self.url)
 
     def click_add_remove_elements_link(self):
         self.click_on_element((
             self.example_link_locator[0],
             self.example_link_locator[1].format("Add/Remove Elements")
         ))
-        return AddRemoveElementsPage(self.driver, self.path)
+        return AddRemoveElementsPage(self.driver, self.url)
 
     def click_basic_auth_link(self):
         self.click_on_element((
             self.example_link_locator[0],
             self.example_link_locator[1].format("Basic Auth")
         ))
-        return BasicAuthPage(self.driver, self.path)
+        return BasicAuthPage(self.driver, self.url)
 
     def click_broken_images_link(self):
         self.click_on_element((
             self.example_link_locator[0],
             self.example_link_locator[1].format("Broken Images")
         ))
-        return BrokenImagesPage(self.driver, self.path)
+        return BrokenImagesPage(self.driver, self.url)
 
     def click_challenging_dom_link(self):
         self.click_on_element((
             self.example_link_locator[0],
             self.example_link_locator[1].format("Challenging DOM")
         ))
-        return ChallengingDomPage(self.driver, self.path)
+        return ChallengingDomPage(self.driver, self.url)
 
     def click_context_menu_link(self):
         self.click_on_element((
             self.example_link_locator[0],
             self.example_link_locator[1].format("Context Menu")
         ))
-        return ContextMenuPage(self.driver, self.path)
+        return ContextMenuPage(self.driver, self.url)
 
     def click_digest_auth_link(self):
         self.click_on_element((
             self.example_link_locator[0],
             self.example_link_locator[1].format("Digest Authentication")
         ))
-        return DigestAuthPage(self.driver, self.path)
+        return DigestAuthPage(self.driver, self.url)
 
     def click_drag_and_drop_link(self):
         self.click_on_element((
             self.example_link_locator[0],
             self.example_link_locator[1].format("Drag and Drop")
         ))
-        return DragAndDropPage(self.driver, self.path)
+        return DragAndDropPage(self.driver, self.url)
 
     def click_dynamic_controls_link(self):
         self.click_on_element((
             self.example_link_locator[0],
             self.example_link_locator[1].format("Dynamic Controls")
         ))
-        return DynamicControlsPage(self.driver, self.path)
+        return DynamicControlsPage(self.driver, self.url)
 
     def click_dynamic_loading_link(self):
         self.click_on_element((
             self.example_link_locator[0],
             self.example_link_locator[1].format("Dynamic Loading")
         ))
-        return DynamicallyLoadedElementsPage(self.driver, self.path)
+        return DynamicallyLoadedElementsPage(self.driver, self.url)

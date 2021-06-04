@@ -13,7 +13,7 @@ class DynamicControlsPage(BasePage):
     _INPUT_MESSAGE = (By.XPATH, "//form[@id='input-example']/p[@id='message']")
 
     def get_dynamic_controls_page(self):
-        return self.driver.get(f"{self.path}/dynamic_controls")
+        return self.driver.get(f"{self.url}/dynamic_controls")
 
     def checkbox_is_present(self, wait_time=10):
         return self.element_is_present(self._CHECKBOX, wait_time)

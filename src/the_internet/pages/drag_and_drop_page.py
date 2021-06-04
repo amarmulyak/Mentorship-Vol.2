@@ -8,7 +8,7 @@ class DragAndDropPage(BasePage):
     _COLUMN_B = (By.XPATH, "//div[@id='column-b']")
 
     def get_drag_and_drop_page(self):
-        return self.driver.get(f"{self.path}/drag_and_drop")
+        return self.driver.get(f"{self.url}/drag_and_drop")
 
     def column_a_text(self):
         return self.element_text(self._COLUMN_A)

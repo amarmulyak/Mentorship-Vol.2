@@ -7,7 +7,7 @@ class BrokenImagesPage(BasePage):
     _IMAGES = (By.TAG_NAME, "img")
 
     def get_add_broken_images_page(self):
-        return self.driver.get(f"{self.path}/broken_images")
+        return self.driver.get(f"{self.url}/broken_images")
 
     def get_correct_images(self):
         images = self.driver.find_elements(*self._IMAGES)

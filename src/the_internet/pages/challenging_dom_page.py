@@ -11,7 +11,7 @@ class ChallengingDomPage(BasePage):
     )
 
     def get_challenging_dom_page(self):
-        return self.driver.get("https://the-internet.herokuapp.com/challenging_dom")
+        return self.driver.get(f"{self.url}/challenging_dom")
 
     def get_answer(self):
         answer = self.driver.execute_script("return canvas;")

@@ -8,7 +8,7 @@ class DynamicallyLoadedElementsPageE1(BasePage):
     _LOADER = (By.ID, "loading")
 
     def get_dynamically_loaded_elements_page1(self):
-        return self.driver.get(f"{self.path}/dynamic_loading/1")
+        return self.driver.get(f"{self.url}/dynamic_loading/1")
 
     def page_is_reached(self):
         return self.element_is_present(self._START_BUTTON)

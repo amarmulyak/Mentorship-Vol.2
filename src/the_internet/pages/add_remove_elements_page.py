@@ -9,7 +9,7 @@ class AddRemoveElementsPage(BasePage):
 
     def get_add_remove_elements_page(self):
         return self.driver.get(
-            f"{self.path}/add_remove_elements/"
+            f"{self.url}/add_remove_elements/"
         )
 
     def add_element(self):
