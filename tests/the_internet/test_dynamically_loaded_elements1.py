@@ -1,8 +1,8 @@
-from src.the_internet.pages.dynamically_loaded_elements_page1 import DynamicallyLoadedElementsPage1
+from src.the_internet.pages.dynamically_loaded_elements_page_e1 import DynamicallyLoadedElementsPageE1
 
 
 def test_dynamically_loaded_elements(driver, cfg):
-    page = DynamicallyLoadedElementsPage1(driver, cfg.base_url)
+    page = DynamicallyLoadedElementsPageE1(driver, cfg.base_url)
 
     page.get_dynamically_loaded_elements_page1()
     assert page.start_button_is_visible()
@@ -14,7 +14,7 @@ def test_dynamically_loaded_elements(driver, cfg):
 
 
 def test_elements_text(driver, cfg):
-    page = DynamicallyLoadedElementsPage1(driver, cfg.base_url)
+    page = DynamicallyLoadedElementsPageE1(driver, cfg.base_url)
 
     page.get_dynamically_loaded_elements_page1()
     assert page.start_button_caption() == "Start"

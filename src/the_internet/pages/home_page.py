@@ -9,6 +9,7 @@ from src.the_internet.pages.context_menu_page import ContextMenuPage
 from src.the_internet.pages.digest_auth_page import DigestAuthPage
 from src.the_internet.pages.drag_and_drop_page import DragAndDropPage
 from src.the_internet.pages.dynamic_controls_page import DynamicControlsPage
+from src.the_internet.pages.dynamically_loaded_elements_page import DynamicallyLoadedElementsPage
 
 
 class HomePage(BasePage):
@@ -33,7 +34,7 @@ class HomePage(BasePage):
             self.example_link_locator[0],
             self.example_link_locator[1].format("Add/Remove Elements")
         ))
-        return AddRemoveElementsPage(self.driver)
+        return AddRemoveElementsPage(self.driver, self.path)
 
     def click_basic_auth_link(self):
         self.click_on_element((
@@ -68,7 +69,7 @@ class HomePage(BasePage):
             self.example_link_locator[0],
             self.example_link_locator[1].format("Digest Authentication")
         ))
-        return DigestAuthPage(self.driver)
+        return DigestAuthPage(self.driver, self.path)
 
     def click_drag_and_drop_link(self):
         self.click_on_element((
@@ -83,3 +84,10 @@ class HomePage(BasePage):
             self.example_link_locator[1].format("Dynamic Controls")
         ))
         return DynamicControlsPage(self.driver, self.path)
+
+    def click_dynamic_loading_link(self):
+        self.click_on_element((
+            self.example_link_locator[0],
+            self.example_link_locator[1].format("Dynamic Loading")
+        ))
+        return DynamicallyLoadedElementsPage(self.driver, self.path)

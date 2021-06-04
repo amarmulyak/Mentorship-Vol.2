@@ -2,13 +2,16 @@ from selenium.webdriver.common.by import By
 from src.the_internet.pages.base_page import BasePage
 
 
-class DynamicallyLoadedElementsPage1(BasePage):
+class DynamicallyLoadedElementsPageE1(BasePage):
     _START_BUTTON = (By.XPATH, "//div[@id='start']/button")
     _DYNAMIC_TEXT = (By.XPATH, "//div[@id='finish']/h4")
     _LOADER = (By.ID, "loading")
 
     def get_dynamically_loaded_elements_page1(self):
         return self.driver.get(f"{self.path}/dynamic_loading/1")
+
+    def page_is_reached(self):
+        return self.element_is_present(self._START_BUTTON)
 
     def start_button_is_visible(self, wait_time=10):
         return self.element_is_visible(self._START_BUTTON, wait_time)
