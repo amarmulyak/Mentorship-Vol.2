@@ -13,7 +13,6 @@ class ExitIntent(EntryAd):
     def move_mouse_out_of_viewport(self):
         action = ActionChains(self.driver)
         link = self.find_element(self._POWERED_BY)
-        action.move_to_element_with_offset(link, 10, -20).perform()
-        # # action.move_by_offset(-5, 0)
-        # action.perform()
-
+        action.move_to_element(link)
+        action.move_by_offset(0, -185)
+        action.perform()
