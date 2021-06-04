@@ -24,9 +24,9 @@ def cfg():
     cfg = aumbry.load(aumbry.FILE, Config, {'CONFIG_FILE_PATH': f'{cur_path}/cfg/cfg.yaml'})
     return cfg
 
-# TODO Вирішити як ми читатимемо конфіг
-# @pytest.fixture(scope="session")
-# def cfg():
-#     with open(f"{cur_path}/cfg/cfg.yaml") as f:
-#         cfg = yaml.load(f)
-#     return cfg
+
+@pytest.fixture(scope="session")
+def cfg_as_dict():
+    with open(f"{cur_path}/cfg/cfg.yaml") as f:
+        cfg = yaml.load(f)
+    return cfg
