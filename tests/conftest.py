@@ -16,10 +16,17 @@ def driver(cfg, download_dir):
     else:
         options = webdriver.ChromeOptions()
         options.add_argument("--start-maximized")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--safebrowsing-disable-download-protection")
+        options.add_argument("safebrowsing-disable-extension-blacklist")
+
         prefs = {
             "profile.default_content_settings.popups": 0,
             "download.prompt_for_download": "false",
-            "download.default_directory": download_dir
+            "download.default_directory": download_dir,
+            "disable-popup-blocking": "true",
+            'download.extensions_to_open': 'py',
+            "safebrowsing.enabled": "true",
         }
         options.add_experimental_option("prefs", prefs)
 
