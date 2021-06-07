@@ -1,6 +1,6 @@
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from src.the_internet.pages.entry_ad_page import EntryAd
+import pyautogui
 
 
 class ExitIntent(EntryAd):
@@ -11,8 +11,5 @@ class ExitIntent(EntryAd):
         self.driver.get(f"{self.url}/exit_intent")
 
     def move_mouse_out_of_viewport(self):
-        action = ActionChains(self.driver)
-        link = self.find_element(self._POWERED_BY)
-        action.move_to_element(link)
-        action.move_by_offset(0, -185)
-        action.perform()
+        pyautogui.moveTo(500, 500)
+        pyautogui.moveTo(500, 0)

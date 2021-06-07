@@ -14,7 +14,5 @@ def test_modal_appear_when_mouse_out(driver, cfg):
     page.get_entry_exit_intent_page()
     assert not page.modal_is_visible(wait_time=2)
 
-    # page.move_mouse_out_of_viewport()
-
-
-
+    page.move_mouse_out_of_viewport()
+    assert page.modal_is_visible()
