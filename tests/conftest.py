@@ -9,18 +9,31 @@ cur_path = pathlib.Path(__file__).parent.parent
 
 
 @pytest.fixture
-def driver(cfg):
+def driver(cfg, download_dir):
     if cfg.browser.lower() == "firefox":
         driver = webdriver.Firefox(executable_path=f"{cur_path}/drivers/geckodriver")
         driver.maximize_window()
     else:
         options = webdriver.ChromeOptions()
         options.add_argument("--start-maximized")
+        prefs = {
+            "profile.default_content_settings.popups": 0,
+            "download.prompt_for_download": "false",
+            "download.default_directory": download_dir
+        }
+        options.add_experimental_option("prefs", prefs)
+
         driver = webdriver.Chrome(
             executable_path=f"{cur_path}/drivers/chromedriver", options=options
         )
     yield driver
     driver.quit()
+
+
+@pytest.fixture
+def download_dir(tmpdir_factory):
+    _dir = tmpdir_factory.mktemp('download')
+    return _dir.strpath
 
 
 @pytest.fixture(scope="session")
