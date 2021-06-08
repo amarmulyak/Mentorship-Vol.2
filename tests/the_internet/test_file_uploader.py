@@ -19,3 +19,4 @@ def test_upload_drag_and_drop(driver, cfg):
     file_uploader.get_file_uploader_page()
     dd = file_uploader.find_element(file_uploader.DRAG_DROP_UPLOAD)
     file_uploader.drop_files(dd, '/home/amarm/repositories/Mentorship-Vol.2/src/the_internet/pages/box.png')
+    abc = 1
