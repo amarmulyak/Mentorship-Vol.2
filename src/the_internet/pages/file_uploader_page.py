@@ -13,7 +13,7 @@ class FileUploaderPage(BasePage):
     def get_file_uploader_page(self):
         self.driver.get(f"{self.url}/upload")
 
-    def choose_file(self, file_path):
+    def choose_file_via_btn(self, file_path):
         choose = self.find_element(self.CHOOSE_FILE_BTN)
         choose.send_keys(f"{base_path}/{file_path}")
 
@@ -25,3 +25,9 @@ class FileUploaderPage(BasePage):
 
     def upladed_file_name(self):
         return self.element_text(self.UPLOADED_FILE)
+
+    def choose_file_via_drag_and_drop(self, file_path):
+        choose = self.find_element(self.DRAG_DROP_UPLOAD)
+        choose.send_keys(f"{base_path}/{file_path}")
+
+
