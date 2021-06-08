@@ -5,13 +5,13 @@ import yaml
 import aumbry
 from models.config import Config
 
-cur_path = pathlib.Path(__file__).parent.parent
+base_path = pathlib.Path(__file__).parent.parent
 
 
 @pytest.fixture
 def driver(cfg, download_dir):
     if cfg.browser.lower() == "firefox":
-        driver = webdriver.Firefox(executable_path=f"{cur_path}/drivers/geckodriver")
+        driver = webdriver.Firefox(executable_path=f"{base_path}/drivers/geckodriver")
         driver.maximize_window()
     else:
         options = webdriver.ChromeOptions()
@@ -31,7 +31,7 @@ def driver(cfg, download_dir):
         options.add_experimental_option("prefs", prefs)
 
         driver = webdriver.Chrome(
-            executable_path=f"{cur_path}/drivers/chromedriver", options=options
+            executable_path=f"{base_path}/drivers/chromedriver", options=options
         )
     yield driver
     driver.quit()
@@ -45,12 +45,12 @@ def download_dir(tmpdir_factory):
 
 @pytest.fixture(scope="session")
 def cfg():
-    cfg = aumbry.load(aumbry.FILE, Config, {'CONFIG_FILE_PATH': f'{cur_path}/cfg/cfg.yaml'})
+    cfg = aumbry.load(aumbry.FILE, Config, {'CONFIG_FILE_PATH': f'{base_path}/cfg/cfg.yaml'})
     return cfg
 
 
 @pytest.fixture(scope="session")
 def cfg_as_dict():
-    with open(f"{cur_path}/cfg/cfg.yaml") as f:
+    with open(f"{base_path}/cfg/cfg.yaml") as f:
         cfg = yaml.load(f)
     return cfg

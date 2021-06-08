@@ -27,7 +27,7 @@ class FileDownloaderPage(BasePage):
 
     def file_exists(self, file_path):
         f = pathlib.Path(file_path)
-        if not f.exists():
+        if not f.exists():  # Need to wait until file is downloading
             time.sleep(5)
         return f.exists()
 
