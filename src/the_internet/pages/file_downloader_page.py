@@ -2,11 +2,11 @@ from selenium.webdriver.common.by import By
 import pathlib
 from src.the_internet.pages.base_page import BasePage
 from PIL import Image
+import time
 
 
 class FileDownloaderPage(BasePage):
-    FLOWER_JPEG = (By.LINK_TEXT, "flower.jpeg")
-    TEST_NMAX_PY = (By.LINK_TEXT, "test_nmax.py")
+    DOWNLOAD_LINKS = (By.XPATH, "//div[@class='example']/a[@href]")
 
     def __init__(self, driver, url, download_dir_path):
         super().__init__(driver, url)
@@ -15,40 +15,26 @@ class FileDownloaderPage(BasePage):
     def get_file_downloader_page(self):
         self.driver.get(f"{self.url}/download")
 
-    def click_flower_jpeg_link(self):
-        self.click_on_element(self.FLOWER_JPEG)
+    def list_of_links(self):
+        return self.find_elements(self.DOWNLOAD_LINKS)
 
-    def click_test_nmax_py_link(self):
-        self.click_on_element(self.TEST_NMAX_PY)
+    def list_of_files(self):
+        return [f"{self.download_dir_path}/{el.get_attribute('text')}" for el in self.list_of_links()]
 
-    def _file_exists(self, file):
-        f = pathlib.Path(file)
-        return f.is_file()
+    def download_files(self):
+        for el in self.list_of_links():
+            el.click()
 
-    def _file_is_an_image(self, file):
+    def file_exists(self, file_path):
+        f = pathlib.Path(file_path)
+        if not f.exists():
+            time.sleep(5)
+        return f.exists()
+
+    def _file_is_an_image(self, file_path):
         try:
-            Image.open(file)
+            Image.open(file_path)
             file_is_image = True
         except IOError:
             file_is_image = False
         return file_is_image
-
-    def _flower_jpeg_path(self):
-        file = self.element_text(self.FLOWER_JPEG)
-        return f"{self.download_dir_path}/{file}"
-
-    def flower_jpeg_downloaded(self):
-        return self._file_exists(self._flower_jpeg_path())
-
-    def flower_jpeg_is_image(self):
-        return self._file_is_an_image(self._flower_jpeg_path())
-
-    def _test_nmax_py_path(self):
-        file = self.element_text(self.TEST_NMAX_PY)
-        return f"{self.download_dir_path}/{file}"
-
-    def test_nmax_py_downloaded(self):
-        return self._file_exists(self._test_nmax_py_path())
-
-    def test_nmax_py_is_image(self):
-        return self._file_is_an_image(self._test_nmax_py_path())
