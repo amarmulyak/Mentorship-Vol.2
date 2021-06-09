@@ -28,7 +28,7 @@ class FileDownloaderPage(BasePage):
     def file_exists(self, file_path):
         f = pathlib.Path(file_path)
         if not f.exists():  # Need to wait until file is downloading
-            time.sleep(5)
+            time.sleep(10)
         return f.exists()
 
     def _file_is_an_image(self, file_path):
