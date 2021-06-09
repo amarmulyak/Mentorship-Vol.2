@@ -19,6 +19,7 @@ class EntryAd(BasePage):
         self.click_on_element(self._MODAL_CLOSE_BTN)
         self.wait_until_invisible(self._MODAL)
 
+    # TODO Спробувати @property там де вертати текст (або перезвати метод + get)
     def modal_title_text(self):
         self.wait_until_visible(self._MODAL)
         return self.element_text(self._MODAL_TITLE)

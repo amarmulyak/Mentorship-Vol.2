@@ -68,3 +68,6 @@ class BasePage:
         except TimeoutException:
             element_visible = False
         return element_visible
+
+    def provide_text_to_element(self, locator, text):
+        self.find_element(locator).send_keys(text)

@@ -5,6 +5,7 @@ import yaml
 import aumbry
 from models.config import Config
 
+# TODO Зробити фікстурою
 base_path = pathlib.Path(__file__).parent.parent
 
 

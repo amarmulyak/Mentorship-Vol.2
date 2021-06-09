@@ -3,6 +3,7 @@ from src.the_internet.pages.entry_ad_page import EntryAd
 import pyautogui
 
 
+# TODO Робити спільні пейджі від яких наслідуватись
 class ExitIntent(EntryAd):
     _TITLE = EntryAd._PAGE_TITLE
     _POWERED_BY = (By.XPATH, "//a[@target]")
@@ -13,3 +14,5 @@ class ExitIntent(EntryAd):
     def move_mouse_out_of_viewport(self):
         pyautogui.moveTo(500, 500)
         pyautogui.moveTo(500, 0)
+
+# TODO апдейтити requirenents

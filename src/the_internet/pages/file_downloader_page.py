@@ -15,9 +15,11 @@ class FileDownloaderPage(BasePage):
     def get_file_downloader_page(self):
         self.driver.get(f"{self.url}/download")
 
+    # Зробити протектед + назва
     def list_of_links(self):
         return self.find_elements(self.DOWNLOAD_LINKS)
 
+    # TODO винести з пейджі
     def list_of_files(self):
         return [f"{self.download_dir_path}/{el.get_attribute('text')}" for el in self.list_of_links()]
 
@@ -25,6 +27,8 @@ class FileDownloaderPage(BasePage):
         for el in self.list_of_links():
             el.click()
 
+    # TODO винести в src/utils
+    # Wait for while 30 and return when ready
     def file_exists(self, file_path):
         f = pathlib.Path(file_path)
         if not f.exists():  # Need to wait until file is downloading
@@ -38,3 +42,7 @@ class FileDownloaderPage(BasePage):
         except IOError:
             file_is_image = False
         return file_is_image
+
+# TODO додати метод скачування файлу по назві
+# TODO Зробити що вертаю ліст назв файлів (для скачування файлу по назві)
+# TODO Скачувати файл і перевіряти що скачався по одному
