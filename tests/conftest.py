@@ -5,12 +5,14 @@ import yaml
 import aumbry
 from models.config import Config
 
-# TODO Зробити фікстурою
-base_path = pathlib.Path(__file__).parent.parent
+
+@pytest.fixture(scope="session")
+def base_path():
+    return pathlib.Path(__file__).parent.parent
 
 
 @pytest.fixture
-def driver(cfg, download_dir):
+def driver(cfg, download_dir, base_path):
     if cfg.browser.lower() == "firefox":
         driver = webdriver.Firefox(executable_path=f"{base_path}/drivers/geckodriver")
         driver.maximize_window()
@@ -45,13 +47,13 @@ def download_dir(tmpdir_factory):
 
 
 @pytest.fixture(scope="session")
-def cfg():
+def cfg(base_path):
     cfg = aumbry.load(aumbry.FILE, Config, {'CONFIG_FILE_PATH': f'{base_path}/cfg/cfg.yaml'})
     return cfg
 
 
 @pytest.fixture(scope="session")
-def cfg_as_dict():
+def cfg_as_dict(base_path):
     with open(f"{base_path}/cfg/cfg.yaml") as f:
         cfg = yaml.load(f)
     return cfg

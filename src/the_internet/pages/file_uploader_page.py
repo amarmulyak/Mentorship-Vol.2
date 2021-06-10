@@ -1,9 +1,7 @@
 import os
 from typing import List
-
-
+from selenium.webdriver.common.by import By
 from src.the_internet.pages.base_page import BasePage
-from tests.conftest import base_path
 
 
 class FileUploaderPage(BasePage):
@@ -20,7 +18,7 @@ class FileUploaderPage(BasePage):
     # TODO Передавати весь шлях, не імпортити нічого з тестів
     def choose_file_via_btn(self, file_path):
         choose = self.find_element(self.CHOOSE_FILE_BTN)
-        choose.send_keys(f"{base_path}/{file_path}")
+        choose.send_keys(file_path)
 
     def click_upload_btn(self):
         self.click_on_element(self.UPLOAD_BTN)
@@ -38,16 +36,16 @@ class FileUploaderPage(BasePage):
         paths = []
 
         for file in (files if isinstance(files, List) else [files]):
-            if not os.path.isfile(f"{base_path}/{file}"):
+            if not os.path.isfile(file):
                 raise FileNotFoundError(file)
-            paths.append(f"{base_path}/{file}")
+            paths.append(file)
 
         value = '\n'.join(paths)
         elm_input = self.driver.execute_script(JS_DROP_FILES, element, offsetX, offsetY)
         elm_input._execute('sendKeysToElement', {'value': [value], 'text': value})
 
     # TODO Додати тайпи і докстрінги
-    def drop_file_via_drag_and_drop(self, files):
+    def drop_files_via_drag_and_drop(self, files):
         drag_drop = self.find_element(self.DRAG_DROP_UPLOAD)
         self.drop_files(element=drag_drop, files=files)
 
