@@ -1,7 +1,10 @@
+import os
+from typing import List
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from src.the_internet.resource.drop_file_js import JS_DROP_FILES
 
 
 class BasePage:
@@ -71,3 +74,17 @@ class BasePage:
 
     def provide_text_to_element(self, locator, text):
         self.find_element(locator).send_keys(text)
+
+    def _drop_files(self, element, files, offsetX=0, offsetY=0):
+        js_drop_files = JS_DROP_FILES
+
+        paths = []
+
+        for file in (files if isinstance(files, List) else [files]):
+            if not os.path.isfile(file):
+                raise FileNotFoundError(file)
+            paths.append(file)
+
+        value = '\n'.join(paths)
+        elm_input = self.driver.execute_script(js_drop_files, element, offsetX, offsetY)
+        elm_input._execute('sendKeysToElement', {'value': [value], 'text': value})
