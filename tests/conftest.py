@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import pathlib
 import pytest
 import yaml
@@ -29,7 +31,7 @@ def driver(cfg, download_dir, base_path):
             "download.default_directory": download_dir,
             # "disable-popup-blocking": "true",
             # 'download.extensions_to_open': 'py',
-            # "safebrowsing.enabled": "false",
+            "safebrowsing.enabled": True,
         }
         options.add_experimental_option("prefs", prefs)
 
@@ -38,6 +40,41 @@ def driver(cfg, download_dir, base_path):
         )
     yield driver
     driver.quit()
+
+# @pytest.fixture
+# def driver(cfg, download_dir, base_path):
+#     if cfg.browser.lower() == "firefox":
+#         driver = webdriver.Firefox(executable_path=f"{base_path}/drivers/geckodriver")
+#         driver.maximize_window()
+#     else:
+#         chrome_options = Options()
+#         chrome_options.add_argument("--disable-infobars")
+#         chrome_options.add_argument("start-maximized")
+#         chrome_options.add_argument("--disable-extensions")
+#         chrome_options.add_argument("--disable-popup-blocking")
+#         chrome_options.add_argument('--disable-gpu')
+#         chrome_options.add_argument('--disable-software-rasterizer')
+#         chrome_options.add_argument('--safebrowsing-disable-download-protection')
+#
+#         # disable the banner "Chrome is being controlled by automated test software"
+#         chrome_options.add_experimental_option("useAutomationExtension", False)
+#         chrome_options.add_experimental_option("excludeSwitches", ['enable-automation'])
+#
+#         prefs = {
+#             'download.default_directory': 'download_directory',
+#             'download.prompt_for_download': False,
+#             'download.extensions_to_open': 'jar',
+#             'safebrowsing.enabled': True
+#         }
+#         capabilities = DesiredCapabilities().CHROME
+#         chrome_options.add_experimental_option('prefs', prefs)
+#         capabilities.update(chrome_options.to_capabilities())
+#
+#         driver = webdriver.Chrome(
+#             executable_path=f"{base_path}/drivers/chromedriver", options=chrome_options
+#         )
+#     yield driver
+#     driver.quit()
 
 
 @pytest.fixture
