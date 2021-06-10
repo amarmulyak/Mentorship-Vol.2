@@ -75,7 +75,10 @@ class BasePage:
     def provide_text_to_element(self, locator, text):
         self.find_element(locator).send_keys(text)
 
-    def _drop_files(self, element, files, offsetX=0, offsetY=0):
+    def _drop_files(self, element, files):
+        offset_x = 0
+        offset_y = 0
+        # TODO Оксана: ревю чи ок так тримати джава скріпт
         js_drop_files = JS_DROP_FILES
 
         paths = []
@@ -86,5 +89,5 @@ class BasePage:
             paths.append(file)
 
         value = '\n'.join(paths)
-        elm_input = self.driver.execute_script(js_drop_files, element, offsetX, offsetY)
+        elm_input = self.driver.execute_script(js_drop_files, element, offset_x, offset_y)
         elm_input._execute('sendKeysToElement', {'value': [value], 'text': value})
