@@ -1,13 +1,8 @@
-from selenium.webdriver.common.by import By
-from src.the_internet.pages.entry_ad_page import EntryAd
 import pyautogui
+from src.the_internet.pages.modal_page import ModalPage
 
 
-# TODO Робити спільні пейджі від яких наслідуватись
-class ExitIntent(EntryAd):
-    _TITLE = EntryAd._PAGE_TITLE
-    _POWERED_BY = (By.XPATH, "//a[@target]")
-
+class ExitIntent(ModalPage):
     def get_entry_exit_intent_page(self):
         self.driver.get(f"{self.url}/exit_intent")
 
