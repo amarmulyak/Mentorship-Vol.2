@@ -1,8 +1,8 @@
-from selenium.webdriver.common.by import By
-import pathlib
-from src.the_internet.pages.base_page import BasePage
-from PIL import Image
 import time
+import pathlib
+from PIL import Image
+from selenium.webdriver.common.by import By
+from src.the_internet.pages.base_page import BasePage
 
 
 class FileDownloaderPage(BasePage):

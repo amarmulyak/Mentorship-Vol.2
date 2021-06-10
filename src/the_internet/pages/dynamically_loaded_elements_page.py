@@ -1,7 +1,9 @@
 from selenium.webdriver.common.by import By
 from src.the_internet.pages.base_page import BasePage
-from src.the_internet.pages.dynamically_loaded_elements_page_e1 import DynamicallyLoadedElementsPageE1
-from src.the_internet.pages.dynamically_loaded_elements_page_e2 import DynamicallyLoadedElementsPageE2
+from src.the_internet.pages.dynamically_loaded_elements_page_e1\
+    import DynamicallyLoadedElementsPageE1
+from src.the_internet.pages.dynamically_loaded_elements_page_e2\
+    import DynamicallyLoadedElementsPageE2
 
 
 class DynamicallyLoadedElementsPage(BasePage):

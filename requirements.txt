@@ -1,1 +1,4 @@
 pytest
+seletools
+pyautogui
+PIL
