@@ -1,8 +1,7 @@
-from src.the_internet.pages.basic_auth_page import BasicAuthPage
+from src.the_internet.pages.authentication import Authentication
 
 
-# TODO Чи ок наслідувати чи краще виносити в комон обджекти
-class DigestAuthPage(BasicAuthPage):
+class DigestAuthPage(Authentication):
 
     def get_digest_auth_page(self, username, password):
         return self._get_auth_page(username, password, last_segment="digest_auth")
