@@ -4,7 +4,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from src.the_internet.resource.drop_file_js import JS_DROP_FILES
+from src.utils.drop_file_js import JS_DROP_FILES
 
 
 class BasePage:

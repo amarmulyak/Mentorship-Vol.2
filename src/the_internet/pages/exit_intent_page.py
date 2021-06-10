@@ -9,5 +9,3 @@ class ExitIntent(ModalPage):
     def move_mouse_out_of_viewport(self):
         pyautogui.moveTo(500, 500)
         pyautogui.moveTo(500, 0)
-
-# TODO апдейтити requirenents
