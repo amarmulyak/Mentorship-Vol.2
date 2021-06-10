@@ -28,14 +28,9 @@ class DynamicControlsPage(BasePage):
     def add_remove_button_caption(self):
         return self.element_text(self._CHECKBOX_ADD_REMOVE_BUTTON)
 
-    # TODO повернути bool від того що знайде
     def input_field_is_disabled(self):
         edit_field = self.find_element(self._INPUT_FIELD)
-        if edit_field.get_attribute("disabled"):
-            is_disabled = True
-        else:
-            is_disabled = False
-        return is_disabled
+        return bool(edit_field.get_attribute("disabled"))
 
     def enable_disable_button_caption(self):
         return self.element_text(self._INPUT_ENABLE_DISABLE_BTN)
