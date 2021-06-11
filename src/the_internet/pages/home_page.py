@@ -20,7 +20,7 @@ class HomePage(BasePage):
         return self.driver.get(f"{self.url}")
 
     def home_page_title(self):
-        return self.element_text(self.home_page_title_locator)
+        return self.get_element_text(self.home_page_title_locator)
 
     def click_ab_testing_link(self):
         self.click_on_element((

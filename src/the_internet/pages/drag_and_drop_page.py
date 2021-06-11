@@ -11,10 +11,10 @@ class DragAndDropPage(BasePage):
         return self.driver.get(f"{self.url}/drag_and_drop")
 
     def column_a_text(self):
-        return self.element_text(self._COLUMN_A)
+        return self.get_element_text(self._COLUMN_A)
 
     def column_b_text(self):
-        return self.element_text(self._COLUMN_B)
+        return self.get_element_text(self._COLUMN_B)
 
     def drag_and_drop_column_a_to_b(self):
         return self._drag_and_drop(

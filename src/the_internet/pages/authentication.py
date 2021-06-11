@@ -12,7 +12,7 @@ class Authentication(BasePage):
         return self.driver.get(f"https://{username}:{password}@{url}")
 
     def title_text(self):
-        return self.element_text(self._TITLE)
+        return self.get_element_text(self._TITLE)
 
     def page_reached(self, wait_time=10):
         return self.element_is_present(self._TITLE, wait_time)

@@ -9,7 +9,7 @@ class ABTestingPage(BasePage):
         return self.driver.get(f"{self.url}/abtest")
 
     def abtest_page_title_text(self):
-        return self.element_text(self._AB_PAGE_TITLE)
+        return self.get_element_text(self._AB_PAGE_TITLE)
 
     def abtest_page_reached(self):
         return self.element_is_present(self._AB_PAGE_TITLE)

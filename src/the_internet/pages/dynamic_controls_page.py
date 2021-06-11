@@ -23,22 +23,22 @@ class DynamicControlsPage(BasePage):
         return self.wait_until_invisible(self._CHECKBOX_LOADER)
 
     def checkbox_message_text(self):
-        return self.element_text(self._CHECKBOX_MESSAGE)
+        return self.get_element_text(self._CHECKBOX_MESSAGE)
 
     def add_remove_button_caption(self):
-        return self.element_text(self._CHECKBOX_ADD_REMOVE_BUTTON)
+        return self.get_element_text(self._CHECKBOX_ADD_REMOVE_BUTTON)
 
     def input_field_is_disabled(self):
         edit_field = self.find_element(self._INPUT_FIELD)
         return bool(edit_field.get_attribute("disabled"))
 
     def enable_disable_button_caption(self):
-        return self.element_text(self._INPUT_ENABLE_DISABLE_BTN)
+        return self.get_element_text(self._INPUT_ENABLE_DISABLE_BTN)
 
     def click_enable_disable_button(self):
         self.click_on_element(self._INPUT_ENABLE_DISABLE_BTN)
         return self.wait_until_invisible(self._INPUT_LOADER)
 
     def input_message_text(self):
-        return self.element_text(self._INPUT_MESSAGE)
+        return self.get_element_text(self._INPUT_MESSAGE)
 

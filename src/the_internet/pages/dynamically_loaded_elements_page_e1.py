@@ -24,7 +24,7 @@ class DynamicallyLoadedElementsPageE1(BasePage):
         self.wait_until_invisible(self._LOADER)
 
     def start_button_caption(self):
-        return self.element_text(self._START_BUTTON)
+        return self.get_element_text(self._START_BUTTON)
 
     def dynamic_text(self):
-        return self.element_text(self._DYNAMIC_TEXT)
+        return self.get_element_text(self._DYNAMIC_TEXT)

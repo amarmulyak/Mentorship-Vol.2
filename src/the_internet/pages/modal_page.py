@@ -18,8 +18,8 @@ class ModalPage(BasePage):
 
     def get_modal_title_text(self):
         self.wait_until_visible(self._MODAL)
-        return self.element_text(self._MODAL_TITLE)
+        return self.get_element_text(self._MODAL_TITLE)
 
     def get_modal_body_text(self):
         self.wait_until_visible(self._MODAL)
-        return self.element_text(self._MODAL_BODY)
+        return self.get_element_text(self._MODAL_BODY)

@@ -22,10 +22,10 @@ class FileUploaderPage(BasePage):
         self.click_on_element(self.UPLOAD_BTN)
 
     def success_msg(self):
-        return self.element_text(self.UPLOADED_MSG)
+        return self.get_element_text(self.UPLOADED_MSG)
 
     def upladed_file_name(self):
-        return self.element_text(self.UPLOADED_FILE)
+        return self.get_element_text(self.UPLOADED_FILE)
 
     def drop_files_via_drag_and_drop(self, files: str):
         """
