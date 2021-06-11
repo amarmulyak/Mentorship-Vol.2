@@ -1,7 +1,6 @@
 from src.the_internet.pages.file_uploader_page import FileUploaderPage
 
 
-# TODO генерити свій файл
 def test_upload_via_button(driver, cfg, base_path):
     file_uploader = FileUploaderPage(driver, cfg.base_url)
 
@@ -11,6 +10,19 @@ def test_upload_via_button(driver, cfg, base_path):
     file_uploader.click_upload_btn()
     assert file_uploader.success_msg() == "File Uploaded!"
     assert file_uploader.upladed_file_name() == "box.png"
+
+
+def test_upload_generated_file_via_button(driver, cfg, base_path, tmpdir):
+    file_uploader = FileUploaderPage(driver, cfg.base_url)
+    file = tmpdir.join('test.txt')
+    file.write("Test")
+
+    file_uploader.get_file_uploader_page()
+
+    file_uploader.choose_file_via_btn(file.strpath)
+    file_uploader.click_upload_btn()
+    assert file_uploader.success_msg() == "File Uploaded!"
+    assert file_uploader.upladed_file_name() == "test.txt"
 
 
 def test_upload_file_via_drag_and_drop(driver, cfg, base_path):
