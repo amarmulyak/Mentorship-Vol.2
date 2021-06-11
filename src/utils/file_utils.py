@@ -4,9 +4,9 @@ from PIL import Image
 
 
 def file_exists(file_path, wait_time=10):
+    f = pathlib.Path(file_path)
     start_time = time.time()
     while start_time + wait_time >= time.time():
-        f = pathlib.Path(file_path)
         if f.exists():
             break
     return f.exists()
