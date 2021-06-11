@@ -8,8 +8,7 @@ def file_exists(file_path, wait_time=10):
     start_time = time.time()
     while start_time + wait_time >= time.time():
         if f.exists():
-            break
-    return f.exists()
+            return f.exists()
 
 
 def file_is_an_image(file_path):
