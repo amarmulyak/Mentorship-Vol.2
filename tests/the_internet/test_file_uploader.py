@@ -1,7 +1,7 @@
 from src.the_internet.pages.file_uploader_page import FileUploaderPage
 
 
-# TODO винести файл в папку resource + генерити свій файл
+# TODO генерити свій файл
 def test_upload_via_button(driver, cfg, base_path):
     file_uploader = FileUploaderPage(driver, cfg.base_url)
 

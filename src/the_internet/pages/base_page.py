@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from src.utils.drop_file_js import JS_DROP_FILES
+from selenium.webdriver.remote.webelement import WebElement
 
 
 class BasePage:
@@ -75,7 +76,13 @@ class BasePage:
     def provide_text_to_element(self, locator, text):
         self.find_element(locator).send_keys(text)
 
-    def _drop_files(self, element, files):
+    def _drop_files(self, element: WebElement, files: str):
+        """
+        Upload file via drag and drop
+        :param element: Drag and drop element
+        :param files: Single file path or list of file paths
+        :return: None
+        """
         offset_x = 0
         offset_y = 0
         # TODO Оксана: ревю чи ок так тримати джава скріпт

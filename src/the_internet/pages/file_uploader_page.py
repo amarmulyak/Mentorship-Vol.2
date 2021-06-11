@@ -13,7 +13,6 @@ class FileUploaderPage(BasePage):
     def get_file_uploader_page(self):
         self.driver.get(f"{self.url}/upload")
 
-    # TODO Передавати весь шлях, не імпортити нічого з тестів
     def choose_file_via_btn(self, file_path):
         choose = self.find_element(self.CHOOSE_FILE_BTN)
         choose.send_keys(file_path)
@@ -27,8 +26,12 @@ class FileUploaderPage(BasePage):
     def upladed_file_name(self):
         return self.element_text(self.UPLOADED_FILE)
 
-    # TODO Додати тайпи і докстрінги
-    def drop_files_via_drag_and_drop(self, files):
+    def drop_files_via_drag_and_drop(self, files: str):
+        """
+        Upload file via drag and drop
+        :param files: Single file path or list of file paths
+        :return: None
+        """
         drag_drop = self.find_element(self.DRAG_DROP_UPLOAD)
         self._drop_files(element=drag_drop, files=files)
 
