@@ -10,3 +10,6 @@ class MultipleWindow(BasePage):
 
     def click_on_click_here_button(self):
         self.click_on_element(self.CLICK_HERE)
+
+    def get_page_title(self):
+        return self.get_element_text(self._PAGE_TITLE)
