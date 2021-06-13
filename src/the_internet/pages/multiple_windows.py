@@ -7,3 +7,6 @@ class MultipleWindow(BasePage):
 
     def get_multiple_window_page(self):
         self.driver.get(f"{self.url}/windows")
+
+    def click_on_click_here_button(self):
+        self.click_on_element(self.CLICK_HERE)
