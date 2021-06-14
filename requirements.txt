@@ -4,3 +4,4 @@ pyautogui
 PIL
 yaml
 aumbry
+allure-pytest

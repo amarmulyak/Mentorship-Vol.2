@@ -1,3 +1,5 @@
+import os
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -5,6 +7,9 @@ import pathlib
 import pytest
 import yaml
 import aumbry
+from datetime import datetime
+import allure
+import base64
 from models.config import Config
 
 
@@ -97,3 +102,33 @@ def cfg_as_dict(base_path):
     with open(f"{base_path}/cfg/cfg.yaml") as f:
         cfg = yaml.load(f)
     return cfg
+
+
+def pytest_configure(config):
+    allure_folder = pathlib.Path(__file__).parent / "allure_result_folder"
+    allure_folder.mkdir(exist_ok=True)
+    for item in allure_folder.iterdir():
+        if item.is_file():
+            item.unlink()
+    config.option.allure_report_dir = allure_folder
+
+
+@pytest.mark.hookwrapper
+def pytest_runtest_makereport(item):
+    """
+         When the test fails, take a screenshot automatically and display it in the allure report
+    :param item:
+    """
+    outcome = yield
+    report = outcome.get_result()
+
+    if report.when == 'call' or report.when == "setup":
+        xfail = hasattr(report, 'wasxfail')
+        if (report.skipped and xfail) or (report.failed and not xfail):
+            allure_folder = pathlib.Path(__file__).parent / "allure_result_folder"
+            now_time = datetime.now().strftime("%Y%m%d%H%M%S")
+            screen_path = os.path.join(allure_folder, "{}.png".format(now_time))
+            feature_request = item.funcargs['request']
+            driver = feature_request.getfixturevalue("driver")
+            driver.save_screenshot(screen_path)
+            allure.attach.file(screen_path, now_time, allure.attachment_type.PNG)
