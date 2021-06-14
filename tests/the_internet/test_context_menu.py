@@ -15,7 +15,7 @@ def test_alert_text(driver, cfg):
     alert = Alert(driver)
     context_menu.get_context_menu_page()
     context_menu.right_mouse_click_on_box()
-    assert alert.text() == "You selected a context menu"
+    assert alert.get_text() == "You selected a context menu"
 
 
 def test_alert_accept(driver, cfg):

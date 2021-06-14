@@ -15,7 +15,7 @@ class Alert:
             alert_appear = False
         return alert_appear
 
-    def text(self):
+    def get_text(self):
         self._wait_until_alert_appear()
         popup = self.driver.switch_to.alert
         return popup.text
@@ -24,6 +24,16 @@ class Alert:
         self._wait_until_alert_appear()
         popup = self.driver.switch_to.alert
         popup.accept()
+
+    def dismiss(self):
+        self._wait_until_alert_appear()
+        popup = self.driver.switch_to.alert
+        popup.dismiss()
+
+    def send_keys(self, text):
+        self._wait_until_alert_appear()
+        popup = self.driver.switch_to.alert
+        popup.send_keys(text)
 
     def _wait_until_alert_appear(self, time=10):
         return WebDriverWait(self.driver, time).until(

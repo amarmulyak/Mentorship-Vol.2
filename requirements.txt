@@ -2,3 +2,5 @@ pytest
 seletools
 pyautogui
 PIL
+yaml
+aumbry
