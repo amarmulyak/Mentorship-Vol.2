@@ -17,11 +17,12 @@ class FileDownloaderPage(BasePage):
         return self.find_elements(self.DOWNLOAD_LINKS)
 
     def download_file(self, file_name):
-        self.click_on_element((
-            self.DOWNLOAD_LINK[0],
-            self.DOWNLOAD_LINK[1].format(file_name)
-        ))
+        self.click_on_element(
+            (self.DOWNLOAD_LINK[0], self.DOWNLOAD_LINK[1].format(file_name))
+        )
 
     def get_list_of_file_names(self):
-        return [el.get_attribute("text") for el in self._get_list_of_download_links_elements()]
-
+        return [
+            el.get_attribute("text")
+            for el in self._get_list_of_download_links_elements()
+        ]

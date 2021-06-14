@@ -1,4 +1,6 @@
-from src.the_internet.pages.dynamically_loaded_elements_page_e2 import DynamicallyLoadedElementsPageE2
+from src.the_internet.pages.dynamically_loaded_elements_page_e2 import (
+    DynamicallyLoadedElementsPageE2,
+)
 
 
 # TODO Тут підходять такі ж тести як і для пейджі 1. Чи правильно дублювати тести

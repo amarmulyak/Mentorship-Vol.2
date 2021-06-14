@@ -9,7 +9,10 @@ class FileUploaderPage(BasePage):
     UPLOADED_MSG = (By.TAG_NAME, "h3")
     UPLOADED_FILE = (By.XPATH, "//div[@class='example']/div")
     UPLOADED_FILES_DRAG_DROP = (By.XPATH, "//div[@class='dz-filename']/span[text()]")
-    UPLOADED_FILE_DRAG_DROP = (By.XPATH, "//div[@class='dz-filename']/span[text()='{}']")
+    UPLOADED_FILE_DRAG_DROP = (
+        By.XPATH,
+        "//div[@class='dz-filename']/span[text()='{}']",
+    )
 
     def get_file_uploader_page(self):
         self.driver.get(f"{self.url}/upload")
@@ -40,5 +43,9 @@ class FileUploaderPage(BasePage):
         return self.driver.find_elements(*self.UPLOADED_FILES_DRAG_DROP)
 
     def is_file_uploaded_drag_drop(self, file_name):
-        return self.element_is_present((self.UPLOADED_FILE_DRAG_DROP[0],
-                                        self.UPLOADED_FILE_DRAG_DROP[1].format(file_name)))
+        return self.element_is_present(
+            (
+                self.UPLOADED_FILE_DRAG_DROP[0],
+                self.UPLOADED_FILE_DRAG_DROP[1].format(file_name),
+            )
+        )

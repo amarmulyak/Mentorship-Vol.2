@@ -13,9 +13,12 @@ def test_modal_ui(driver, cfg):
 
     entry_ad.get_entry_ad_page()
     assert entry_ad.get_modal_title_text() == "THIS IS A MODAL WINDOW"
-    assert entry_ad.get_modal_body_text() == "It's commonly used to encourage a user to take an " \
-                                             "action (e.g., give their e-mail address to sign up" \
-                                             " for something or disable their ad blocker)."
+    assert (
+        entry_ad.get_modal_body_text()
+        == "It's commonly used to encourage a user to take an "
+        "action (e.g., give their e-mail address to sign up"
+        " for something or disable their ad blocker)."
+    )
 
 
 def test_modal_close(driver, cfg):
@@ -56,4 +59,3 @@ def test_modal_appears_after_re_enabling(driver, cfg):
     entry_ad.click_restart_add()
     driver.refresh()
     assert entry_ad.modal_is_visible()
-

@@ -8,4 +8,3 @@ def test_shadow_dom(driver, cfg):
     assert page.get_section1_text() == "Let's have some different text!"
     assert page.get_section2_row1_text() == "Let's have some different text!"
     assert page.get_section2_row2_text() == "In a list!"
-

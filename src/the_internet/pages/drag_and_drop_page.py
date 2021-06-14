@@ -17,16 +17,10 @@ class DragAndDropPage(BasePage):
         return self.get_element_text(self._COLUMN_B)
 
     def drag_and_drop_column_a_to_b(self):
-        return self._drag_and_drop(
-            self._COLUMN_A,
-            self._COLUMN_B
-        )
+        return self._drag_and_drop(self._COLUMN_A, self._COLUMN_B)
 
     def drag_and_drop_column_b_to_a(self):
-        return self._drag_and_drop(
-            self._COLUMN_B,
-            self._COLUMN_A
-        )
+        return self._drag_and_drop(self._COLUMN_B, self._COLUMN_A)
 
     def _drag_and_drop(self, source_locator, target_locator):
         source = self.find_element(source_locator)

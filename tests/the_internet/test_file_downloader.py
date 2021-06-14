@@ -13,4 +13,5 @@ def test_download_files(driver, cfg, download_dir):
         file_downloader.download_file(file)
         assert file_exists(f"{download_dir}/{file}")
 
+
 # TODO Налаштувати браузер для скачування файлів .py .jar

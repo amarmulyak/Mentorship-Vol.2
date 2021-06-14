@@ -90,11 +90,13 @@ class BasePage:
 
         paths = []
 
-        for file in (files if isinstance(files, List) else [files]):
+        for file in files if isinstance(files, List) else [files]:
             if not os.path.isfile(file):
                 raise FileNotFoundError(file)
             paths.append(file)
 
-        value = '\n'.join(paths)
-        elm_input = self.driver.execute_script(js_drop_files, element, offset_x, offset_y)
-        elm_input._execute('sendKeysToElement', {'value': [value], 'text': value})
+        value = "\n".join(paths)
+        elm_input = self.driver.execute_script(
+            js_drop_files, element, offset_x, offset_y
+        )
+        elm_input._execute("sendKeysToElement", {"value": [value], "text": value})

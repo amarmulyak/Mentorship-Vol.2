@@ -41,4 +41,3 @@ class DynamicControlsPage(BasePage):
 
     def input_message_text(self):
         return self.get_element_text(self._INPUT_MESSAGE)
-

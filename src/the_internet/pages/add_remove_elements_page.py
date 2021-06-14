@@ -8,9 +8,7 @@ class AddRemoveElementsPage(BasePage):
     _DELETE_BTN = (By.XPATH, "//div[@id='elements']/button[{}]")
 
     def get_add_remove_elements_page(self):
-        return self.driver.get(
-            f"{self.url}/add_remove_elements/"
-        )
+        return self.driver.get(f"{self.url}/add_remove_elements/")
 
     def add_element(self):
         return self.click_on_element(self._ADD_ELEMENT_BTN)

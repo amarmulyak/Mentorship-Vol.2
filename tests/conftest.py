@@ -41,6 +41,7 @@ def driver(cfg, download_dir, base_path):
     yield driver
     driver.quit()
 
+
 # @pytest.fixture
 # def driver(cfg, download_dir, base_path):
 #     if cfg.browser.lower() == "firefox":
@@ -79,13 +80,15 @@ def driver(cfg, download_dir, base_path):
 
 @pytest.fixture
 def download_dir(tmpdir_factory):
-    _dir = tmpdir_factory.mktemp('download')
+    _dir = tmpdir_factory.mktemp("download")
     return _dir.strpath
 
 
 @pytest.fixture(scope="session")
 def cfg(base_path):
-    cfg = aumbry.load(aumbry.FILE, Config, {'CONFIG_FILE_PATH': f'{base_path}/cfg/cfg.yaml'})
+    cfg = aumbry.load(
+        aumbry.FILE, Config, {"CONFIG_FILE_PATH": f"{base_path}/cfg/cfg.yaml"}
+    )
     return cfg
 
 
