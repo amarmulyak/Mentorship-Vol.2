@@ -19,6 +19,11 @@ def base_path():
 
 
 @pytest.fixture
+def upload_dir(base_path):
+    return f"{base_path}/src/the_internet/resource"
+
+
+@pytest.fixture
 def driver(cfg, download_dir, base_path):
     if cfg.browser.lower() == "firefox":
         driver = webdriver.Firefox(executable_path=f"{base_path}/drivers/geckodriver")
