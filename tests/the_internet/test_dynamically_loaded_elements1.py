@@ -1,6 +1,4 @@
-from src.the_internet.pages.dynamically_loaded_elements_page_e1 import (
-    DynamicallyLoadedElementsPageE1,
-)
+from src.the_internet.pages.dynamically_loaded_elements_page_e1 import DynamicallyLoadedElementsPageE1
 
 
 def test_dynamically_loaded_elements(driver, cfg):

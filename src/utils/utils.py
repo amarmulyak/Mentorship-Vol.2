@@ -5,11 +5,11 @@ import pyautogui
 
 
 def file_exists(file_path, wait_time=10):
-    f = pathlib.Path(file_path)
+    f_path = pathlib.Path(file_path)
     start_time = time.time()
     while start_time + wait_time >= time.time():
-        if f.exists():
-            return f.exists()
+        if f_path.exists():
+            return f_path.exists()
 
 
 def file_is_an_image(file_path):
