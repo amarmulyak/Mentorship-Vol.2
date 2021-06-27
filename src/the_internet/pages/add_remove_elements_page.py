@@ -14,7 +14,7 @@ class AddRemoveElementsPage(BasePage):
         return self.click_on_element(self._ADD_ELEMENT_BTN)
 
     def add_elements(self, number_of_elements: int):
-        for number in range(number_of_elements):
+        for _ in range(number_of_elements):
             self.add_element()
 
     def get_delete_buttons(self):

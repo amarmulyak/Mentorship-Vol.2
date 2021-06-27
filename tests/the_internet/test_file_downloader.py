@@ -1,5 +1,5 @@
 from src.the_internet.pages.file_downloader_page import FileDownloaderPage
-from src.utils.file_utils import file_exists
+from src.utils.utils import file_exists
 
 
 def test_download_files(driver, cfg, download_dir):

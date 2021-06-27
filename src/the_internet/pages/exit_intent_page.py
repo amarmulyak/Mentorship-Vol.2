@@ -1,5 +1,5 @@
-import pyautogui
 from src.the_internet.pages.modal_page import ModalPage
+from src.utils.utils import move_mouse_to
 
 
 class ExitIntent(ModalPage):
@@ -7,5 +7,5 @@ class ExitIntent(ModalPage):
         self.driver.get(f"{self.url}/exit_intent")
 
     def move_mouse_out_of_viewport(self):
-        pyautogui.moveTo(500, 500)
-        pyautogui.moveTo(500, 0)
+        move_mouse_to(500, 500)
+        move_mouse_to(500, 0)

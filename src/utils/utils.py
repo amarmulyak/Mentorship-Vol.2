@@ -1,6 +1,7 @@
 import pathlib
 import time
 from PIL import Image
+import pyautogui
 
 
 def file_exists(file_path, wait_time=10):
@@ -18,3 +19,7 @@ def file_is_an_image(file_path):
     except IOError:
         file_is_image = False
     return file_is_image
+
+
+def move_mouse_to(x, y):
+    pyautogui.moveTo(x, y)
