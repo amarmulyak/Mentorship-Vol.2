@@ -1,5 +1,5 @@
 """
-pages package.
+Pages package.
 
 Contains page objects
 """

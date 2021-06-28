@@ -1,5 +1,5 @@
 """
-Add/Remove Elements module
+Add/Remove Elements module.
 """
 
 from selenium.webdriver.common.by import By
@@ -8,7 +8,7 @@ from src.the_internet.pages.base_page import BasePage
 
 class AddRemoveElementsPage(BasePage):
     """
-    A class to represent Add/Remove Elements page
+    A class to represent Add/Remove Elements page.
     """
 
     _ADD_ELEMENT_BTN = (By.XPATH, "//div[@class='example']/button")
@@ -26,7 +26,7 @@ class AddRemoveElementsPage(BasePage):
 
     def add_element(self):
         """
-        click on "Add Element" button
+        Click on "Add Element" button.
 
         :return: None
         """
@@ -35,7 +35,7 @@ class AddRemoveElementsPage(BasePage):
 
     def add_elements(self, number_of_elements: int):
         """
-        Add specified number of elements
+        Add specified number of elements.
 
         :param number_of_elements: Number of elements you want to add
         :return: None
@@ -46,7 +46,7 @@ class AddRemoveElementsPage(BasePage):
 
     def get_delete_buttons(self):
         """
-        Get list of "Delete" buttons web elements
+        Get list of "Delete" buttons web elements.
 
         :return: List of "Delete" buttons web elements
         """
@@ -55,7 +55,7 @@ class AddRemoveElementsPage(BasePage):
 
     def delete_button(self, button_index):
         """
-        Click on "Delete" button with the specified index
+        Click on "Delete" button with the specified index.
 
         :param button_index: index of "Delete" button, e.g. 0 is the
         index of the first button
@@ -72,7 +72,7 @@ class AddRemoveElementsPage(BasePage):
         )
 
     def delete_buttons(self):
-        """Click on the all "Delete" buttons
+        """Click on the all "Delete" buttons.
 
         :return: None
         """

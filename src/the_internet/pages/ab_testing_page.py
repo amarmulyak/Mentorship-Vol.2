@@ -8,7 +8,7 @@ from src.the_internet.pages.base_page import BasePage
 
 class ABTestingPage(BasePage):
     """
-    A class to represent A/B Testing page
+    A class to represent A/B Testing page.
     """
 
     _AB_PAGE_TITLE = (By.XPATH, "//div[@class='example']/h3")
@@ -33,7 +33,7 @@ class ABTestingPage(BasePage):
 
     def abtest_page_reached(self):
         """
-        Check if page is opened
+        Check if page is opened.
 
         :return: True or False
         """

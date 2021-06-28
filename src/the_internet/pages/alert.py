@@ -1,5 +1,5 @@
 """
-Alert module
+Alert module.
 """
 
 from selenium.webdriver.support.wait import WebDriverWait
@@ -9,7 +9,7 @@ from selenium.common.exceptions import TimeoutException
 
 class Alert:
     """
-    Class to work with Alert
+    Class to work with Alert.
     """
 
     def __init__(self, driver):
@@ -21,7 +21,7 @@ class Alert:
 
     def is_present(self, wait_time=10):
         """
-        Check if alert is present
+        Check if alert is present.
 
         :param wait_time: Specify the time to wait the Alert to show (default is 10)
         :return: True or False
@@ -36,7 +36,7 @@ class Alert:
 
     def get_text(self):
         """
-        Get Alert's text
+        Get Alert's text.
 
         :return: Alert's text
         """
@@ -46,20 +46,22 @@ class Alert:
 
     def accept(self):
         """
-        Accept the Alert
+        Accept the Alert.
 
         :return: None
         """
-        self._wait_until_alert_appear()
+
+        self._wait_until_alert_disappear()
         popup = self.driver.switch_to.alert
         popup.accept()
 
     def dismiss(self):
         """
-        Dismiss the Alert
+        Dismiss the Alert.
 
         :return: None
         """
+
         self._wait_until_alert_appear()
         popup = self.driver.switch_to.alert
         popup.dismiss()
@@ -67,7 +69,7 @@ class Alert:
 
     def send_keys(self, text):
         """
-        Send keys to the Alert's field
+        Send keys to the Alert's field.
 
         :param text: Key you want to send
         :return: None
@@ -79,21 +81,23 @@ class Alert:
 
     def _wait_until_alert_appear(self, time=10):
         """
-        Wait until Alert appear
+        Wait until Alert appear.
 
         :param time: time (default is 10)
         :return: "Alert" object
         """
+
         return WebDriverWait(self.driver, time).until(
             EC.alert_is_present(), message="Alert is not present"
         )
 
     def _wait_until_alert_disappear(self, time=10):
         """
-        Wait until Alert disappear
+        Wait until Alert disappear.
 
         :param time: time (default is 10)
-        :return: False
+        :return: False in case Alert disappeared
+        :raise: Timeout exception is raised in case of Alert is present
         """
 
         return WebDriverWait(self.driver, time).until_not(
