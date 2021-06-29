@@ -1,9 +1,17 @@
+"""
+Broken images module.
+"""
+
 import requests
 from selenium.webdriver.common.by import By
 from src.the_internet.pages.base_page import BasePage
 
 
 class BrokenImagesPage(BasePage):
+    """
+    Class to represent Broken Images page.
+    """
+
     _IMAGES = (By.TAG_NAME, "img")
 
     def get_add_broken_images_page(self):

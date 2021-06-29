@@ -14,7 +14,7 @@ class Authentication(BasePage):
 
     def _get_auth_page(self, username, password, last_segment):
         """
-        Get page.
+        Get page with basic authentication required
 
         :param username: Usermame
         :param password: Password
