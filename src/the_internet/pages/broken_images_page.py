@@ -15,9 +15,21 @@ class BrokenImagesPage(BasePage):
     _IMAGES = (By.TAG_NAME, "img")
 
     def get_add_broken_images_page(self):
+        """
+        Open Broken Images page.
+
+        :return: None
+        """
+
         return self.driver.get(f"{self.url}/broken_images")
 
     def get_correct_images(self):
+        """
+        Get list of images on the page which are not broken.
+
+        :return: List of not broken images
+        """
+
         images = self.driver.find_elements(*self._IMAGES)
         correct_images_list = []
         if images:
@@ -28,6 +40,12 @@ class BrokenImagesPage(BasePage):
         return correct_images_list
 
     def get_broken_images(self):
+        """
+        Get list of images on the page which are broken.
+
+        :return: List of broken images
+        """
+
         images = self.driver.find_elements(*self._IMAGES)
         broken_images_list = []
         if images:
