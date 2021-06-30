@@ -32,7 +32,7 @@ class ChallengingDomPage(BasePage):
 
     def get_answer(self):
         """
-        Get canvas
+        Get canvas.
 
         :return: Result of the script execution
         """
@@ -42,7 +42,7 @@ class ChallengingDomPage(BasePage):
 
     def get_data_from_cell(self, row_number, title_name):
         """
-        Get text from the cell
+        Get text from the cell.
 
         :param row_number: Number of the row
         :param title_name: Name of the column's title

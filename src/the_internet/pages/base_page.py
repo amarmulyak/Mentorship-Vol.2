@@ -4,11 +4,14 @@ BasePage module.
 
 import os
 from typing import List
+
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+from seletools.actions import drag_and_drop
+
 from src.utils.drop_file_js import JS_DROP_FILES
 
 
@@ -202,3 +205,16 @@ class BasePage:
             js_drop_files, element, offset_x, offset_y
         )
         elm_input._execute("sendKeysToElement", {"value": [value], "text": value})
+
+    def _drag_and_drop(self, source_locator, target_locator):
+        """
+        Drag and drop element from the source to the target locator
+
+        :param source_locator: Locator of the source element
+        :param target_locator: Locator of the target element
+        :return: None
+        """
+
+        source = self.find_element(source_locator)
+        target = self.find_element(target_locator)
+        drag_and_drop(self.driver, source, target)
