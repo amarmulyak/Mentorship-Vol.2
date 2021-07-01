@@ -21,11 +21,11 @@ def test_dynamic_loading_link(driver, cfg):
 
     home_page.get_home_page()
     dynamic_elements = home_page.click_dynamic_loading_link()
-    assert dynamic_elements.page_is_reached()
+    assert dynamic_elements.is_page_reached()
 
     example1 = dynamic_elements.click_example_1_link()
-    assert example1.page_is_reached()
+    assert example1.is_page_reached()
 
     driver.back()
     example2 = dynamic_elements.click_example_2_link()
-    assert example2.page_is_reached()
+    assert example2.is_page_reached()
