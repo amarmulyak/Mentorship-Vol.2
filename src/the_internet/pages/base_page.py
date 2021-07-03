@@ -17,7 +17,7 @@ from src.utils.drop_file_js import JS_DROP_FILES
 
 class BasePage:
     """
-    A Class to represent base methods .
+    A Class to represent base methods.
     """
 
     _PAGE_TITLE = (By.XPATH, "//div[@class='example']/h3")
@@ -138,7 +138,7 @@ class BasePage:
 
     def element_is_present(self, locator, wait_time=10):
         """
-        Check if element present
+        Check if element present.
 
         :param locator: Locator
         :param wait_time: Time
@@ -170,7 +170,7 @@ class BasePage:
 
     def provide_text_to_element(self, locator, text):
         """
-        Provide text to element
+        Provide text to element.
 
         :param locator: Locator
         :param text: Text you want to provide
@@ -208,7 +208,7 @@ class BasePage:
 
     def _drag_and_drop(self, source_locator, target_locator):
         """
-        Drag and drop element from the source to the target locator
+        Drag and drop element from the source to the target locator.
 
         :param source_locator: Locator of the source element
         :param target_locator: Locator of the target element

@@ -7,8 +7,8 @@ def test_upload_via_button(driver, cfg, upload_dir):
     file_uploader.get_file_uploader_page()
     file_uploader.choose_file_via_btn(f"{upload_dir}/box.png")
     file_uploader.click_upload_btn()
-    assert file_uploader.success_msg() == "File Uploaded!"
-    assert file_uploader.upladed_file_name() == "box.png"
+    assert file_uploader.get_success_msg_text() == "File Uploaded!"
+    assert file_uploader.get_uploaded_file_name() == "box.png"
 
 
 def test_upload_generated_file_via_button(driver, cfg, tmpdir):
@@ -20,8 +20,8 @@ def test_upload_generated_file_via_button(driver, cfg, tmpdir):
 
     file_uploader.choose_file_via_btn(file.strpath)
     file_uploader.click_upload_btn()
-    assert file_uploader.success_msg() == "File Uploaded!"
-    assert file_uploader.upladed_file_name() == "test.txt"
+    assert file_uploader.get_success_msg_text() == "File Uploaded!"
+    assert file_uploader.get_uploaded_file_name() == "test.txt"
 
 
 def test_upload_file_via_drag_and_drop(driver, cfg, upload_dir, tmpdir):
