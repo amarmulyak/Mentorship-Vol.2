@@ -1,5 +1,5 @@
 from src.the_internet.pages.file_downloader_page import FileDownloaderPage
-from src.utils.utils import file_exists
+from src.utils.utils import is_file_exists
 
 
 def test_download_files(driver, cfg, download_dir):
@@ -11,4 +11,4 @@ def test_download_files(driver, cfg, download_dir):
         if file.endswith((".jar", ".py")):
             continue
         file_downloader.download_file(file)
-        assert file_exists(f"{download_dir}/{file}")
+        assert is_file_exists(f"{download_dir}/{file}")

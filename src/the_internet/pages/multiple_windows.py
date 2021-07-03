@@ -66,7 +66,8 @@ class MultipleWindows(BasePage):
 
     def switch_to_previous_window(self):
         """
-        Switch to the previous window. If it's the first switch to the last.
+        Switch to the previous window. If it's the first switch
+        to the last.
 
         :return: None
         """
