@@ -1,115 +1,125 @@
-import os
+"""
+Base conftest module.
+"""
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+import os
 import pathlib
+from datetime import datetime
+
+import allure
+import aumbry
 import pytest
 import yaml
-import aumbry
-from datetime import datetime
-import allure
-import base64
+from selenium import webdriver
+
 from models.config import Config
 
 
 @pytest.fixture(scope="session")
-def base_path():
+def get_base_path():
+    """
+    Get the root folder path of the project.
+
+    :return: Path
+    """
+
     return pathlib.Path(__file__).parent.parent
 
 
 @pytest.fixture
-def upload_dir(base_path):
-    return f"{base_path}/src/the_internet/resource"
+def get_upload_dir_path(get_base_path):
+    """
+    Get the path with file to upload
+
+    :param get_base_path: Fixture
+    :return: Path
+    """
+
+    return f"{get_base_path}/src/the_internet/resource"
 
 
 @pytest.fixture
-def driver(cfg, download_dir, base_path):
+def driver(cfg, download_dir, get_base_path):
+    """
+
+    :param cfg: Fixture
+    :param download_dir: Fixture
+    :param get_base_path: Fixture
+    :return: WebDriver
+    """
+
     if cfg.browser.lower() == "firefox":
-        driver = webdriver.Firefox(executable_path=f"{base_path}/drivers/geckodriver")
+        driver = webdriver.Firefox(executable_path=f"{get_base_path}/drivers/geckodriver")
         driver.maximize_window()
     else:
         options = webdriver.ChromeOptions()
         options.add_argument("--start-maximized")
         options.add_argument("--disable-extensions")
-        # options.add_argument("--safebrowsing-disable-download-protection")
-        # options.add_argument("safebrowsing-disable-extension-blacklist")
 
         prefs = {
             "profile.default_content_settings.popups": 0,
             "download.prompt_for_download": "false",
             "download.default_directory": download_dir,
-            # "disable-popup-blocking": "true",
-            # 'download.extensions_to_open': 'py',
             "safebrowsing.enabled": True,
         }
         options.add_experimental_option("prefs", prefs)
 
         driver = webdriver.Chrome(
-            executable_path=f"{base_path}/drivers/chromedriver", options=options
+            executable_path=f"{get_base_path}/drivers/chromedriver", options=options
         )
     yield driver
     driver.quit()
 
 
-# @pytest.fixture
-# def driver(cfg, download_dir, base_path):
-#     if cfg.browser.lower() == "firefox":
-#         driver = webdriver.Firefox(executable_path=f"{base_path}/drivers/geckodriver")
-#         driver.maximize_window()
-#     else:
-#         chrome_options = Options()
-#         chrome_options.add_argument("--disable-infobars")
-#         chrome_options.add_argument("start-maximized")
-#         chrome_options.add_argument("--disable-extensions")
-#         chrome_options.add_argument("--disable-popup-blocking")
-#         chrome_options.add_argument('--disable-gpu')
-#         chrome_options.add_argument('--disable-software-rasterizer')
-#         chrome_options.add_argument('--safebrowsing-disable-download-protection')
-#
-#         # disable the banner "Chrome is being controlled by automated test software"
-#         chrome_options.add_experimental_option("useAutomationExtension", False)
-#         chrome_options.add_experimental_option("excludeSwitches", ['enable-automation'])
-#
-#         prefs = {
-#             'download.default_directory': 'download_directory',
-#             'download.prompt_for_download': False,
-#             'download.extensions_to_open': 'jar',
-#             'safebrowsing.enabled': True
-#         }
-#         capabilities = DesiredCapabilities().CHROME
-#         chrome_options.add_experimental_option('prefs', prefs)
-#         capabilities.update(chrome_options.to_capabilities())
-#
-#         driver = webdriver.Chrome(
-#             executable_path=f"{base_path}/drivers/chromedriver", options=chrome_options
-#         )
-#     yield driver
-#     driver.quit()
-
-
 @pytest.fixture
 def download_dir(tmpdir_factory):
+    """
+    Create temporary download directory.
+
+    :param tmpdir_factory: Builtin fixture
+    :return: Download directory path
+    """
     _dir = tmpdir_factory.mktemp("download")
     return _dir.strpath
 
 
 @pytest.fixture(scope="session")
-def cfg(base_path):
+def cfg(get_base_path):
+    """
+    Get config as an object
+
+    :param get_base_path: Fixture
+    :return: Config object
+    """
+
     cfg = aumbry.load(
-        aumbry.FILE, Config, {"CONFIG_FILE_PATH": f"{base_path}/cfg/cfg.yaml"}
+        aumbry.FILE, Config, {"CONFIG_FILE_PATH": f"{get_base_path}/cfg/cfg.yaml"}
     )
     return cfg
 
 
 @pytest.fixture(scope="session")
-def cfg_as_dict(base_path):
-    with open(f"{base_path}/cfg/cfg.yaml") as f:
+def cfg_as_dict(get_base_path):
+    """
+    Get config as dictionary
+
+    :param get_base_path: Fixture
+    :return: Config dict
+    """
+
+    with open(f"{get_base_path}/cfg/cfg.yaml") as f:
         cfg = yaml.load(f)
     return cfg
 
 
 def pytest_configure(config):
+    """
+    Add folder to take Allure report results
+
+    :param config: Builtin fixture
+    :return: None
+    """
+
     allure_folder = pathlib.Path(__file__).parent / "allure_result_folder"
     allure_folder.mkdir(exist_ok=True)
     for item in allure_folder.iterdir():
@@ -121,9 +131,13 @@ def pytest_configure(config):
 @pytest.mark.hookwrapper
 def pytest_runtest_makereport(item):
     """
-         When the test fails, take a screenshot automatically and display it in the allure report
-    :param item:
+    When the test fails, take a screenshot automatically and display
+    it in the allure report.
+
+    :param item: Builtin fixture
+    :return: None
     """
+
     outcome = yield
     report = outcome.get_result()
 
