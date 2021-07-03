@@ -90,7 +90,7 @@ class FileUploaderPage(BasePage):
 
     def is_file_uploaded_drag_drop(self, file_name):
         """
-        Check if file uploaded via Drag and Drop
+        Check if file uploaded via Drag and Drop.
 
         :param file_name: Uploaded file name
         :return: True or False

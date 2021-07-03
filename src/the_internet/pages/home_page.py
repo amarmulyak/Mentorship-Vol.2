@@ -1,3 +1,7 @@
+"""
+Home page module.
+"""
+
 from selenium.webdriver.common.by import By
 from src.the_internet.pages.base_page import BasePage
 from src.the_internet.pages.ab_testing_page import ABTestingPage
@@ -15,16 +19,39 @@ from src.the_internet.pages.dynamically_loaded_elements_page import (
 
 
 class HomePage(BasePage):
+    """
+    Class to represent Home page.
+    """
+
     home_page_title_locator = (By.CLASS_NAME, "heading")
     example_link_locator = (By.XPATH, "//a[contains(text(), '{}')]")
 
     def get_home_page(self):
+        """
+        Open Home page.
+
+        :return: None
+        """
+
         return self.driver.get(f"{self.url}")
 
-    def home_page_title(self):
+    def get_home_page_title_text(self):
+        """
+        Get the page title text.
+
+        :return: Page title text
+        """
+
         return self.get_element_text(self.home_page_title_locator)
 
     def click_ab_testing_link(self):
+        """
+        Click the "A/B Testing" link.
+
+        :return: ABTestingPage
+        """
+
+
         self.click_on_element(
             (
                 self.example_link_locator[0],
@@ -34,6 +61,12 @@ class HomePage(BasePage):
         return ABTestingPage(self.driver, self.url)
 
     def click_add_remove_elements_link(self):
+        """
+        Click the "Add/Remove Elements" link.
+
+        :return: AddRemoveElementsPage
+        """
+
         self.click_on_element(
             (
                 self.example_link_locator[0],
@@ -43,6 +76,12 @@ class HomePage(BasePage):
         return AddRemoveElementsPage(self.driver, self.url)
 
     def click_basic_auth_link(self):
+        """
+        Click the "Basic Auth" link.
+
+        :return: BasicAuthPage
+        """
+
         self.click_on_element(
             (
                 self.example_link_locator[0],
@@ -52,6 +91,12 @@ class HomePage(BasePage):
         return BasicAuthPage(self.driver, self.url)
 
     def click_broken_images_link(self):
+        """
+        Click the "Broken Images" link.
+
+        :return: BrokenImagesPage
+        """
+
         self.click_on_element(
             (
                 self.example_link_locator[0],
@@ -61,6 +106,12 @@ class HomePage(BasePage):
         return BrokenImagesPage(self.driver, self.url)
 
     def click_challenging_dom_link(self):
+        """
+        Click the "Challenging DOM" link.
+
+        :return: ChallengingDomPage
+        """
+
         self.click_on_element(
             (
                 self.example_link_locator[0],
@@ -70,6 +121,12 @@ class HomePage(BasePage):
         return ChallengingDomPage(self.driver, self.url)
 
     def click_context_menu_link(self):
+        """
+        Click the "Context Menu" link.
+
+        :return: ContextMenuPage
+        """
+
         self.click_on_element(
             (
                 self.example_link_locator[0],
@@ -79,6 +136,12 @@ class HomePage(BasePage):
         return ContextMenuPage(self.driver, self.url)
 
     def click_digest_auth_link(self):
+        """
+        Click the "Digest Authentication" link.
+
+        :return: DigestAuthPage
+        """
+
         self.click_on_element(
             (
                 self.example_link_locator[0],
@@ -88,6 +151,12 @@ class HomePage(BasePage):
         return DigestAuthPage(self.driver, self.url)
 
     def click_drag_and_drop_link(self):
+        """
+        Click the "Drag and Drop" link.
+
+        :return: DragAndDropPage
+        """
+
         self.click_on_element(
             (
                 self.example_link_locator[0],
@@ -97,6 +166,12 @@ class HomePage(BasePage):
         return DragAndDropPage(self.driver, self.url)
 
     def click_dynamic_controls_link(self):
+        """
+        Click the "Dynamic Controls" link.
+
+        :return: DynamicControlsPage
+        """
+
         self.click_on_element(
             (
                 self.example_link_locator[0],
@@ -106,6 +181,12 @@ class HomePage(BasePage):
         return DynamicControlsPage(self.driver, self.url)
 
     def click_dynamic_loading_link(self):
+        """
+        Click the "Dynamic Loading" link.
+
+        :return: DynamicallyLoadedElementsPage
+        """
+
         self.click_on_element(
             (
                 self.example_link_locator[0],

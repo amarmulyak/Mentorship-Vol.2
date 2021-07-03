@@ -2,11 +2,11 @@
 Exit Intent module.
 """
 
-from src.the_internet.pages.modal_page import ModalPage
+from src.the_internet.pages.modal import Modal
 from src.utils.utils import move_mouse_to
 
 
-class ExitIntent(ModalPage):
+class ExitIntent(Modal):
     """
     Class to represent Exit Intent page.
     """

@@ -1,14 +1,29 @@
+"""
+Modal module
+"""
+
 from selenium.webdriver.common.by import By
 from src.the_internet.pages.base_page import BasePage
 
 
-class ModalPage(BasePage):
+class Modal(BasePage):
+    """
+    Class to represent Modal
+    """
+
     _MODAL = (By.CLASS_NAME, "modal")
     _MODAL_TITLE = (By.XPATH, "//div[@class='modal-title']/h3")
     _MODAL_BODY = (By.XPATH, "//div[@class='modal-body']/p")
     _MODAL_CLOSE_BTN = (By.XPATH, "//div[@class='modal-footer']/p")
 
-    def modal_is_visible(self, wait_time=10):
+    def is_modal_visible(self, wait_time=10):
+        """
+        Check if Modal is visible.
+
+        :param wait_time: Time
+        :return: True or False
+        """
+
         return self.element_is_visible(self._MODAL, wait_time=wait_time)
 
     def close_modal(self):

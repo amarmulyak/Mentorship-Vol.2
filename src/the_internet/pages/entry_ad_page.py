@@ -3,10 +3,10 @@ Entry Ad module.
 """
 
 from selenium.webdriver.common.by import By
-from src.the_internet.pages.modal_page import ModalPage
+from src.the_internet.pages.modal import Modal
 
 
-class EntryAd(ModalPage):
+class EntryAd(Modal):
     """
     Class to represent Entry Ad page.
     """
