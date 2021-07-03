@@ -5,7 +5,7 @@ def test_multiple_window(driver, cfg):
     page = MultipleWindows(driver, cfg.base_url)
 
     page.get_multiple_window_page()
-    page.click_on_click_here_button()
+    page.click_on_click_here_link()
     assert page.count_open_windows() == 2
 
     page.switch_to_next_window()
