@@ -3,8 +3,9 @@ BasePage module.
 """
 
 import os
-from typing import List
+from typing import List, Tuple
 
+from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
@@ -22,7 +23,7 @@ class BasePage:
 
     _PAGE_TITLE = (By.XPATH, "//div[@class='example']/h3")
 
-    def __init__(self, driver, url):
+    def __init__(self, driver: webdriver, url: str) -> None:
         """
         :param driver: webdriver
         :param url: URL of the site
@@ -31,7 +32,7 @@ class BasePage:
         self.driver = driver
         self.url = url
 
-    def find_element(self, locator, time=10):
+    def find_element(self, locator: Tuple[By, str], time: int = 10) -> WebElement:
         """
         Find element.
 
@@ -45,13 +46,13 @@ class BasePage:
             message=f"Can't find element by locator {locator}",
         )
 
-    def find_elements(self, locator, time=10):
+    def find_elements(self, locator: Tuple[By, str], time: int = 10) -> List[WebElement]:
         """
         Find elements.
 
         :param locator: Locator
         :param time: Time
-        :return: WebElements
+        :return: List of WebElements
         """
 
         return WebDriverWait(self.driver, time).until(
@@ -59,7 +60,7 @@ class BasePage:
             message=f"Can't find elements by locator {locator}",
         )
 
-    def wait_until_visible(self, locator, time=10):
+    def wait_until_visible(self, locator: Tuple[By, str], time: int = 10) -> WebElement:
         """
         Wait until element will be visible.
 
@@ -73,7 +74,7 @@ class BasePage:
             message=f"Locator {locator} is not visible",
         )
 
-    def wait_until_invisible(self, locator, time=10):
+    def wait_until_invisible(self, locator: Tuple[By, str], time=10):
         """
         Wait until element will be invisible.
 
@@ -87,7 +88,7 @@ class BasePage:
             message=f"Locator {locator} is not visible",
         )
 
-    def wait_until_text_in_element(self, locator, text, time=10):
+    def wait_until_text_in_element(self, locator: Tuple[By, str], text, time=10):
         """
         Wait until text in element.
 
@@ -102,7 +103,7 @@ class BasePage:
             message=f"Locator {locator} is not visible",
         )
 
-    def wait_until_element_clickable(self, locator, time=10):
+    def wait_until_element_clickable(self, locator: Tuple[By, str], time=10):
         """
         Wait until element will be clickable.
 
@@ -116,7 +117,7 @@ class BasePage:
             message=f"Locator {locator} is not clickable",
         )
 
-    def click_on_element(self, locator):
+    def click_on_element(self, locator: Tuple[By, str]):
         """
         Click on element.
 
@@ -126,7 +127,7 @@ class BasePage:
 
         return self.find_element(locator).click()
 
-    def get_element_text(self, locator):
+    def get_element_text(self, locator: Tuple[By, str]):
         """
         Get element text.
 
@@ -136,7 +137,7 @@ class BasePage:
 
         return self.find_element(locator).text
 
-    def element_is_present(self, locator, wait_time=10):
+    def element_is_present(self, locator: Tuple[By, str], wait_time=10):
         """
         Check if element present.
 
@@ -152,7 +153,7 @@ class BasePage:
             element_found = False
         return element_found
 
-    def element_is_visible(self, locator, wait_time=10):
+    def element_is_visible(self, locator: Tuple[By, str], wait_time=10):
         """
         Check if element visible.
 
@@ -168,7 +169,7 @@ class BasePage:
             element_visible = False
         return element_visible
 
-    def provide_text_to_element(self, locator, text):
+    def provide_text_to_element(self, locator: Tuple[By, str], text):
         """
         Provide text to element.
 
@@ -206,7 +207,7 @@ class BasePage:
         )
         elm_input._execute("sendKeysToElement", {"value": [value], "text": value})
 
-    def _drag_and_drop(self, source_locator, target_locator):
+    def _drag_and_drop(self, source_locator: Tuple[By, str], target_locator: Tuple[By, str]):
         """
         Drag and drop element from the source to the target locator.
 
