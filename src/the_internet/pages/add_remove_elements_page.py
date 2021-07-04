@@ -1,8 +1,11 @@
 """
 Add/Remove Elements module.
 """
+from typing import List
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
+
 from src.the_internet.pages.base_page import BasePage
 
 
@@ -15,7 +18,7 @@ class AddRemoveElementsPage(BasePage):
     _DELETE_BTNS = (By.CLASS_NAME, "added-manually")
     _DELETE_BTN = (By.XPATH, "//div[@id='elements']/button[{}]")
 
-    def get_add_remove_elements_page(self):
+    def get_add_remove_elements_page(self) -> None:
         """
         Open page.
 
@@ -24,7 +27,7 @@ class AddRemoveElementsPage(BasePage):
 
         return self.driver.get(f"{self.url}/add_remove_elements/")
 
-    def add_element(self):
+    def add_element(self) -> None:
         """
         Click on "Add Element" button.
 
@@ -33,7 +36,7 @@ class AddRemoveElementsPage(BasePage):
 
         return self.click_on_element(self._ADD_ELEMENT_BTN)
 
-    def add_elements(self, number_of_elements: int):
+    def add_elements(self, number_of_elements: int) -> None:
         """
         Add specified number of elements.
 
@@ -44,7 +47,7 @@ class AddRemoveElementsPage(BasePage):
         for _ in range(number_of_elements):
             self.add_element()
 
-    def get_delete_buttons(self):
+    def get_delete_buttons(self) -> List[WebElement]:
         """
         Get list of "Delete" buttons web elements.
 
@@ -53,7 +56,7 @@ class AddRemoveElementsPage(BasePage):
 
         return self.driver.find_elements(*self._DELETE_BTNS)
 
-    def delete_button(self, button_index):
+    def delete_button(self, button_index: int) -> None:
         """
         Click on "Delete" button with the specified index.
 
@@ -71,7 +74,7 @@ class AddRemoveElementsPage(BasePage):
             )
         )
 
-    def delete_buttons(self):
+    def delete_buttons(self) -> None:
         """Click on the all "Delete" buttons.
 
         :return: None

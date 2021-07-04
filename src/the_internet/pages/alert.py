@@ -2,9 +2,10 @@
 Alert module.
 """
 
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class Alert:
@@ -12,14 +13,14 @@ class Alert:
     Class to work with Alert.
     """
 
-    def __init__(self, driver):
+    def __init__(self, driver: webdriver) -> None:
         """
         :param driver: webdriver
         """
 
         self.driver = driver
 
-    def is_present(self, wait_time=10):
+    def is_present(self, wait_time: int = 10) -> bool:
         """
         Check if alert is present.
 
@@ -34,7 +35,7 @@ class Alert:
             alert_appear = False
         return alert_appear
 
-    def get_text(self):
+    def get_text(self) -> str:
         """
         Get Alert's text.
 
@@ -44,7 +45,7 @@ class Alert:
         popup = self.driver.switch_to.alert
         return popup.text
 
-    def accept(self):
+    def accept(self) -> None:
         """
         Accept the Alert.
 
@@ -55,7 +56,7 @@ class Alert:
         popup = self.driver.switch_to.alert
         popup.accept()
 
-    def dismiss(self):
+    def dismiss(self) -> None:
         """
         Dismiss the Alert.
 
@@ -67,7 +68,7 @@ class Alert:
         popup.dismiss()
         self._wait_until_alert_disappear()
 
-    def send_keys(self, text):
+    def send_keys(self, text: str) -> None:
         """
         Send keys to the Alert's field.
 
@@ -79,7 +80,7 @@ class Alert:
         popup = self.driver.switch_to.alert
         popup.send_keys(text)
 
-    def _wait_until_alert_appear(self, time=10):
+    def _wait_until_alert_appear(self, time: int = 10) -> 'Alert':
         """
         Wait until Alert appear.
 
@@ -91,7 +92,7 @@ class Alert:
             EC.alert_is_present(), message="Alert is not present"
         )
 
-    def _wait_until_alert_disappear(self, time=10):
+    def _wait_until_alert_disappear(self, time: int = 10) -> bool:
         """
         Wait until Alert disappear.
 

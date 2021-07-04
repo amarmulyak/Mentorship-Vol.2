@@ -21,7 +21,7 @@ class ChallengingDomPage(BasePage):
         "table/thead/tr/th[contains(., '{}')]/preceding-sibling::th)+1]"
     )
 
-    def get_challenging_dom_page(self):
+    def get_challenging_dom_page(self) -> None:
         """
         Open Challenging Dom page.
 

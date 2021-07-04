@@ -127,7 +127,7 @@ class BasePage:
 
         return self.find_element(locator).click()
 
-    def get_element_text(self, locator: Tuple[By, str]):
+    def get_element_text(self, locator: Tuple[By, str]) -> str:
         """
         Get element text.
 

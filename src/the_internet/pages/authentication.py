@@ -12,9 +12,9 @@ class Authentication(BasePage):
 
     _TITLE = BasePage._PAGE_TITLE
 
-    def _get_auth_page(self, username, password, last_segment):
+    def _get_auth_page(self, username: str, password: str, last_segment: str) -> None:
         """
-        Get page with basic authentication required
+        Get page with basic authentication required.
 
         :param username: Usermame
         :param password: Password
@@ -26,7 +26,7 @@ class Authentication(BasePage):
         url = f"{domain}/{last_segment}"
         return self.driver.get(f"https://{username}:{password}@{url}")
 
-    def title_text(self):
+    def title_text(self) -> str:
         """
         Get title text
 
@@ -35,7 +35,7 @@ class Authentication(BasePage):
 
         return self.get_element_text(self._TITLE)
 
-    def page_reached(self, wait_time=10):
+    def page_reached(self, wait_time: int = 10) -> bool:
         """
         Check if page is reached
 

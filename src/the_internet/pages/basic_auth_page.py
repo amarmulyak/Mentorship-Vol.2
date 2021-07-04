@@ -9,7 +9,8 @@ class BasicAuthPage(Authentication):
     """
     A class to represent Basic Authentication page.
     """
-    def get_basic_auth_page(self, username, password):
+
+    def get_basic_auth_page(self, username: str, password: str) -> None:
         """
         Open page.
 
@@ -17,4 +18,5 @@ class BasicAuthPage(Authentication):
         :param password: Password
         :return: None
         """
+
         return self._get_auth_page(username, password, last_segment="basic_auth")

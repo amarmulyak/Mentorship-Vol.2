@@ -2,8 +2,12 @@
 Broken images module.
 """
 
+from typing import List
+
 import requests
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
+
 from src.the_internet.pages.base_page import BasePage
 
 
@@ -14,7 +18,7 @@ class BrokenImagesPage(BasePage):
 
     _IMAGES = (By.TAG_NAME, "img")
 
-    def get_add_broken_images_page(self):
+    def get_add_broken_images_page(self) -> None:
         """
         Open Broken Images page.
 
@@ -23,7 +27,7 @@ class BrokenImagesPage(BasePage):
 
         return self.driver.get(f"{self.url}/broken_images")
 
-    def get_correct_images(self):
+    def get_correct_images(self) -> List[WebElement]:
         """
         Get list of images on the page which are not broken.
 
@@ -39,7 +43,7 @@ class BrokenImagesPage(BasePage):
                     correct_images_list.append(image)
         return correct_images_list
 
-    def get_broken_images(self):
+    def get_broken_images(self) -> List[WebElement]:
         """
         Get list of images on the page which are broken.
 
