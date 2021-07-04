@@ -26,7 +26,7 @@ class HomePage(BasePage):
     home_page_title_locator = (By.CLASS_NAME, "heading")
     example_link_locator = (By.XPATH, "//a[contains(text(), '{}')]")
 
-    def get_home_page(self):
+    def get_home_page(self) -> None:
         """
         Open Home page.
 
@@ -35,7 +35,7 @@ class HomePage(BasePage):
 
         return self.driver.get(f"{self.url}")
 
-    def get_home_page_title_text(self):
+    def get_home_page_title_text(self) -> str:
         """
         Get the page title text.
 
@@ -44,13 +44,12 @@ class HomePage(BasePage):
 
         return self.get_element_text(self.home_page_title_locator)
 
-    def click_ab_testing_link(self):
+    def click_ab_testing_link(self) -> ABTestingPage:
         """
         Click the "A/B Testing" link.
 
         :return: ABTestingPage
         """
-
 
         self.click_on_element(
             (
@@ -60,7 +59,7 @@ class HomePage(BasePage):
         )
         return ABTestingPage(self.driver, self.url)
 
-    def click_add_remove_elements_link(self):
+    def click_add_remove_elements_link(self) -> AddRemoveElementsPage:
         """
         Click the "Add/Remove Elements" link.
 
@@ -75,7 +74,7 @@ class HomePage(BasePage):
         )
         return AddRemoveElementsPage(self.driver, self.url)
 
-    def click_basic_auth_link(self):
+    def click_basic_auth_link(self) -> BasicAuthPage:
         """
         Click the "Basic Auth" link.
 
@@ -90,7 +89,7 @@ class HomePage(BasePage):
         )
         return BasicAuthPage(self.driver, self.url)
 
-    def click_broken_images_link(self):
+    def click_broken_images_link(self) -> BrokenImagesPage:
         """
         Click the "Broken Images" link.
 
@@ -105,7 +104,7 @@ class HomePage(BasePage):
         )
         return BrokenImagesPage(self.driver, self.url)
 
-    def click_challenging_dom_link(self):
+    def click_challenging_dom_link(self) -> ChallengingDomPage:
         """
         Click the "Challenging DOM" link.
 
@@ -120,7 +119,7 @@ class HomePage(BasePage):
         )
         return ChallengingDomPage(self.driver, self.url)
 
-    def click_context_menu_link(self):
+    def click_context_menu_link(self) -> ContextMenuPage:
         """
         Click the "Context Menu" link.
 
@@ -135,7 +134,7 @@ class HomePage(BasePage):
         )
         return ContextMenuPage(self.driver, self.url)
 
-    def click_digest_auth_link(self):
+    def click_digest_auth_link(self) -> DigestAuthPage:
         """
         Click the "Digest Authentication" link.
 
@@ -150,7 +149,7 @@ class HomePage(BasePage):
         )
         return DigestAuthPage(self.driver, self.url)
 
-    def click_drag_and_drop_link(self):
+    def click_drag_and_drop_link(self) -> DragAndDropPage:
         """
         Click the "Drag and Drop" link.
 
@@ -165,7 +164,7 @@ class HomePage(BasePage):
         )
         return DragAndDropPage(self.driver, self.url)
 
-    def click_dynamic_controls_link(self):
+    def click_dynamic_controls_link(self) -> DynamicControlsPage:
         """
         Click the "Dynamic Controls" link.
 
@@ -180,7 +179,7 @@ class HomePage(BasePage):
         )
         return DynamicControlsPage(self.driver, self.url)
 
-    def click_dynamic_loading_link(self):
+    def click_dynamic_loading_link(self) -> DynamicallyLoadedElementsPage:
         """
         Click the "Dynamic Loading" link.
 

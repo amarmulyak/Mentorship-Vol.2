@@ -191,7 +191,7 @@ class BasePage:
 
         offset_x = 0
         offset_y = 0
-        # TODO Оксана: ревю чи ок так тримати джава скріпт
+        # TODO зробити джава скріпт окремим файлом
         js_drop_files = JS_DROP_FILES
 
         paths = []

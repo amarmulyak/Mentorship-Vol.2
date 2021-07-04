@@ -16,7 +16,7 @@ class JavaScriptAlertsPage(BasePage):
     JS_PROMPT = (By.XPATH, "//button[contains(text(), 'Click for JS Prompt')]")
     RESULT = (By.ID, "result")
 
-    def get_javascript_alerts_page(self):
+    def get_javascript_alerts_page(self) -> None:
         """
         Open Java Script Alert page.
 
@@ -25,7 +25,7 @@ class JavaScriptAlertsPage(BasePage):
 
         self.driver.get(f"{self.url}/javascript_alerts")
 
-    def click_js_alert_button(self):
+    def click_js_alert_button(self) -> None:
         """
         Click "JS Alert" button.
 
@@ -34,7 +34,7 @@ class JavaScriptAlertsPage(BasePage):
 
         self.click_on_element(self.JS_ALLERT)
 
-    def click_js_confirm_button(self):
+    def click_js_confirm_button(self) -> None:
         """
         Click "JS Confirm" button.
 
@@ -43,7 +43,7 @@ class JavaScriptAlertsPage(BasePage):
 
         self.click_on_element(self.JS_CONFIRM)
 
-    def click_js_prompt_button(self):
+    def click_js_prompt_button(self) -> None:
         """
         Click "JS Prompt" button.
 
@@ -52,7 +52,7 @@ class JavaScriptAlertsPage(BasePage):
 
         self.click_on_element(self.JS_PROMPT)
 
-    def get_result(self):
+    def get_result(self) -> str:
         """
         Get result text.
 

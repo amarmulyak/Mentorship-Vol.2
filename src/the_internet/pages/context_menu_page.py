@@ -14,7 +14,7 @@ class ContextMenuPage(BasePage):
 
     _BOX = (By.ID, "hot-spot")
 
-    def get_context_menu_page(self):
+    def get_context_menu_page(self) -> None:
         """
         Open Context Menu page.
 
@@ -23,7 +23,7 @@ class ContextMenuPage(BasePage):
 
         return self.driver.get(f"{self.url}/context_menu")
 
-    def right_mouse_click_on_box(self):
+    def right_mouse_click_on_box(self) -> None:
         """
         Click on the box with right mouse button.
 

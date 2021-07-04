@@ -5,29 +5,31 @@ Base conftest module.
 import os
 import pathlib
 from datetime import datetime
+from typing import Callable
 
 import allure
 import aumbry
 import pytest
 import yaml
+from _pytest.tmpdir import TempdirFactory
 from selenium import webdriver
 
 from models.config import Config
 
 
 @pytest.fixture(scope="session")
-def get_base_path():
+def get_base_path() -> pathlib.PosixPath:
     """
     Get the root folder path of the project.
 
-    :return: Path
+    :return: PosixPath
     """
 
     return pathlib.Path(__file__).parent.parent
 
 
 @pytest.fixture
-def get_upload_dir_path(get_base_path):
+def get_upload_dir_path(get_base_path) -> str:
     """
     Get the path with file to upload
 
@@ -39,8 +41,9 @@ def get_upload_dir_path(get_base_path):
 
 
 @pytest.fixture
-def driver(cfg, download_dir, get_base_path):
+def driver(cfg, download_dir: Callable[..., str], get_base_path: Callable[[], pathlib.PosixPath]) -> webdriver:
     """
+    Get driver instance.
 
     :param cfg: Fixture
     :param download_dir: Fixture

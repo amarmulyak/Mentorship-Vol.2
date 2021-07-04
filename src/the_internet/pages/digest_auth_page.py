@@ -10,7 +10,7 @@ class DigestAuthPage(Authentication):
     Class to represent Digest Authentication page.
     """
 
-    def get_digest_auth_page(self, username, password):
+    def get_digest_auth_page(self, username: str, password: str) -> None:
         """
         Open Digest Authentication page.
 

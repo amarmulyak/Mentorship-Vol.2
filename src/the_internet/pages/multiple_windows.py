@@ -13,7 +13,7 @@ class MultipleWindows(BasePage):
 
     _CLICK_HERE = (By.LINK_TEXT, "Click Here")
 
-    def get_multiple_window_page(self):
+    def get_multiple_window_page(self) -> None:
         """
         Open Multiple Window page.
 
@@ -22,7 +22,7 @@ class MultipleWindows(BasePage):
 
         self.driver.get(f"{self.url}/windows")
 
-    def click_on_click_here_link(self):
+    def click_on_click_here_link(self) -> None:
         """
         Click the "Click Here" link.
 
@@ -31,7 +31,7 @@ class MultipleWindows(BasePage):
 
         self.click_on_element(self._CLICK_HERE)
 
-    def get_page_title(self):
+    def get_page_title(self) -> str:
         """
         Get text from the page title.
 
@@ -40,7 +40,7 @@ class MultipleWindows(BasePage):
 
         return self.get_element_text(self._PAGE_TITLE)
 
-    def count_open_windows(self):
+    def count_open_windows(self) -> int:
         """
         Count the number of open windows (tabs).
 
@@ -49,7 +49,7 @@ class MultipleWindows(BasePage):
 
         return len(self.driver.window_handles)
 
-    def switch_to_next_window(self):
+    def switch_to_next_window(self) -> None:
         """
         Switch to next window. If it's the last switch to the first.
 
@@ -64,7 +64,7 @@ class MultipleWindows(BasePage):
             next_window_handle = self.driver.window_handles[current_window_index+1]
         self.driver.switch_to_window(next_window_handle)
 
-    def switch_to_previous_window(self):
+    def switch_to_previous_window(self) -> None:
         """
         Switch to the previous window. If it's the first switch
         to the last.

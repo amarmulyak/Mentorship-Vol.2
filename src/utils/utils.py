@@ -8,7 +8,7 @@ from PIL import Image
 import pyautogui
 
 
-def is_file_exists(file_path, wait_time=10):
+def is_file_exists(file_path: str, wait_time: int = 10) -> bool:
     """
     Check if file exists.
 
@@ -24,7 +24,7 @@ def is_file_exists(file_path, wait_time=10):
             return f_path.exists()
 
 
-def is_file_an_image(file_path):
+def is_file_an_image(file_path: str) -> bool:
     """
     Check if file is an image.
 
@@ -40,7 +40,7 @@ def is_file_an_image(file_path):
     return file_is_image
 
 
-def move_mouse_to(x, y):
+def move_mouse_to(x: int, y: int) -> None:
     """
     Move the mouse cursor to specified coordinate.
     E.g. x = 0 and y = 0 is the top right corner.

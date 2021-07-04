@@ -15,7 +15,7 @@ class DragAndDropPage(BasePage):
     _COLUMN_A = (By.XPATH, "//div[@id='column-a']")
     _COLUMN_B = (By.XPATH, "//div[@id='column-b']")
 
-    def get_drag_and_drop_page(self):
+    def get_drag_and_drop_page(self) -> None:
         """
         Open Drag and Drop page.
 
@@ -24,7 +24,7 @@ class DragAndDropPage(BasePage):
 
         return self.driver.get(f"{self.url}/drag_and_drop")
 
-    def column_a_text(self):
+    def column_a_text(self) -> str:
         """
         Get Column A text.
 
@@ -33,7 +33,7 @@ class DragAndDropPage(BasePage):
 
         return self.get_element_text(self._COLUMN_A)
 
-    def column_b_text(self):
+    def column_b_text(self) -> str:
         """
         Get Column B text.
 
@@ -42,7 +42,7 @@ class DragAndDropPage(BasePage):
 
         return self.get_element_text(self._COLUMN_B)
 
-    def drag_and_drop_column_a_to_b(self):
+    def drag_and_drop_column_a_to_b(self) -> None:
         """
         Drag and drop column A to element B.
 
@@ -51,7 +51,7 @@ class DragAndDropPage(BasePage):
 
         return self._drag_and_drop(self._COLUMN_A, self._COLUMN_B)
 
-    def drag_and_drop_column_b_to_a(self):
+    def drag_and_drop_column_b_to_a(self) -> None:
         """
         Drag and drop column B to element A.
 

@@ -1,6 +1,7 @@
 """
 Challenging Dom module.
 """
+from typing import Dict
 
 from selenium.webdriver.common.by import By
 
@@ -30,17 +31,17 @@ class ChallengingDomPage(BasePage):
 
         return self.driver.get(f"{self.url}/challenging_dom")
 
-    def get_answer(self):
+    def get_answer(self) -> Dict:
         """
         Get canvas.
 
-        :return: Result of the script execution
+        :return: Result of the script execution as Dictionary
         """
 
         answer = self.driver.execute_script("return canvas;")
         return answer
 
-    def get_data_from_cell(self, row_number, title_name):
+    def get_data_from_cell(self, row_number: int, title_name: str) -> str:
         """
         Get text from the cell.
 

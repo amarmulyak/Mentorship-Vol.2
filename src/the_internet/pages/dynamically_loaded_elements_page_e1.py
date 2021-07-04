@@ -15,7 +15,7 @@ class DynamicallyLoadedElementsPageE1(BasePage):
     _DYNAMIC_TEXT = (By.XPATH, "//div[@id='finish']/h4")
     _LOADER = (By.ID, "loading")
 
-    def get_dynamically_loaded_elements_page1(self):
+    def get_dynamically_loaded_elements_page1(self) -> None:
         """
         Open page.
 
@@ -24,7 +24,7 @@ class DynamicallyLoadedElementsPageE1(BasePage):
 
         return self.driver.get(f"{self.url}/dynamic_loading/1")
 
-    def is_page_reached(self):
+    def is_page_reached(self) -> bool:
         """
         Check if page is reached.
 
@@ -33,7 +33,7 @@ class DynamicallyLoadedElementsPageE1(BasePage):
 
         return self.element_is_present(self._START_BUTTON)
 
-    def is_start_button_visible(self, wait_time=10):
+    def is_start_button_visible(self, wait_time: int = 10) -> bool:
         """
         Check if "Start" button is visible.
 
@@ -43,7 +43,7 @@ class DynamicallyLoadedElementsPageE1(BasePage):
 
         return self.element_is_visible(self._START_BUTTON, wait_time)
 
-    def is_dynamic_text_visible(self, wait_time=10):
+    def is_dynamic_text_visible(self, wait_time: int = 10) -> bool:
         """
         Check if dynamic text is visible.
 
@@ -53,7 +53,7 @@ class DynamicallyLoadedElementsPageE1(BasePage):
 
         return self.element_is_visible(self._DYNAMIC_TEXT, wait_time)
 
-    def click_start_button(self):
+    def click_start_button(self) -> None:
         """
         Clisk the "Start" button.
 
@@ -63,7 +63,7 @@ class DynamicallyLoadedElementsPageE1(BasePage):
         self.click_on_element(self._START_BUTTON)
         self.wait_until_invisible(self._LOADER)
 
-    def get_start_button_caption(self):
+    def get_start_button_caption(self) -> str:
         """
         Get "Start" button caption.
 
@@ -72,7 +72,7 @@ class DynamicallyLoadedElementsPageE1(BasePage):
 
         return self.get_element_text(self._START_BUTTON)
 
-    def get_dynamic_text(self):
+    def get_dynamic_text(self) -> str:
         """
         Get dynamic text.
 

@@ -13,7 +13,7 @@ class NestedFramesPage(BasePage):
 
     FRAME_TEXT = (By.XPATH, "//body")
 
-    def get_nested_frames_page(self):
+    def get_nested_frames_page(self) -> None:
         """
         Open Nested Frames page.
 
@@ -22,7 +22,7 @@ class NestedFramesPage(BasePage):
 
         self.driver.get(f"{self.url}/nested_frames")
 
-    def get_frame_text(self):
+    def get_frame_text(self) -> str:
         """
         Get text from the frame.
 
@@ -31,7 +31,7 @@ class NestedFramesPage(BasePage):
 
         return self.get_element_text(self.FRAME_TEXT)
 
-    def switch_to_left_frame(self):
+    def switch_to_left_frame(self) -> None:
         """
         Switch to the left frame.
 
@@ -42,7 +42,7 @@ class NestedFramesPage(BasePage):
         self.driver.switch_to.frame("frame-top")
         self.driver.switch_to.frame("frame-left")
 
-    def switch_to_middle_frame(self):
+    def switch_to_middle_frame(self) -> None:
         """
         Switch to the middle frame.
 
@@ -53,7 +53,7 @@ class NestedFramesPage(BasePage):
         self.driver.switch_to.frame("frame-top")
         self.driver.switch_to.frame("frame-middle")
 
-    def switch_to_right_frame(self):
+    def switch_to_right_frame(self) -> None:
         """
         Switch to the right frame.
 
@@ -64,7 +64,7 @@ class NestedFramesPage(BasePage):
         self.driver.switch_to.frame("frame-top")
         self.driver.switch_to.frame("frame-right")
 
-    def switch_to_bottom_frame(self):
+    def switch_to_bottom_frame(self) -> None:
         """
         Switch to the bottom frame.
 

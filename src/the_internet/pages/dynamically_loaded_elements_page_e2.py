@@ -10,5 +10,5 @@ class DynamicallyLoadedElementsPageE2(DynamicallyLoadedElementsPageE1):
     Class to represent Dynamically loaded elements - Example 2 page.
     """
 
-    def get_dynamically_loaded_elements_page2(self):
+    def get_dynamically_loaded_elements_page2(self) -> None:
         return self.driver.get(f"{self.url}/dynamic_loading/2")

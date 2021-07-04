@@ -16,7 +16,7 @@ class Modal(BasePage):
     _MODAL_BODY = (By.XPATH, "//div[@class='modal-body']/p")
     _MODAL_CLOSE_BTN = (By.XPATH, "//div[@class='modal-footer']/p")
 
-    def is_modal_visible(self, wait_time=10):
+    def is_modal_visible(self, wait_time: int = 10) -> bool:
         """
         Check if Modal is visible.
 
@@ -26,7 +26,7 @@ class Modal(BasePage):
 
         return self.element_is_visible(self._MODAL, wait_time=wait_time)
 
-    def close_modal(self):
+    def close_modal(self) -> None:
         """
         Close Modal.
 
@@ -37,7 +37,7 @@ class Modal(BasePage):
         self.click_on_element(self._MODAL_CLOSE_BTN)
         self.wait_until_invisible(self._MODAL)
 
-    def get_modal_title_text(self):
+    def get_modal_title_text(self) -> str:
         """
         Get text from the Modal's title.
 
@@ -47,7 +47,7 @@ class Modal(BasePage):
         self.wait_until_visible(self._MODAL)
         return self.get_element_text(self._MODAL_TITLE)
 
-    def get_modal_body_text(self):
+    def get_modal_body_text(self) -> str:
         """
         Get text from the Modal's body.
 

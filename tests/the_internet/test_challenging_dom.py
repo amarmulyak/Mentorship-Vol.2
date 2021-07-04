@@ -10,9 +10,9 @@ def test_get_answer(driver, cfg):
 def test_cell_data(driver, cfg):
     challenging_dom = ChallengingDomPage(driver, cfg.base_url)
     challenging_dom.get_challenging_dom_page()
-    cell_data1 = challenging_dom.get_data_from_cell("1", "Lorem")
+    cell_data1 = challenging_dom.get_data_from_cell(1, "Lorem")
     assert cell_data1 == "Iuvaret0"
-    cell_data2 = challenging_dom.get_data_from_cell("2", "Ipsum")
+    cell_data2 = challenging_dom.get_data_from_cell(2, "Ipsum")
     assert cell_data2 == "Apeirian1"
-    cell_data3 = challenging_dom.get_data_from_cell("3", "Dolor")
+    cell_data3 = challenging_dom.get_data_from_cell(3, "Dolor")
     assert cell_data3 == "Adipisci2"

@@ -13,7 +13,7 @@ class EntryAd(Modal):
 
     _RESTART_ADD = (By.ID, "restart-ad")
 
-    def get_entry_ad_page(self):
+    def get_entry_ad_page(self) -> None:
         """
         Open Entry Ad page.
 
@@ -22,7 +22,7 @@ class EntryAd(Modal):
 
         self.driver.get(f"{self.url}/entry_ad")
 
-    def click_restart_add(self):
+    def click_restart_add(self) -> None:
         """
         Click link to restart ad.
 
