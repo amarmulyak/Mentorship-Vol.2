@@ -5,13 +5,12 @@ Base conftest module.
 import os
 import pathlib
 from datetime import datetime
-from typing import Callable
+from typing import Dict
 
 import allure
 import aumbry
 import pytest
 import yaml
-from _pytest.tmpdir import TempdirFactory
 from selenium import webdriver
 
 from models.config import Config
@@ -41,7 +40,7 @@ def get_upload_dir_path(get_base_path) -> str:
 
 
 @pytest.fixture
-def driver(cfg, download_dir: Callable[..., str], get_base_path: Callable[[], pathlib.PosixPath]) -> webdriver:
+def driver(cfg, download_dir, get_base_path) -> webdriver:
     """
     Get driver instance.
 
@@ -75,19 +74,20 @@ def driver(cfg, download_dir: Callable[..., str], get_base_path: Callable[[], pa
 
 
 @pytest.fixture
-def download_dir(tmpdir_factory):
+def download_dir(tmpdir_factory) -> str:
     """
     Create temporary download directory.
 
     :param tmpdir_factory: Builtin fixture
     :return: Download directory path
     """
+
     _dir = tmpdir_factory.mktemp("download")
     return _dir.strpath
 
 
 @pytest.fixture(scope="session")
-def cfg(get_base_path):
+def cfg(get_base_path) -> Config:
     """
     Get config as an object
 
@@ -102,7 +102,7 @@ def cfg(get_base_path):
 
 
 @pytest.fixture(scope="session")
-def cfg_as_dict(get_base_path):
+def cfg_as_dict(get_base_path) -> Dict:
     """
     Get config as dictionary
 
@@ -115,7 +115,7 @@ def cfg_as_dict(get_base_path):
     return cfg
 
 
-def pytest_configure(config):
+def pytest_configure(config) -> None:
     """
     Add folder to take Allure report results
 
@@ -132,7 +132,7 @@ def pytest_configure(config):
 
 
 @pytest.mark.hookwrapper
-def pytest_runtest_makereport(item):
+def pytest_runtest_makereport(item) -> None:
     """
     When the test fails, take a screenshot automatically and display
     it in the allure report.
