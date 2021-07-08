@@ -40,14 +40,14 @@ def is_file_an_image(file_path: str) -> bool:
     return file_is_image
 
 
-def move_mouse_to(x: int, y: int) -> None:
+def move_mouse_to(x_coor: int, y_coor: int) -> None:
     """
     Move the mouse cursor to specified coordinate.
-    E.g. x = 0 and y = 0 is the top right corner.
+    E.g. x_coor = 0 and y_coor = 0 is the top right corner.
 
-    :param x: X (Horizontal) coordinate
-    :param y: Y (Vertical) coordinate
+    :param x_coor: X (Horizontal) coordinate
+    :param y_coor: Y (Vertical) coordinate
     :return: None
     """
 
-    pyautogui.moveTo(x, y)
+    pyautogui.moveTo(x_coor, y_coor)

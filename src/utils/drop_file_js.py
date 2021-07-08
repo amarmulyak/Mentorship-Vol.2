@@ -1,3 +1,7 @@
+"""
+Drag and Drop JS module
+"""
+
 JS_DROP_FILES = """
         var c = arguments,
         b = c[0],

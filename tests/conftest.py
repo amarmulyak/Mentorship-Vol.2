@@ -28,7 +28,7 @@ def get_base_path() -> pathlib.PosixPath:
 
 
 @pytest.fixture
-def get_upload_dir_path(get_base_path) -> str:
+def get_upload_dir_path(get_base_path):
     """
     Get the path with file to upload
 
@@ -40,15 +40,7 @@ def get_upload_dir_path(get_base_path) -> str:
 
 
 @pytest.fixture
-def driver(cfg, download_dir, get_base_path) -> webdriver:
-    """
-    Get driver instance.
-
-    :param cfg: Fixture
-    :param download_dir: Fixture
-    :param get_base_path: Fixture
-    :return: WebDriver
-    """
+def driver(cfg, download_dir, get_base_path):
 
     if cfg.browser.lower() == "firefox":
         driver = webdriver.Firefox(executable_path=f"{get_base_path}/drivers/geckodriver")
