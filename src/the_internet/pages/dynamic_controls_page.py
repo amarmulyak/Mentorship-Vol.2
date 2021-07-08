@@ -3,8 +3,6 @@ Dynamic Controls page module.
 """
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webelement import WebElement
-
 from src.the_internet.pages.base_page import BasePage
 
 

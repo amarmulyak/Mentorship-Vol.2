@@ -512,6 +512,7 @@ single-line-if-stmt=no
 
 # Warn about protected attribute access inside special methods
 check-protected-access-in-special-methods=no
+disable=W0212  # disable=protected-access
 
 # List of method names used to declare (i.e. assign) instance attributes.
 defining-attr-methods=__init__,

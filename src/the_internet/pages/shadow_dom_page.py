@@ -50,6 +50,3 @@ class ShadowDomPage(BasePage):
         """
 
         return self.get_element_text(self.SHADOW_SECTION2_ROW2)
-
-
-# todo Try to get shadow text

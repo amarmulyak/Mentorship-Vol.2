@@ -11,4 +11,10 @@ class DynamicallyLoadedElementsPageE2(DynamicallyLoadedElementsPageE1):
     """
 
     def get_dynamically_loaded_elements_page2(self) -> None:
+        """
+        Open page.
+
+        :return: None
+        """
+
         return self.driver.get(f"{self.url}/dynamic_loading/2")

@@ -49,7 +49,7 @@ class FileDownloaderPage(BasePage):
     def download_file(self, file_name: str) -> None:
         """
         Click on the "file_name" link.
-        
+
         :param file_name: Name of the file which is present in the link
         :return: None
         """

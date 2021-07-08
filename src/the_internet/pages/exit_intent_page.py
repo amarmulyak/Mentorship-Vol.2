@@ -20,7 +20,8 @@ class ExitIntent(Modal):
 
         self.driver.get(f"{self.url}/exit_intent")
 
-    def move_mouse_out_of_viewport(self) -> None:
+    @staticmethod
+    def move_mouse_out_of_viewport() -> None:
         """
         Move mouse cursor from the top of the screen to down and
         back to the top of the screen
