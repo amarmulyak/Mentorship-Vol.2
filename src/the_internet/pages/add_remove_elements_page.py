@@ -1,6 +1,7 @@
 """
 Add/Remove Elements module.
 """
+import logging
 from typing import List
 
 from selenium.webdriver.common.by import By
@@ -18,13 +19,16 @@ class AddRemoveElementsPage(BasePage):
     _DELETE_BTNS = (By.CLASS_NAME, "added-manually")
     _DELETE_BTN = (By.XPATH, "//div[@id='elements']/button[{}]")
 
+    logger = logging.getLogger()
+
     def get_add_remove_elements_page(self) -> None:
+
         """
         Open page.
 
         :return: None
         """
-
+        self.logger.info('Opening page "Add Remove Elements"')
         return self.driver.get(f"{self.url}/add_remove_elements/")
 
     def add_element(self) -> None:
@@ -33,6 +37,7 @@ class AddRemoveElementsPage(BasePage):
 
         :return: None
         """
+        self.logger.info('Adding element')
 
         return self.click_on_element(self._ADD_ELEMENT_BTN)
 

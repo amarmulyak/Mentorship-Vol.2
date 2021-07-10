@@ -2,3 +2,4 @@ venv/
 .idea
 __pycache__/
 geckodriver.log
+allure_result_folder/

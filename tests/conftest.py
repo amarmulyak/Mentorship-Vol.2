@@ -2,6 +2,7 @@
 Base conftest module.
 """
 
+import logging
 import os
 import pathlib
 from datetime import datetime
@@ -41,7 +42,6 @@ def get_upload_dir_path(get_base_path):
 
 @pytest.fixture
 def driver(cfg, download_dir, get_base_path):
-
     if cfg.browser.lower() == "firefox":
         driver = webdriver.Firefox(executable_path=f"{get_base_path}/drivers/geckodriver")
         driver.maximize_window()
@@ -121,6 +121,24 @@ def pytest_configure(config) -> None:
         if item.is_file():
             item.unlink()
     config.option.allure_report_dir = allure_folder
+
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)-8s - %(message)s',
+                                  datefmt='%m/%d/%Y %I:%M:%S %p')
+    fh_1 = logging.FileHandler("log_1.log", mode='w')
+    fh_1.setLevel(logging.INFO)
+    fh_1.setFormatter(formatter)
+    fh_2 = logging.FileHandler("log_2.log", mode='w')
+    fh_2.setLevel(logging.ERROR)
+    fh_2.setFormatter(formatter)
+    ch = logging.StreamHandler()
+    ch.setFormatter(formatter)
+    ch.setLevel(logging.INFO)
+    logger.addHandler(fh_1)
+    logger.addHandler(fh_2)
+    logger.addHandler(ch)
 
 
 @pytest.mark.hookwrapper
