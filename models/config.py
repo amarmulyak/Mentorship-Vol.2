@@ -11,5 +11,6 @@ class Config(aumbry.YamlConfig):
 
     __mapping__ = {
         "base_url": Attr("base_url", str),
+        "the_cat_api": Attr("the_cat_api", str),
         "browser": Attr("browser", str),
     }
