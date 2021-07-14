@@ -4,8 +4,49 @@ Utils module.
 
 import pathlib
 import time
-from PIL import Image
+from typing import Dict
+
+import aumbry
 import pyautogui
+import yaml
+from PIL import Image
+
+from models.config import Config
+
+
+def get_base_path() -> pathlib.PosixPath:
+    """
+    Get the root folder path of the project.
+
+    :return: PosixPath
+    """
+
+    return pathlib.Path(__file__).parent.parent.parent
+
+
+def cfg() -> Config:
+    """
+    Get config as an object
+
+    :return: Config object
+    """
+
+    cfg_ = aumbry.load(
+        aumbry.FILE, Config, {"CONFIG_FILE_PATH": f"{get_base_path()}/cfg/cfg.yaml"}
+    )
+    return cfg_
+
+
+def cfg_as_dict() -> Dict:
+    """
+    Get config as dictionary
+
+    :return: Config dict
+    """
+
+    with open(f"{get_base_path()}/cfg/cfg.yaml") as f:
+        cfg_ = yaml.load(f)
+    return cfg_
 
 
 def is_file_exists(file_path: str, wait_time: int = 10) -> bool:

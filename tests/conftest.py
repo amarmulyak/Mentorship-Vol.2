@@ -6,44 +6,32 @@ import logging
 import os
 import pathlib
 from datetime import datetime
-from typing import Dict
 
 import allure
-import aumbry
 import pytest
-import yaml
 from selenium import webdriver
 
-from models.config import Config
+from src.utils.utils import get_base_path, cfg
 
-
-@pytest.fixture(scope="session")
-def get_base_path() -> pathlib.PosixPath:
-    """
-    Get the root folder path of the project.
-
-    :return: PosixPath
-    """
-
-    return pathlib.Path(__file__).parent.parent
+cfg_ = cfg()
+base_path = get_base_path()
 
 
 @pytest.fixture
-def get_upload_dir_path(get_base_path):
+def get_upload_dir_path():
     """
     Get the path with file to upload
 
-    :param get_base_path: Fixture
     :return: Path
     """
 
-    return f"{get_base_path}/src/the_internet/resource"
+    return f"{base_path}/src/the_internet/resource"
 
 
 @pytest.fixture
-def driver(cfg, download_dir, get_base_path):
-    if cfg.browser.lower() == "firefox":
-        driver = webdriver.Firefox(executable_path=f"{get_base_path}/drivers/geckodriver")
+def driver(download_dir):
+    if cfg_.browser.lower() == "firefox":
+        driver = webdriver.Firefox(executable_path=f"{base_path}/drivers/geckodriver")
         driver.maximize_window()
     else:
         options = webdriver.ChromeOptions()
@@ -59,7 +47,7 @@ def driver(cfg, download_dir, get_base_path):
         options.add_experimental_option("prefs", prefs)
 
         driver = webdriver.Chrome(
-            executable_path=f"{get_base_path}/drivers/chromedriver", options=options
+            executable_path=f"{base_path}/drivers/chromedriver", options=options
         )
     yield driver
     driver.quit()
@@ -76,35 +64,6 @@ def download_dir(tmpdir_factory) -> str:
 
     _dir = tmpdir_factory.mktemp("download")
     return _dir.strpath
-
-
-@pytest.fixture(scope="session")
-def cfg(get_base_path) -> Config:
-    """
-    Get config as an object
-
-    :param get_base_path: Fixture
-    :return: Config object
-    """
-
-    cfg = aumbry.load(
-        aumbry.FILE, Config, {"CONFIG_FILE_PATH": f"{get_base_path}/cfg/cfg.yaml"}
-    )
-    return cfg
-
-
-@pytest.fixture(scope="session")
-def cfg_as_dict(get_base_path) -> Dict:
-    """
-    Get config as dictionary
-
-    :param get_base_path: Fixture
-    :return: Config dict
-    """
-
-    with open(f"{get_base_path}/cfg/cfg.yaml") as f:
-        cfg = yaml.load(f)
-    return cfg
 
 
 def pytest_configure(config) -> None:

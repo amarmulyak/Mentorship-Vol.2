@@ -14,6 +14,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 from seletools.actions import drag_and_drop
 
 from src.utils.drop_file_js import JS_DROP_FILES
+from src.utils.utils import cfg
+
+cfg_ = cfg()
 
 
 class BasePage:
@@ -23,14 +26,13 @@ class BasePage:
 
     _PAGE_TITLE = (By.XPATH, "//div[@class='example']/h3")
 
-    def __init__(self, driver: webdriver, url: str) -> None:
+    def __init__(self, driver: webdriver) -> None:
         """
         :param driver: webdriver
-        :param url: URL of the site
         """
 
         self.driver = driver
-        self.url = url
+        self.url = cfg_.base_url
 
     def find_element(self, locator: Tuple[By, str], time: int = 10) -> WebElement:
         """
