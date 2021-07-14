@@ -3,9 +3,10 @@ Home page module.
 """
 
 from selenium.webdriver.common.by import By
-from src.the_internet.pages.base_page import BasePage
+
 from src.the_internet.pages.ab_testing_page import ABTestingPage
 from src.the_internet.pages.add_remove_elements_page import AddRemoveElementsPage
+from src.the_internet.pages.base_page import BasePage
 from src.the_internet.pages.basic_auth_page import BasicAuthPage
 from src.the_internet.pages.broken_images_page import BrokenImagesPage
 from src.the_internet.pages.challenging_dom_page import ChallengingDomPage
@@ -57,7 +58,7 @@ class HomePage(BasePage):
                 self.example_link_locator[1].format("A/B Testing"),
             )
         )
-        return ABTestingPage(self.driver, self.url)
+        return ABTestingPage(self.driver)
 
     def click_add_remove_elements_link(self) -> AddRemoveElementsPage:
         """
@@ -72,7 +73,7 @@ class HomePage(BasePage):
                 self.example_link_locator[1].format("Add/Remove Elements"),
             )
         )
-        return AddRemoveElementsPage(self.driver, self.url)
+        return AddRemoveElementsPage(self.driver)
 
     def click_basic_auth_link(self) -> BasicAuthPage:
         """
@@ -87,7 +88,7 @@ class HomePage(BasePage):
                 self.example_link_locator[1].format("Basic Auth"),
             )
         )
-        return BasicAuthPage(self.driver, self.url)
+        return BasicAuthPage(self.driver)
 
     def click_broken_images_link(self) -> BrokenImagesPage:
         """
@@ -102,7 +103,7 @@ class HomePage(BasePage):
                 self.example_link_locator[1].format("Broken Images"),
             )
         )
-        return BrokenImagesPage(self.driver, self.url)
+        return BrokenImagesPage(self.driver)
 
     def click_challenging_dom_link(self) -> ChallengingDomPage:
         """
@@ -117,7 +118,7 @@ class HomePage(BasePage):
                 self.example_link_locator[1].format("Challenging DOM"),
             )
         )
-        return ChallengingDomPage(self.driver, self.url)
+        return ChallengingDomPage(self.driver)
 
     def click_context_menu_link(self) -> ContextMenuPage:
         """
@@ -132,7 +133,7 @@ class HomePage(BasePage):
                 self.example_link_locator[1].format("Context Menu"),
             )
         )
-        return ContextMenuPage(self.driver, self.url)
+        return ContextMenuPage(self.driver)
 
     def click_digest_auth_link(self) -> DigestAuthPage:
         """
@@ -147,7 +148,7 @@ class HomePage(BasePage):
                 self.example_link_locator[1].format("Digest Authentication"),
             )
         )
-        return DigestAuthPage(self.driver, self.url)
+        return DigestAuthPage(self.driver)
 
     def click_drag_and_drop_link(self) -> DragAndDropPage:
         """
@@ -162,7 +163,7 @@ class HomePage(BasePage):
                 self.example_link_locator[1].format("Drag and Drop"),
             )
         )
-        return DragAndDropPage(self.driver, self.url)
+        return DragAndDropPage(self.driver)
 
     def click_dynamic_controls_link(self) -> DynamicControlsPage:
         """
@@ -177,7 +178,7 @@ class HomePage(BasePage):
                 self.example_link_locator[1].format("Dynamic Controls"),
             )
         )
-        return DynamicControlsPage(self.driver, self.url)
+        return DynamicControlsPage(self.driver)
 
     def click_dynamic_loading_link(self) -> DynamicallyLoadedElementsPage:
         """
@@ -192,4 +193,4 @@ class HomePage(BasePage):
                 self.example_link_locator[1].format("Dynamic Loading"),
             )
         )
-        return DynamicallyLoadedElementsPage(self.driver, self.url)
+        return DynamicallyLoadedElementsPage(self.driver)

@@ -7,8 +7,8 @@ def test_get_answer(driver, cfg):
     challenging_dom.get_answer()  # Can't get canvas.strokeText
 
 
-def test_cell_data(driver, cfg):
-    challenging_dom = ChallengingDomPage(driver, cfg.base_url)
+def test_cell_data(driver):
+    challenging_dom = ChallengingDomPage(driver)
     challenging_dom.get_challenging_dom_page()
     cell_data1 = challenging_dom.get_data_from_cell(1, "Lorem")
     assert cell_data1 == "Iuvaret0"

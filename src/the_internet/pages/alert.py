@@ -52,7 +52,7 @@ class Alert:
         :return: None
         """
 
-        self._wait_until_alert_disappear()
+        self._wait_until_alert_appear()
         popup = self.driver.switch_to.alert
         popup.accept()
 

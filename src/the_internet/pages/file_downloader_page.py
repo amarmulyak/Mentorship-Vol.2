@@ -18,14 +18,13 @@ class FileDownloaderPage(BasePage):
     DOWNLOAD_LINKS = (By.XPATH, '//div[@class="example"]/a[@href]')
     DOWNLOAD_LINK = (By.XPATH, '//div[@class="example"]/a[text()="{}"]')
 
-    def __init__(self, driver: webdriver, url: str, download_dir_path: str) -> None:
+    def __init__(self, driver: webdriver, download_dir_path: str) -> None:
         """
         :param driver: webdriver
-        :param url: URL of the site
         :param download_dir_path: Path to download files
         """
 
-        super().__init__(driver, url)
+        super().__init__(driver)
         self.download_dir_path = download_dir_path
 
     def get_file_downloader_page(self) -> None:

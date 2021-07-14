@@ -1,15 +1,15 @@
 from src.the_internet.pages.entry_ad_page import EntryAd
 
 
-def test_modal_appears_after_the_first_page_load(driver, cfg):
-    entry_ad = EntryAd(driver, cfg.base_url)
+def test_modal_appears_after_the_first_page_load(driver):
+    entry_ad = EntryAd(driver)
 
     entry_ad.get_entry_ad_page()
     assert entry_ad.is_modal_visible()
 
 
-def test_modal_ui(driver, cfg):
-    entry_ad = EntryAd(driver, cfg.base_url)
+def test_modal_ui(driver):
+    entry_ad = EntryAd(driver)
 
     entry_ad.get_entry_ad_page()
     assert entry_ad.get_modal_title_text() == "THIS IS A MODAL WINDOW"
@@ -21,8 +21,8 @@ def test_modal_ui(driver, cfg):
     )
 
 
-def test_modal_close(driver, cfg):
-    entry_ad = EntryAd(driver, cfg.base_url)
+def test_modal_close(driver):
+    entry_ad = EntryAd(driver)
 
     entry_ad.get_entry_ad_page()
     assert entry_ad.is_modal_visible()
@@ -31,8 +31,8 @@ def test_modal_close(driver, cfg):
     assert not entry_ad.is_modal_visible(wait_time=2)
 
 
-def test_modal_doesnt_appear_on_subsequent_loads(driver, cfg):
-    entry_ad = EntryAd(driver, cfg.base_url)
+def test_modal_doesnt_appear_on_subsequent_loads(driver):
+    entry_ad = EntryAd(driver)
 
     entry_ad.get_entry_ad_page()
     assert entry_ad.is_modal_visible()
@@ -44,8 +44,8 @@ def test_modal_doesnt_appear_on_subsequent_loads(driver, cfg):
     assert not entry_ad.is_modal_visible(wait_time=2)
 
 
-def test_modal_appears_after_re_enabling(driver, cfg):
-    entry_ad = EntryAd(driver, cfg.base_url)
+def test_modal_appears_after_re_enabling(driver):
+    entry_ad = EntryAd(driver)
 
     entry_ad.get_entry_ad_page()
     assert entry_ad.is_modal_visible()

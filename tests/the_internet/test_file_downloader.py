@@ -2,8 +2,8 @@ from src.the_internet.pages.file_downloader_page import FileDownloaderPage
 from src.utils.utils import is_file_exists
 
 
-def test_download_files(driver, cfg, download_dir):
-    file_downloader = FileDownloaderPage(driver, cfg.base_url, download_dir)
+def test_download_files(driver, download_dir):
+    file_downloader = FileDownloaderPage(driver, download_dir)
 
     file_downloader.get_file_downloader_page()
     files = file_downloader.get_list_of_file_names()

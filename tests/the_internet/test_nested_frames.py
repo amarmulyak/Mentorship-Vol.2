@@ -1,8 +1,8 @@
 from src.the_internet.pages.nested_frames import NestedFramesPage
 
 
-def test_frames_text(driver, cfg):
-    page = NestedFramesPage(driver, cfg.base_url)
+def test_frames_text(driver):
+    page = NestedFramesPage(driver)
 
     page.get_nested_frames_page()
     page.switch_to_left_frame()

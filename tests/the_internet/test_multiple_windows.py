@@ -1,8 +1,8 @@
 from src.the_internet.pages.multiple_windows import MultipleWindows
 
 
-def test_multiple_window(driver, cfg):
-    page = MultipleWindows(driver, cfg.base_url)
+def test_multiple_window(driver):
+    page = MultipleWindows(driver)
 
     page.get_multiple_window_page()
     page.click_on_click_here_link()

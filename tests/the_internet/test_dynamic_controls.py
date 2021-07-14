@@ -1,8 +1,8 @@
 from src.the_internet.pages.dynamic_controls_page import DynamicControlsPage
 
 
-def test_checkbox(driver, cfg):
-    dynamic_controls = DynamicControlsPage(driver, cfg.base_url)
+def test_checkbox(driver):
+    dynamic_controls = DynamicControlsPage(driver)
     dynamic_controls.get_dynamic_controls_page()
     assert dynamic_controls.is_checkbox_present()
     assert dynamic_controls.add_remove_button_caption() == "Remove"
@@ -16,8 +16,8 @@ def test_checkbox(driver, cfg):
     assert dynamic_controls.checkbox_message_text() == "It's back!"
 
 
-def test_edit_field(driver, cfg):
-    dynamic_controls = DynamicControlsPage(driver, cfg.base_url)
+def test_edit_field(driver):
+    dynamic_controls = DynamicControlsPage(driver)
 
     dynamic_controls.get_dynamic_controls_page()
     assert dynamic_controls.is_input_field_disabled()
