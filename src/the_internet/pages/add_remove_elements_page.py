@@ -28,7 +28,7 @@ class AddRemoveElementsPage(BasePage):
 
         :return: None
         """
-        self.logger.info(f'{__class__.__name__}: Opening page "Add Remove Elements"')
+        self.logger.info('Opening page "Add Remove Elements"')
         return self.driver.get(f"{self.url}/add_remove_elements/")
 
     def add_element(self) -> None:
@@ -37,7 +37,7 @@ class AddRemoveElementsPage(BasePage):
 
         :return: None
         """
-        self.logger.info(f'{__class__.__name__}: Adding element')
+        self.logger.info('Adding element')
 
         return self.click_on_element(self._ADD_ELEMENT_BTN)
 
@@ -49,7 +49,7 @@ class AddRemoveElementsPage(BasePage):
         :return: None
         """
 
-        self.logger.info(f"{__class__.__name__}: Adding {number_of_elements} elements")
+        self.logger.info("Adding {number_of_elements} elements")
 
         for _ in range(number_of_elements):
             self.add_element()
@@ -61,7 +61,7 @@ class AddRemoveElementsPage(BasePage):
         :return: List of "Delete" buttons web elements
         """
 
-        self.logger.info(f"{__class__.__name__}: Getting list of delete buttons")
+        self.logger.info("Getting list of delete buttons")
 
         return self.driver.find_elements(*self._DELETE_BTNS)
 
@@ -75,7 +75,7 @@ class AddRemoveElementsPage(BasePage):
         :return: None
         """
 
-        self.logger.info(f"{__class__.__name__}: Deleting button with index {button_index}")
+        self.logger.info("Deleting button with index {button_index}")
 
         button_position = button_index + 1
         self.click_on_element(
@@ -91,7 +91,7 @@ class AddRemoveElementsPage(BasePage):
         :return: None
         """
 
-        self.logger.info(f"{__class__.__name__}: Deleting all 'Delete' buttons")
+        self.logger.info("Deleting all 'Delete' buttons")
 
         delete_btns = self.get_delete_buttons()
         if delete_btns:
