@@ -1,9 +1,10 @@
 import requests
+from src.utils.utils import cfg
 
 
 class Votes:
-    def __init__(self, endpoint):
-        self.endpoint = endpoint
+    def __init__(self):
+        self.endpoint = f"{cfg().the_cat_api.url}/votes"
 
     def get_vote(self):
-        return requests.get(self.endpoint, headers={"x-api-key": "0a3b91c0-81d1-46f9-9671-ce0d71b354f8"})
+        return requests.get(self.endpoint, headers={"x-api-key": f"{cfg().the_cat_api.x_api_key}"})
