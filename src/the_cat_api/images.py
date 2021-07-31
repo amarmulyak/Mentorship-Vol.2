@@ -2,8 +2,10 @@
 Images Params Data module
 """
 
-import requests
 import logging
+
+import requests
+from requests import Response
 
 from src.the_cat_api.image_params_data import SizeParam
 
@@ -21,7 +23,7 @@ class Images:
         self.endpoint = f'{endpoint}/{self.PATH}'
         self.x_api_key = x_api_key
 
-    def get_images_search(self, limit: int = None, size: SizeParam = None):
+    def get_images_search(self, limit: int = None, size: SizeParam = None) -> Response:
         """
         Get request for image search
 
@@ -30,8 +32,6 @@ class Images:
         :return: List of images
         """
 
-        logger.info(f'GET images search request (params: limit={limit}, size={size})')
-
         params = {}
 
         if limit:
@@ -39,4 +39,9 @@ class Images:
         if size:
             params['size'] = size
 
-        return requests.get(self.endpoint, headers={"x-api-key": self.x_api_key}, params=params)
+        response = requests.get(self.endpoint, headers={"x-api-key": self.x_api_key}, params=params)
+
+        logger.info(f'GET images search request (params: limit={limit}, size={size})'
+                    f' | Response: {response.json()}')
+
+        return response
