@@ -1,7 +1,7 @@
 from src.the_cat_api.image_params_data import SizeParam
 from src.the_cat_api.images import Images
 from src.utils.utils import cfg
-from src.utils.api import parse_response
+from src.utils.api import parse_response, get_url
 from http import HTTPStatus
 
 
@@ -34,3 +34,10 @@ def test_images_search_response():
     check_response_attribute_type(response['url'], str)
     check_response_attribute_type(response['width'], int)
     check_response_attribute_type(response['height'], int)
+
+
+def test_download_url():
+    image = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
+    response = parse_response(image.get_images())[0]
+    get_url_response = get_url(response['url'])
+    assert get_url_response.status_code == HTTPStatus.OK

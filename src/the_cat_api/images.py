@@ -19,7 +19,7 @@ class Images:
 
     PATH = "images/search"
 
-    def __init__(self, endpoint, x_api_key):
+    def __init__(self, endpoint: str, x_api_key: str):
         self.endpoint = f'{endpoint}/{self.PATH}'
         self.x_api_key = x_api_key
 
