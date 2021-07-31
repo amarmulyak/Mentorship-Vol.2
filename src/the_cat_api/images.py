@@ -23,7 +23,7 @@ class Images:
         self.endpoint = f'{endpoint}/{self.PATH}'
         self.x_api_key = x_api_key
 
-    def get_images_search(self, limit: int = None, size: SizeParam = None) -> Response:
+    def get_images(self, limit: int = None, size: SizeParam = None) -> Response:
         """
         Get request for image search
 
@@ -39,7 +39,9 @@ class Images:
         if size:
             params['size'] = size
 
-        response = requests.get(self.endpoint, headers={"x-api-key": self.x_api_key}, params=params)
+        response = requests.get(self.endpoint,
+                                headers={"x-api-key": self.x_api_key},
+                                params=params)
 
         logger.info(f'GET images search request (params: limit={limit}, size={size})'
                     f' | Response: {response.json()}')
