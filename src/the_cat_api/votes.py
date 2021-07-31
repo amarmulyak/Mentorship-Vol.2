@@ -12,5 +12,12 @@ class Votes:
         self.endpoint = f'{endpoint}/{self.PATH}'
         self.x_api_key = x_api_key
 
-    def get_vote(self):
-        return requests.get(self.endpoint, headers={"x-api-key": self.x_api_key})
+    def get_votes(self, limit: int = None):
+        params = {}
+
+        if limit:
+            params['limit'] = limit
+
+        return requests.get(self.endpoint,
+                            headers={"x-api-key": self.x_api_key},
+                            params=params)
