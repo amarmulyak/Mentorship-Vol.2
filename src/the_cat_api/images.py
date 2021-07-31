@@ -2,46 +2,41 @@
 Images Params Data module
 """
 
-import json
-
 import requests
+import logging
 
 from src.the_cat_api.image_params_data import SizeParam
-from src.utils.utils import cfg
+
+logger = logging.getLogger()
 
 
 class Images:
     """
     Images Class
     """
-    def __init__(self):
-        self.endpoint = f"{cfg().the_cat_api.url}/images/search"
 
-    def get_images_search(self, size: SizeParam = None, mime_types: bool = None):
+    PATH = "images/search"
+
+    def __init__(self, endpoint, x_api_key):
+        self.endpoint = f'{endpoint}/{self.PATH}'
+        self.x_api_key = x_api_key
+
+    def get_images_search(self, limit: int = None, size: SizeParam = None):
         """
         Get request for image search
 
-        :param size: request param (Enum)
-        :param mime_types: request param
-        :return: Request response
+        :param limit: Limit of images
+        :param size: Image size
+        :return: List of images
         """
+
+        logger.info(f'GET images search request (params: limit={limit}, size={size})')
 
         params = {}
 
+        if limit:
+            params['limit'] = limit
         if size:
             params['size'] = size
-        if mime_types:
-            params['mime_types'] = True
 
-        return requests.get(self.endpoint, headers={"x-api-key": f"{cfg().the_cat_api.x_api_key}"}, params=params)
-
-    @staticmethod
-    def get_response_as_dict(response):
-        """
-        Get response text as dict
-
-        :param response: Response text
-        :return: Response dict
-        """
-
-        return json.loads(response.text)
+        return requests.get(self.endpoint, headers={"x-api-key": self.x_api_key}, params=params)
