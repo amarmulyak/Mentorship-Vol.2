@@ -1,7 +1,7 @@
 from http import HTTPStatus
 
 from src.the_cat_api.votes import Votes
-from src.utils.api import parse_response
+from src.utils.api import parse_response, get_response_attribute
 from src.utils.utils import cfg
 from src.the_cat_api.images import Images
 from src.the_cat_api.vote_params_data import VoteValueParam
@@ -25,12 +25,21 @@ def test_get_vote_limit():
     assert len(parsed_response) == limit
 
 
-def test_create_vote():
+def test_create_vote_status_code():
     images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
     votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
 
     image_id = images.get_random_image_id()
-    vote = votes.create_vote('asf2', VoteValueParam.VALUE_UP)
+    vote = votes.create_vote(image_id, VoteValueParam.VALUE_UP)
 
     assert vote.status_code == HTTPStatus.OK
 
+
+def test_get_specific_vote():
+    images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
+    votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
+
+    image_id = images.get_random_image_id()
+    vote = votes.create_vote(image_id, VoteValueParam.VALUE_UP)
+    vote_id = get_response_attribute(vote, 'id')
+    assert True

@@ -4,6 +4,7 @@ import json
 from src.the_cat_api.vote_params_data import VoteValueParam
 from requests import Response
 from src.utils.utils import cfg
+from src.utils.api import parse_response, get_response_attribute
 
 
 class Votes:
@@ -28,8 +29,7 @@ class Votes:
 
     def create_vote(self, image_id: str, vote: VoteValueParam) -> Response:
         body = {'image_id': image_id,
-                'value': vote.value,
-                'sub_id': 'my-user-1234'}
+                'value': vote.value}
 
         return requests.post(self.endpoint,
                              headers={'x-api-key': self.x_api_key, 'Content-Type': 'application/json'},

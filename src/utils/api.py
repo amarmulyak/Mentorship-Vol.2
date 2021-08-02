@@ -29,3 +29,8 @@ def get_url(url: str) -> Response:
     """
 
     return requests.get(url)
+
+
+def get_response_attribute(response: Response, attr: str):
+    response = parse_response(response)
+    return response.get(attr)
