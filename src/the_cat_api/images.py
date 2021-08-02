@@ -8,6 +8,7 @@ import requests
 from requests import Response
 
 from src.the_cat_api.image_params_data import SizeParam
+from src.utils.api import parse_response
 
 logger = logging.getLogger()
 
@@ -47,3 +48,8 @@ class Images:
                     f' | Response: {response.json()}')
 
         return response
+
+    def get_random_image_id(self):
+        random_image = parse_response(self.get_images())[0]
+
+        return random_image.get('id')

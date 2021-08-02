@@ -9,7 +9,7 @@ logger = logging.getLogger()
 
 def parse_response(response: Response) -> List:
     """
-    Get response as dict
+    Get response as Python Object
 
     :param response: Response
     :return: List of dicts
