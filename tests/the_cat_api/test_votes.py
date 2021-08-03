@@ -33,7 +33,7 @@ def test_create_vote_status_code():
     assert vote.status_code == HTTPStatus.OK
 
 
-def test_get_specific_vote():
+def test_create_vote_response():
     images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
     votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
 
@@ -45,3 +45,16 @@ def test_get_specific_vote():
 
     vote_message = get_response_attribute(vote, 'message')
     assert vote_message == 'SUCCESS'
+
+
+def test_get_specific_vote():
+    images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
+    votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
+
+    image_id = images.get_random_image_id()
+    vote = votes.create_vote(image_id, VoteValueParam.VALUE_UP)
+    vote_id = get_response_attribute(vote, 'id')
+
+    specific_vote = votes.get_specific_vote(vote_id)
+
+    assert specific_vote.status_code == HTTPStatus.OK

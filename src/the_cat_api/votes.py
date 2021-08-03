@@ -32,3 +32,10 @@ class Votes:
         return requests.post(self.endpoint,
                              headers={'x-api-key': self.x_api_key, 'Content-Type': 'application/json'},
                              data=json.dumps(body))
+
+    def get_specific_vote(self, vote_id: int) -> Response:
+        params = {'vote_id': vote_id}
+
+        return requests.get(self.endpoint,
+                            headers={"x-api-key": self.x_api_key},
+                            params=params)
