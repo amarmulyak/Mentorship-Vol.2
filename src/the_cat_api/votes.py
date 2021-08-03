@@ -34,8 +34,7 @@ class Votes:
                              data=json.dumps(body))
 
     def get_specific_vote(self, vote_id: int) -> Response:
-        params = {'vote_id': vote_id}
+        endpoint = f"{self.endpoint}/{vote_id}"
 
-        return requests.get(self.endpoint,
-                            headers={"x-api-key": self.x_api_key},
-                            params=params)
+        return requests.get(endpoint,
+                            headers={"x-api-key": self.x_api_key})

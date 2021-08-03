@@ -1,5 +1,7 @@
 from http import HTTPStatus
 
+import pytest
+
 from src.the_cat_api.votes import Votes
 from src.utils.api import parse_response, get_response_attribute, get_response_attribute_type
 from src.utils.utils import cfg
@@ -58,3 +60,20 @@ def test_get_specific_vote():
     specific_vote = votes.get_specific_vote(vote_id)
 
     assert specific_vote.status_code == HTTPStatus.OK
+
+
+@pytest.mark.parametrize('vote_value, expected_value',
+                         [(VoteValueParam.VALUE_UP, 1), (VoteValueParam.VALUE_DOWN, 0)])
+def test_create_value_vote(vote_value, expected_value):
+    images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
+    votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
+
+    image_id = images.get_random_image_id()
+    vote = votes.create_vote(image_id, vote_value)
+    vote_id = get_response_attribute(vote, 'id')
+
+    specific_vote = votes.get_specific_vote(vote_id)
+    value = get_response_attribute(specific_vote, 'value')
+
+    assert value == expected_value
+
