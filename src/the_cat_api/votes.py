@@ -3,8 +3,6 @@ import json
 
 from src.the_cat_api.vote_params_data import VoteValueParam
 from requests import Response
-from src.utils.utils import cfg
-from src.utils.api import parse_response, get_response_attribute
 
 
 class Votes:

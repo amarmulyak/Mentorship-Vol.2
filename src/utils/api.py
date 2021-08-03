@@ -34,3 +34,8 @@ def get_url(url: str) -> Response:
 def get_response_attribute(response: Response, attr: str):
     response = parse_response(response)
     return response.get(attr)
+
+
+def get_response_attribute_type(attribute):
+    return type(attribute)
+
