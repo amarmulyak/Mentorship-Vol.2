@@ -65,4 +65,3 @@ def test_create_value_vote(vote_value, expected_value):
     value = get_response_attribute(specific_vote, 'value')
 
     assert value == expected_value
-
