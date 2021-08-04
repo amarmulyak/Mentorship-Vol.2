@@ -7,22 +7,9 @@ from requests import Response
 logger = logging.getLogger()
 
 
-def parse_response(response: Response) -> List:
+def get_request_url(url: str) -> Response:
     """
-    Get response as Python Object
-
-    :param response: Response
-    :return: List of dicts
-    """
-
-    logger.info(f'Parsing response {response.text}')
-
-    return response.json()
-
-
-def get_url(url: str) -> Response:
-    """
-    Get URL
+    Get request URL
 
     :param url: URL
     :return: Response
@@ -32,10 +19,9 @@ def get_url(url: str) -> Response:
 
 
 def get_response_attribute(response: Response, attr: str):
-    response = parse_response(response)
+    response = response.json()
     return response.get(attr)
 
 
 def get_response_attribute_type(attribute):
     return type(attribute)
-

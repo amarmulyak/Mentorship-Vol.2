@@ -9,6 +9,12 @@ from src.the_cat_api.images import Images
 from src.the_cat_api.vote_params_data import VoteValueParam
 
 
+def get_random_image_id(image_api):
+    random_image = parse_response(image_api.get_images())[0]
+
+    return random_image.get('id')
+
+
 def test_get_vote_response_code():
     votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
     response = votes.get_votes()
@@ -39,7 +45,7 @@ def test_create_vote_response():
     images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
     votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
 
-    image_id = images.get_random_image_id()
+    image_id = get_random_image_id(images)
     vote = votes.create_vote(image_id, VoteValueParam.VALUE_UP)
 
     vote_id = get_response_attribute(vote, 'id')
@@ -53,7 +59,7 @@ def test_get_specific_vote():
     images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
     votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
 
-    image_id = images.get_random_image_id()
+    image_id = get_random_image_id(images)
     vote = votes.create_vote(image_id, VoteValueParam.VALUE_UP)
     vote_id = get_response_attribute(vote, 'id')
 
@@ -68,7 +74,7 @@ def test_create_value_vote(vote_value, expected_value):
     images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
     votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
 
-    image_id = images.get_random_image_id()
+    image_id = get_random_image_id(images)
     vote = votes.create_vote(image_id, vote_value)
     vote_id = get_response_attribute(vote, 'id')
 

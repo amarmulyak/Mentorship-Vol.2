@@ -1,5 +1,5 @@
 """
-Images Params Data module
+Module to represent Images endpoint
 """
 
 import logging
@@ -8,14 +8,14 @@ import requests
 from requests import Response
 
 from src.the_cat_api.image_params_data import SizeParam
-from src.utils.api import parse_response
+from http import HTTPStatus
 
 logger = logging.getLogger()
 
 
 class Images:
     """
-    Images Class
+    Class to represent Images endpoint
     """
 
     PATH = "images/search"
@@ -30,7 +30,7 @@ class Images:
 
         :param limit: Limit of images
         :param size: Image size
-        :return: List of images
+        :return: Response object
         """
 
         params = {}
@@ -38,18 +38,15 @@ class Images:
         if limit:
             params['limit'] = limit
         if size:
-            params['size'] = size
+            params['size'] = size.value
 
         response = requests.get(self.endpoint,
                                 headers={"x-api-key": self.x_api_key},
                                 params=params)
 
-        logger.info(f'GET images search request (params: limit={limit}, size={size})'
-                    f' | Response: {response.json()}')
+        logger.debug(f'GET images search request (params: limit={limit}, size={size})'
+                     f' | Status Code: {response.status_code}')
+
+        assert response.status_code == HTTPStatus.OK
 
         return response
-
-    def get_random_image_id(self):
-        random_image = parse_response(self.get_images())[0]
-
-        return random_image.get('id')

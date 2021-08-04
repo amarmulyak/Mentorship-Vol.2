@@ -1,13 +1,22 @@
+"""
+Module to represent Votes endpoint
+"""
+import logging
+
 import requests
 import json
 
-from src.the_cat_api.vote_params_data import VoteValueParam
 from requests import Response
+from http import HTTPStatus
+
+from src.the_cat_api.vote_params_data import VoteValueParam
+
+logger = logging.getLogger()
 
 
 class Votes:
     """
-    Votes Class
+    Class to represent Votes endpoint
     """
     PATH = "votes"
 
@@ -21,20 +30,39 @@ class Votes:
         if limit:
             params['limit'] = limit
 
-        return requests.get(self.endpoint,
-                            headers={"x-api-key": self.x_api_key},
-                            params=params)
+        response = requests.get(self.endpoint,
+                                headers={"x-api-key": self.x_api_key},
+                                params=params)
+
+        logger.debug(f'GET votes request (params: limit={limit})'
+                     f' | Status Code: {response.status_code}')
+
+        assert response.status_code == HTTPStatus.OK
+
+        return response
 
     def create_vote(self, image_id: str, vote: VoteValueParam) -> Response:
         body = {'image_id': image_id,
                 'value': vote.value}
 
-        return requests.post(self.endpoint,
-                             headers={'x-api-key': self.x_api_key, 'Content-Type': 'application/json'},
-                             data=json.dumps(body))
+        response = requests.post(self.endpoint,
+                                 headers={'x-api-key': self.x_api_key, 'Content-Type': 'application/json'},
+                                 data=json.dumps(body))
+
+        logger.debug(f'POST votes request (body -> image_id: {image_id}, value: {vote})'
+                     f' | Status Code: {response.status_code}')
+
+        assert response.status_code == HTTPStatus.OK
+
+        return response
 
     def get_specific_vote(self, vote_id: int) -> Response:
         endpoint = f"{self.endpoint}/{vote_id}"
 
-        return requests.get(endpoint,
-                            headers={"x-api-key": self.x_api_key})
+        response = requests.get(endpoint,
+                                headers={"x-api-key": self.x_api_key})
+
+        logger.debug(f'GET specific vote request (endpoint={endpoint}'
+                     f' | Status Code: {response.status_code}')
+
+        assert response.status_code == HTTPStatus.OK
