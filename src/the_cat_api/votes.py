@@ -66,3 +66,5 @@ class Votes:
                      f' | Status Code: {response.status_code}')
 
         assert response.status_code == HTTPStatus.OK
+
+        return response
