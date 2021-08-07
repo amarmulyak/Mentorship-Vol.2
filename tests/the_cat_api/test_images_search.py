@@ -1,7 +1,7 @@
 from src.the_cat_api.image_params_data import SizeParam
 from src.the_cat_api.images import Images
 from src.utils.utils import cfg
-from src.utils.api import get_request_url, get_response_attribute_type
+from src.utils.api import get_request_url, get_response_attribute_type, get_response_attribute
 from http import HTTPStatus
 
 

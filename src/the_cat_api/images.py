@@ -30,7 +30,7 @@ class Images:
 
         :param limit: Limit of images
         :param size: Image size
-        :return: Response object
+        :return: Response (list of images)
         """
 
         params = {}
@@ -45,7 +45,7 @@ class Images:
                                 params=params)
 
         logger.debug(f'GET images search request (params: limit={limit}, size={size})'
-                     f' | Status Code: {response.status_code}')
+                     f' | Status Code: {response.status_code} | Response: {response.text}')
 
         assert response.status_code == HTTPStatus.OK
 

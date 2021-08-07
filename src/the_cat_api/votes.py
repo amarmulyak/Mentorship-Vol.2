@@ -1,6 +1,7 @@
 """
 Module to represent Votes endpoint
 """
+
 import logging
 
 import requests
@@ -25,6 +26,13 @@ class Votes:
         self.x_api_key = x_api_key
 
     def get_votes(self, limit: int = None) -> Response:
+        """
+        GET votes request
+
+        :param limit: Votes limit
+        :return: Response
+        """
+
         params = {}
 
         if limit:
@@ -42,6 +50,14 @@ class Votes:
         return response
 
     def create_vote(self, image_id: str, vote: VoteValueParam) -> Response:
+        """
+        POST vote request
+
+        :param image_id: Image ID to vote
+        :param vote: Vote up (1), vote down (0)
+        :return: Response
+        """
+
         body = {'image_id': image_id,
                 'value': vote.value}
 
@@ -57,6 +73,13 @@ class Votes:
         return response
 
     def get_specific_vote(self, vote_id: int) -> Response:
+        """
+        GET vote request
+
+        :param vote_id: Vote ID
+        :return:
+        """
+
         endpoint = f"{self.endpoint}/{vote_id}"
 
         response = requests.get(endpoint,
