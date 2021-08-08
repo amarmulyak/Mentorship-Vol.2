@@ -7,8 +7,8 @@ from src.the_cat_api.images import Images
 from src.the_cat_api.vote_params_data import VoteValueParam
 
 
-def get_random_image_id(image_api):
-    random_image = image_api.get_images().json()[0]
+def get_random_image_id(images_instance):
+    random_image = images_instance.get_images().json()[0]
 
     return random_image.get('id')
 
@@ -65,3 +65,16 @@ def test_create_value_vote(vote_value, expected_value):
     value = get_response_attribute(specific_vote, 'value')
 
     assert value == expected_value
+
+
+def test_delete_vote():
+    images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
+    votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
+
+    image_id = get_random_image_id(images)
+    vote = votes.create_vote(image_id, VoteValueParam.VALUE_UP)
+    vote_id = get_response_attribute(vote, 'id')
+
+    votes.get_specific_vote(vote_id)
+
+    votes.delete_vote(vote_id)

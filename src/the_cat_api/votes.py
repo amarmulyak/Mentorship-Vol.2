@@ -78,7 +78,7 @@ class Votes:
         GET vote request
 
         :param vote_id: Vote ID
-        :return:
+        :return: Response
         """
 
         endpoint = f"{self.endpoint}/{vote_id}"
@@ -87,6 +87,25 @@ class Votes:
                                 headers={"x-api-key": self.x_api_key})
 
         logger.debug(f'Request: GET {endpoint}'
+                     f' | Status Code: {response.status_code} | Response: {response.text}')
+
+        assert response.status_code == HTTPStatus.OK
+
+        return response
+
+    def delete_vote(self, vote_id: str) -> Response:
+        """
+        DELETE vote request
+
+        :param vote_id: Vote ID
+        :return: Response
+        """
+
+        endpoint = f"{self.endpoint}/{vote_id}"
+        response = requests.delete(endpoint,
+                                headers={"x-api-key": self.x_api_key})
+
+        logger.debug(f'Request: DELETE {endpoint}'
                      f' | Status Code: {response.status_code} | Response: {response.text}')
 
         assert response.status_code == HTTPStatus.OK
