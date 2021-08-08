@@ -19,6 +19,7 @@ class Votes:
     """
     Class to represent Votes endpoint
     """
+
     PATH = "votes"
 
     def __init__(self, endpoint: str, x_api_key: str):
@@ -42,8 +43,8 @@ class Votes:
                                 headers={"x-api-key": self.x_api_key},
                                 params=params)
 
-        logger.debug(f'GET votes request (params: limit={limit})'
-                     f' | Status Code: {response.status_code}')
+        logger.debug(f'Request: GET {self.endpoint} | Params: limit={limit}'
+                     f' | Status Code: {response.status_code} | Response: {response.text}')
 
         assert response.status_code == HTTPStatus.OK
 
@@ -65,8 +66,8 @@ class Votes:
                                  headers={'x-api-key': self.x_api_key, 'Content-Type': 'application/json'},
                                  data=json.dumps(body))
 
-        logger.debug(f'POST votes request (body -> image_id: {image_id}, value: {vote})'
-                     f' | Status Code: {response.status_code}')
+        logger.debug(f'Request: POST {self.endpoint} | Body: image_id: {image_id}, value: {vote}'
+                     f' | Status Code: {response.status_code} | Response: {response.text}')
 
         assert response.status_code == HTTPStatus.OK
 
@@ -85,8 +86,8 @@ class Votes:
         response = requests.get(endpoint,
                                 headers={"x-api-key": self.x_api_key})
 
-        logger.debug(f'GET specific vote request (endpoint={endpoint}'
-                     f' | Status Code: {response.status_code}')
+        logger.debug(f'Request: GET {self.endpoint}'
+                     f' | Status Code: {response.status_code} | Response: {response.text}')
 
         assert response.status_code == HTTPStatus.OK
 

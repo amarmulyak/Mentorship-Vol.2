@@ -91,7 +91,7 @@ def pytest_configure(config) -> None:
     fh_1.setFormatter(formatter)
 
     fh_2 = logging.FileHandler("log_2.log", mode='w')
-    fh_2.setLevel(logging.ERROR)
+    fh_2.setLevel(logging.DEBUG)
     fh_2.setFormatter(formatter)
 
     ch = logging.StreamHandler()

@@ -44,7 +44,8 @@ class Images:
                                 headers={"x-api-key": self.x_api_key},
                                 params=params)
 
-        logger.debug(f'GET images search request (params: limit={limit}, size={size})'
+        logger.debug(f'Request: GET {self.endpoint} |'
+                     f' Params: limit={limit}, size={size})'
                      f' | Status Code: {response.status_code} | Response: {response.text}')
 
         assert response.status_code == HTTPStatus.OK
