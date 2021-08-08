@@ -24,3 +24,18 @@ def get_response_attribute(response: Response, attr: str):
 
 def get_response_attribute_type(attribute):
     return type(attribute)
+
+
+class CustomResponse(Response):
+    def __init__(self, response):
+        super().__init__()
+        self.response = response
+
+    def status_code_is(self, status_code: int) -> 'CustomResponse':
+        assert self.response.status_code == status_code
+
+        return self
+
+    def response_json(self):
+        return self.response.json()
+

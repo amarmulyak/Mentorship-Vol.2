@@ -10,6 +10,8 @@ from requests import Response
 from src.the_cat_api.image_params_data import SizeParam
 from http import HTTPStatus
 
+from src.utils.api import CustomResponse
+
 logger = logging.getLogger()
 
 
@@ -40,14 +42,14 @@ class Images:
         if size:
             params['size'] = size.value
 
-        response = requests.get(self.endpoint,
-                                headers={"x-api-key": self.x_api_key},
-                                params=params)
+        response = CustomResponse(requests.get(self.endpoint,
+                                  headers={"x-api-key": self.x_api_key},
+                                  params=params))
 
         logger.debug(f'Request: GET {self.endpoint} |'
                      f' Params: limit={limit}, size={size})'
                      f' | Status Code: {response.status_code} | Response: {response.text}')
 
-        assert response.status_code == HTTPStatus.OK
+        response.status_code_is(HTTPStatus.OK)
 
         return response
