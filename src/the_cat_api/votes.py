@@ -86,7 +86,7 @@ class Votes:
         response = requests.get(endpoint,
                                 headers={"x-api-key": self.x_api_key})
 
-        logger.debug(f'Request: GET {self.endpoint}'
+        logger.debug(f'Request: GET {endpoint}'
                      f' | Status Code: {response.status_code} | Response: {response.text}')
 
         assert response.status_code == HTTPStatus.OK
