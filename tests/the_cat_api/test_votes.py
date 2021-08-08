@@ -5,6 +5,7 @@ from src.utils.api import get_response_attribute, get_response_attribute_type
 from src.utils.utils import cfg
 from src.the_cat_api.images import Images
 from src.the_cat_api.vote_params_data import VoteValueParam
+from http import HTTPStatus
 
 
 def get_random_image_id(images_instance):
@@ -75,6 +76,14 @@ def test_delete_vote():
     vote = votes.create_vote(image_id, VoteValueParam.VALUE_UP)
     vote_id = get_response_attribute(vote, 'id')
 
-    votes.get_specific_vote(vote_id)
+    votes_before_delete = len(votes.get_votes().json())
 
-    votes.delete_vote(vote_id)
+    delete_vote = votes.delete_vote(vote_id)
+    message = get_response_attribute(delete_vote, "message")
+
+    votes_after_delete = len(votes.get_votes().json())
+
+    assert message == "SUCCESS"
+    votes.get_specific_vote(vote_id, expected_status_code=HTTPStatus.NOT_FOUND)
+
+    assert votes_after_delete == votes_before_delete - 1

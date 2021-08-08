@@ -60,7 +60,8 @@ class Votes:
         """
 
         body = {'image_id': image_id,
-                'value': vote.value}
+                'value': vote.value,
+                "sub_id": "my-user-1234"}
 
         response = requests.post(self.endpoint,
                                  headers={'x-api-key': self.x_api_key, 'Content-Type': 'application/json'},
@@ -73,11 +74,12 @@ class Votes:
 
         return response
 
-    def get_specific_vote(self, vote_id: int) -> Response:
+    def get_specific_vote(self, vote_id: int, expected_status_code: int = HTTPStatus.OK) -> Response:
         """
         GET vote request
 
         :param vote_id: Vote ID
+        :param expected_status_code: Expected Status Code
         :return: Response
         """
 
@@ -89,7 +91,7 @@ class Votes:
         logger.debug(f'Request: GET {endpoint}'
                      f' | Status Code: {response.status_code} | Response: {response.text}')
 
-        assert response.status_code == HTTPStatus.OK
+        assert response.status_code == expected_status_code
 
         return response
 
@@ -103,7 +105,7 @@ class Votes:
 
         endpoint = f"{self.endpoint}/{vote_id}"
         response = requests.delete(endpoint,
-                                headers={"x-api-key": self.x_api_key})
+                                   headers={"x-api-key": self.x_api_key})
 
         logger.debug(f'Request: DELETE {endpoint}'
                      f' | Status Code: {response.status_code} | Response: {response.text}')
