@@ -9,14 +9,14 @@ def test_images_search_response_code():
     default_limit = 1
     image = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
     response = image.get_images()
-    assert len(response.json()) == default_limit
+    assert len(response.response_json()) == default_limit
 
 
 def test_images_search_limit():
     limit = 5
     image = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
     response = image.get_images(size=SizeParam.FULL, limit=limit)
-    assert len(response.json()) == limit
+    assert len(response.response_json()) == limit
 
 
 def test_images_search_response():
