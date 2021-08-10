@@ -19,11 +19,6 @@ def get_request_url(url: str) -> Response:
     return requests.get(url)
 
 
-def get_response_attribute(response: Response, attr: str):
-    response = response.json()
-    return response.get(attr)
-
-
 class CustomResponse(Response):
     def __init__(self, response):
         super().__init__()
@@ -41,9 +36,14 @@ class CustomResponse(Response):
         json = self.response_json()
 
         if type(json) == list:
-            return json[0].get(attribute)
+            result = json[0].get(attribute)
+        else:
+            result = json.get(attribute)
 
-        return json.get(attribute)
+        if result is None:
+            raise KeyError(f'No {attribute!r} attribute in {json}')
+
+        return result
 
     def validate_json_schema(self, schema):
         jsonschema.validate(self._response.json(), schema)
