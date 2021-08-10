@@ -11,6 +11,7 @@ from src.the_cat_api.image_params_data import SizeParam
 from http import HTTPStatus
 
 from src.utils.api import CustomResponse
+from src.the_cat_api.schema import GET_IMAGES_SCHEMA
 
 logger = logging.getLogger()
 
@@ -51,5 +52,7 @@ class Images:
                      f' | Status Code: {response.status_code} | Response: {response.text}')
 
         response.status_code_is(HTTPStatus.OK)
+
+        response.validate_json_schema(GET_IMAGES_SCHEMA)
 
         return response
