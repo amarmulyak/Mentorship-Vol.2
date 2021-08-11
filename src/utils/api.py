@@ -29,6 +29,12 @@ class CustomResponse(Response):
 
         return self
 
+    def status_code(self):
+        return self._response.status_code
+
+    def text(self):
+        return self._response.text
+
     def response_json(self):
         return self._response.json()
 
@@ -47,3 +53,5 @@ class CustomResponse(Response):
 
     def validate_json_schema(self, schema):
         jsonschema.validate(self._response.json(), schema)
+
+        return self

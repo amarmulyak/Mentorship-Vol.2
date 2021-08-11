@@ -2,15 +2,16 @@
 Module to represent Votes endpoint
 """
 
-import logging
-
-import requests
 import json
-
-from requests import Response
+import logging
 from http import HTTPStatus
 
+import requests
+from requests import Response
+
+from src.the_cat_api.schema import GET_VOTES_SCHEMA, POST_CREATE_VOTE_SCHEMA
 from src.the_cat_api.vote_params_data import VoteValueParam
+from src.utils.api import CustomResponse
 
 logger = logging.getLogger()
 
@@ -39,14 +40,16 @@ class Votes:
         if limit:
             params['limit'] = limit
 
-        response = requests.get(self.endpoint,
-                                headers={"x-api-key": self.x_api_key},
-                                params=params)
+        response = CustomResponse(requests.get(self.endpoint,
+                                               headers={"x-api-key": self.x_api_key},
+                                               params=params))
 
         logger.debug(f'Request: GET {self.endpoint} | Params: limit={limit}'
                      f' | Status Code: {response.status_code} | Response: {response.text}')
 
-        assert response.status_code == HTTPStatus.OK
+        response.status_code_is(HTTPStatus.OK)
+
+        response.validate_json_schema(GET_VOTES_SCHEMA)
 
         return response
 
@@ -63,14 +66,16 @@ class Votes:
                 'value': vote.value,
                 "sub_id": "my-user-1234"}
 
-        response = requests.post(self.endpoint,
-                                 headers={'x-api-key': self.x_api_key, 'Content-Type': 'application/json'},
-                                 data=json.dumps(body))
+        response = CustomResponse(requests.post(self.endpoint,
+                                                headers={'x-api-key': self.x_api_key, 'Content-Type': 'application/json'},
+                                                data=json.dumps(body)))
 
         logger.debug(f'Request: POST {self.endpoint} | Body: image_id: {image_id}, value: {vote}'
                      f' | Status Code: {response.status_code} | Response: {response.text}')
 
-        assert response.status_code == HTTPStatus.OK
+        response.status_code_is(HTTPStatus.OK)
+
+        response.validate_json_schema(POST_CREATE_VOTE_SCHEMA)
 
         return response
 

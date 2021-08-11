@@ -44,8 +44,8 @@ class Images:
             params['size'] = size.value
 
         response = CustomResponse(requests.get(self.endpoint,
-                                  headers={"x-api-key": self.x_api_key},
-                                  params=params))
+                                               headers={"x-api-key": self.x_api_key},
+                                               params=params))
 
         logger.debug(f'Request: GET {self.endpoint} |'
                      f' Params: limit={limit}, size={size})'

@@ -36,3 +36,21 @@ GET_IMAGES_SCHEMA = {
                              'height': {'type': 'number'}}
               }
     }
+
+GET_VOTES_SCHEMA = {
+    'type': 'array',
+    'items': {'type': 'object',
+              'properties': {'id': {'type': 'number'},
+                             'image_id': {'type': 'string'},
+                             'sub_id': {'type': ['null', 'string']},
+                             'created_at': {'type': 'string'},
+                             'value': {'type': 'number'},
+                             'country_code': {'type': 'string'}}
+              }
+    }
+
+POST_CREATE_VOTE_SCHEMA = {
+    'type': 'object',
+    'properties': {'message': {'type': 'string'},
+                   'id': {'type': 'number'}}
+    }
