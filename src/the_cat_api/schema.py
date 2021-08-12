@@ -65,3 +65,8 @@ GET_SPECIFIC_VOTE_SCHEMA = {
                    'value': {'type': 'number'},
                    'country_code': {'type': 'string'}}
     }
+
+DELETE_VOTE_SCHEMA = {
+    'type': 'object',
+    'properties': {'message': {'type': 'string'}}
+    }

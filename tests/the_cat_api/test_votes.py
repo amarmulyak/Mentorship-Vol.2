@@ -20,9 +20,7 @@ def test_create_vote_response():
     votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
 
     image_id = images.get_images().get_response_attribute('id')
-    vote = votes.create_vote(image_id, VoteValueParam.VALUE_UP)
-
-    vote_message = vote.get_response_attribute('message')
+    vote_message = votes.create_vote(image_id, VoteValueParam.VALUE_UP).get_response_attribute('message')
 
     assert vote_message == 'SUCCESS'
 
@@ -38,7 +36,7 @@ def test_get_specific_vote():
 
 @pytest.mark.parametrize('vote_value, expected_value',
                          [(VoteValueParam.VALUE_UP, 1), (VoteValueParam.VALUE_DOWN, 0)])
-def test_create_value_vote(vote_value, expected_value):
+def test_get_specific_vote(vote_value, expected_value):
     images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
     votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
 
@@ -53,18 +51,16 @@ def test_delete_vote():
     images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
     votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
 
-    image_id = get_random_image_id(images)
-    vote = votes.create_vote(image_id, VoteValueParam.VALUE_UP)
-    vote_id = get_response_attribute(vote, 'id')
+    image_id = images.get_images().get_response_attribute('id')
+    vote_id = votes.create_vote(image_id, VoteValueParam.VALUE_UP).get_response_attribute('id')
 
-    votes_before_delete = len(votes.get_votes().json())
+    votes_before_delete = len(votes.get_votes().response_json())
 
-    delete_vote = votes.delete_vote(vote_id)
-    message = get_response_attribute(delete_vote, "message")
+    delete_vote_message_attribute = votes.delete_vote(vote_id).get_response_attribute('message')
 
-    votes_after_delete = len(votes.get_votes().json())
+    votes_after_delete = len(votes.get_votes().response_json())
 
-    assert message == "SUCCESS"
+    assert delete_vote_message_attribute == "SUCCESS"
     votes.get_specific_vote(vote_id, expected_status_code=HTTPStatus.NOT_FOUND)
 
     assert votes_after_delete == votes_before_delete - 1
