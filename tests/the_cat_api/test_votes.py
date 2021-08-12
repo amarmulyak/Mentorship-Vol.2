@@ -31,10 +31,8 @@ def test_get_specific_vote():
     images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
     votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
 
-    image_id = get_random_image_id(images)
-    vote = votes.create_vote(image_id, VoteValueParam.VALUE_UP)
-    vote_id = get_response_attribute(vote, 'id')
-
+    image_id = images.get_images().get_response_attribute('id')
+    vote_id = votes.create_vote(image_id, VoteValueParam.VALUE_UP).get_response_attribute('id')
     votes.get_specific_vote(vote_id)
 
 
@@ -44,14 +42,11 @@ def test_create_value_vote(vote_value, expected_value):
     images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
     votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
 
-    image_id = get_random_image_id(images)
-    vote = votes.create_vote(image_id, vote_value)
-    vote_id = get_response_attribute(vote, 'id')
+    image_id = images.get_images().get_response_attribute('id')
+    vote_id = votes.create_vote(image_id, vote_value).get_response_attribute('id')
+    specific_vote_value_attribute = votes.get_specific_vote(vote_id).get_response_attribute('value')
 
-    specific_vote = votes.get_specific_vote(vote_id)
-    value = get_response_attribute(specific_vote, 'value')
-
-    assert value == expected_value
+    assert specific_vote_value_attribute == expected_value
 
 
 def test_delete_vote():

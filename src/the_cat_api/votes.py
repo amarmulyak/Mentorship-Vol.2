@@ -9,7 +9,7 @@ from http import HTTPStatus
 import requests
 from requests import Response
 
-from src.the_cat_api.schema import GET_VOTES_SCHEMA, POST_CREATE_VOTE_SCHEMA
+from src.the_cat_api.schema import GET_VOTES_SCHEMA, POST_CREATE_VOTE_SCHEMA, GET_SPECIFIC_VOTE_SCHEMA
 from src.the_cat_api.vote_params_data import VoteValueParam
 from src.utils.api import CustomResponse
 
@@ -79,24 +79,25 @@ class Votes:
 
         return response
 
-    def get_specific_vote(self, vote_id: int, expected_status_code: int = HTTPStatus.OK) -> Response:
+    def get_specific_vote(self, vote_id: int) -> Response:
         """
         GET vote request
 
         :param vote_id: Vote ID
-        :param expected_status_code: Expected Status Code
         :return: Response
         """
 
         endpoint = f"{self.endpoint}/{vote_id}"
 
-        response = requests.get(endpoint,
-                                headers={"x-api-key": self.x_api_key})
+        response = CustomResponse(requests.get(endpoint,
+                                               headers={"x-api-key": self.x_api_key}))
 
         logger.debug(f'Request: GET {endpoint}'
                      f' | Status Code: {response.status_code} | Response: {response.text}')
 
-        assert response.status_code == expected_status_code
+        response.status_code_is(HTTPStatus.OK)
+
+        response.validate_json_schema(GET_SPECIFIC_VOTE_SCHEMA)
 
         return response
 

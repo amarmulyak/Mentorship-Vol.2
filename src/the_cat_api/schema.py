@@ -54,3 +54,14 @@ POST_CREATE_VOTE_SCHEMA = {
     'properties': {'message': {'type': 'string'},
                    'id': {'type': 'number'}}
     }
+
+GET_SPECIFIC_VOTE_SCHEMA = {
+    'type': 'object',
+    'properties': {'id': {'type': 'number'},
+                   'user_id': {'type': 'string'},
+                   'image_id': {'type': 'string'},
+                   'sub_id': {'type': 'string'},
+                   'created_at': {'type': 'string'},
+                   'value': {'type': 'number'},
+                   'country_code': {'type': 'string'}}
+    }
