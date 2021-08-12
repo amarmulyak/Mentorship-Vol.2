@@ -1,8 +1,9 @@
+from http import HTTPStatus
+
 from src.the_cat_api.image_params_data import SizeParam
 from src.the_cat_api.images import Images
-from src.utils.utils import cfg
 from src.utils.api import get_request_url
-from http import HTTPStatus
+from src.utils.utils import cfg
 
 
 def test_images_search_response_code():
