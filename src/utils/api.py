@@ -25,7 +25,7 @@ def get_request_url(url: str) -> Response:
     return requests.get(url)
 
 
-class CustomResponse(Response):
+class CustomResponse:
     """
     Class to represent the custom response
     """
@@ -46,6 +46,7 @@ class CustomResponse(Response):
 
         return self
 
+    @property
     def status_code(self) -> int:
         """
         Get the response status code
@@ -55,6 +56,7 @@ class CustomResponse(Response):
 
         return self._response.status_code
 
+    @property
     def text(self) -> str:
         """
         Get the response text
@@ -64,7 +66,8 @@ class CustomResponse(Response):
 
         return self._response.text
 
-    def response_json(self) -> Any:
+    @property
+    def json(self) -> Any:
         """
         Get the response json
 
@@ -82,7 +85,7 @@ class CustomResponse(Response):
         :raise: KeyError if the attribute is not found
         """
 
-        json = self.response_json()
+        json = self.json
 
         if isinstance(json, list):
             result = json[0].get(attribute)

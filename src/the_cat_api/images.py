@@ -3,15 +3,13 @@ Module to represent Images endpoint
 """
 
 import logging
-
-import requests
-from requests import Response
-
-from src.the_cat_api.image_params_data import SizeParam
 from http import HTTPStatus
 
-from src.utils.api import CustomResponse
+import requests
+
+from src.the_cat_api.image_params_data import SizeParam
 from src.the_cat_api.schema import GET_IMAGES_SCHEMA
+from src.utils.api import CustomResponse
 
 logger = logging.getLogger()
 
@@ -27,7 +25,7 @@ class Images:
         self.endpoint = f'{endpoint}/{self.PATH}'
         self.x_api_key = x_api_key
 
-    def get_images(self, limit: int = None, size: SizeParam = None) -> Response:
+    def get_images(self, limit: int = None, size: SizeParam = None) -> CustomResponse:
         """
         Get request for image search
 
