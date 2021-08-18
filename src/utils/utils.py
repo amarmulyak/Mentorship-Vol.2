@@ -2,9 +2,10 @@
 Utils module.
 """
 
+from jsonpath_ng.ext import parse
 import pathlib
 import time
-from typing import Dict
+from typing import Dict, Any, List
 
 import aumbry
 import pyautogui
@@ -12,6 +13,13 @@ import yaml
 from PIL import Image
 
 from models.config import Config
+
+
+def get_json_path(json: Dict[str, Any], json_path: str, allow_empty: bool = False) -> List[Any]:
+    values = [match.value for match in parse(json_path).find(json)]
+    if not allow_empty:
+        assert values, f'Parameter: {json_path} is not found'
+    return values
 
 
 def get_base_path() -> pathlib.PosixPath:
