@@ -22,7 +22,6 @@ pike==0.1.1
 Pillow==8.2.0
 pluggy==0.13.1
 py==1.10.0
-PyAutoGUI==0.9.52
 PyGetWindow==0.0.9
 PyMsgBox==1.0.9
 pyparsing==2.4.7
