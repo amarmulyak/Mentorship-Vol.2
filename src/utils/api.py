@@ -131,6 +131,7 @@ class CustomResponseV2:
 
         return self
 
+    @property
     def status_code(self) -> int:
         """
         Get the response status code
@@ -140,6 +141,7 @@ class CustomResponseV2:
 
         return self._response.status_code
 
+    @property
     def text(self) -> str:
         """
         Get the response text
@@ -149,7 +151,8 @@ class CustomResponseV2:
 
         return self._response.text
 
-    def response_json(self) -> Any:
+    @property
+    def json(self) -> Any:
         """
         Get the response json
 

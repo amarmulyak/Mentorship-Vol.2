@@ -9,7 +9,7 @@ import requests
 
 from src.the_cat_api.image_params_data import SizeParam
 from src.the_cat_api.schema import GET_IMAGES_SCHEMA
-from src.utils.api import CustomResponse
+from src.utils.api import CustomResponseV2
 
 logger = logging.getLogger()
 
@@ -25,7 +25,7 @@ class Images:
         self.endpoint = f'{endpoint}/{self.PATH}'
         self.x_api_key = x_api_key
 
-    def get_images(self, limit: int = None, size: SizeParam = None) -> CustomResponse:
+    def get_images(self, limit: int = None, size: SizeParam = None) -> CustomResponseV2:
         """
         Get request for image search
 
@@ -41,9 +41,9 @@ class Images:
         if size:
             params['size'] = size.value
 
-        response = CustomResponse(requests.get(self.endpoint,
-                                               headers={"x-api-key": self.x_api_key},
-                                               params=params))
+        response = CustomResponseV2(requests.get(self.endpoint,
+                                                 headers={"x-api-key": self.x_api_key},
+                                                 params=params))
 
         logger.debug(f'Request: GET {self.endpoint} |'
                      f' Params: limit={limit}, size={size})'
