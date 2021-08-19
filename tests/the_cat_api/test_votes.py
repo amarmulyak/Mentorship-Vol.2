@@ -10,28 +10,19 @@ from http import HTTPStatus
 def test_get_vote_limit():
     limit = 5
     votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
-    response = votes.get_votes(limit=limit)
+    response = votes.get_votes(limit=limit).json
 
-    assert len(response.response_json()) == limit
+    assert len(response) == limit
 
 
 def test_create_vote_response():
     images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
     votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
 
-    image_id = images.get_images().get_response_attribute('id')
-    vote_message = votes.create_vote(image_id, VoteValueParam.VALUE_UP).get_response_attribute('message')
+    image_id = images.get_images().get_response_item('$.[0].id')
+    vote_message = votes.create_vote(image_id, VoteValueParam.VALUE_UP).get_response_item('message')
 
     assert vote_message == 'SUCCESS'
-
-
-def test_get_specific_vote():
-    images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
-    votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
-
-    image_id = images.get_images().get_response_attribute('id')
-    vote_id = votes.create_vote(image_id, VoteValueParam.VALUE_UP).get_response_attribute('id')
-    votes.get_specific_vote(vote_id)
 
 
 @pytest.mark.parametrize('vote_value, expected_value',
@@ -40,9 +31,9 @@ def test_get_specific_vote(vote_value, expected_value):
     images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
     votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
 
-    image_id = images.get_images().get_response_attribute('id')
-    vote_id = votes.create_vote(image_id, vote_value).get_response_attribute('id')
-    specific_vote_value_attribute = votes.get_specific_vote(vote_id).get_response_attribute('value')
+    image_id = images.get_images().get_response_item('$.[0].id')
+    vote_id = votes.create_vote(image_id, vote_value).get_response_item('id')
+    specific_vote_value_attribute = votes.get_specific_vote(vote_id).get_response_item('value')
 
     assert specific_vote_value_attribute == expected_value
 
@@ -51,14 +42,14 @@ def test_delete_vote():
     images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
     votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key)
 
-    image_id = images.get_images().get_response_attribute('id')
-    vote_id = votes.create_vote(image_id, VoteValueParam.VALUE_UP).get_response_attribute('id')
+    image_id = images.get_images().get_response_item('$.[0].id')
+    vote_id = votes.create_vote(image_id, VoteValueParam.VALUE_UP).get_response_item('id')
 
-    votes_before_delete = len(votes.get_votes().response_json())
+    votes_before_delete = len(votes.get_votes().json)
 
-    delete_vote_message_attribute = votes.delete_vote(vote_id).get_response_attribute('message')
+    delete_vote_message_attribute = votes.delete_vote(vote_id).get_response_item('message')
 
-    votes_after_delete = len(votes.get_votes().response_json())
+    votes_after_delete = len(votes.get_votes().json)
 
     assert delete_vote_message_attribute == "SUCCESS"
     votes.get_specific_vote(vote_id, expected_status_code=HTTPStatus.NOT_FOUND)
