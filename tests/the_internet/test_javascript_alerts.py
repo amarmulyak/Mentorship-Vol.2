@@ -27,7 +27,7 @@ def test_js_confirm(driver):
     assert page.get_result() == "You clicked: Cancel"
 
 
-text_data = ("Hello1", "123456789", '!@#$%^&*()_+{}:"|<>?[];\./\'-`~')
+text_data = ("Hello1", "123456789", '!@#$%^&*()_+{}:"|<>?[];./\'-`~')
 
 
 @pytest.mark.parametrize("text", text_data)
