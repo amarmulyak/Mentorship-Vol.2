@@ -13,8 +13,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from seletools.actions import drag_and_drop
 
+
 from src.utils.drop_file_js import JS_DROP_FILES
-from src.utils.utils import cfg
+from src.utils.utils import cfg, retry
 
 cfg_ = cfg()
 
@@ -119,6 +120,7 @@ class BasePage:
             message=f"Locator {locator} is not clickable",
         )
 
+    @retry(30)
     def click_on_element(self, locator: Tuple[By, str]):
         """
         Click on element.

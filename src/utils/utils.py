@@ -11,6 +11,8 @@ import aumbry
 # import pyautogui
 import yaml
 from PIL import Image
+# from selenium.common.exceptions import ErrorInResponseException
+from selenium.common import exceptions
 
 from models.config import Config
 
@@ -100,3 +102,21 @@ def is_file_an_image(file_path: str) -> bool:
 #     """
 #
 #     pyautogui.moveTo(x_coor, y_coor)
+
+
+def retry(seconds: int):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            e = None
+            start = time.time()
+            while seconds - (time.time() - start) >= 0:
+                try:
+                    func_result = func(*args, **kwargs)
+                    return func_result
+                except exceptions as e:
+                    continue
+            raise e
+
+        return wrapper
+
+    return decorator
