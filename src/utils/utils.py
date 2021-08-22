@@ -104,19 +104,36 @@ def is_file_an_image(file_path: str) -> bool:
 #     pyautogui.moveTo(x_coor, y_coor)
 
 
-def retry(seconds: int):
+def retry(time_out: int):
     def decorator(func):
         def wrapper(*args, **kwargs):
-            e = None
-            start = time.time()
-            while seconds - (time.time() - start) >= 0:
+            end_time = time.time() + time_out
+            while True:
                 try:
-                    func_result = func(*args, **kwargs)
-                    return func_result
-                except exceptions as e:
-                    continue
-            raise e
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    if time.time() > end_time:
+                        raise AssertionError(e) from None
+                    time.sleep(1)
 
         return wrapper
 
     return decorator
+
+
+# def retry(seconds: int):
+#     def decorator(func):
+#         def wrapper(*args, **kwargs):
+#             e = None
+#             start = time.time()
+#             while seconds - (time.time() - start) >= 0:
+#                 try:
+#                     func_result = func(*args, **kwargs)
+#                     return func_result
+#                 except exceptions as e:
+#                     continue
+#             raise e
+#
+#         return wrapper
+#
+#     return decorator

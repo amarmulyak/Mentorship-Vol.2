@@ -32,3 +32,11 @@ def test_edit_field(driver):
     assert dynamic_controls.is_input_field_disabled()
     assert dynamic_controls.enable_disable_button_caption() == "Enable"
     assert dynamic_controls.input_message_text() == "It's disabled!"
+
+
+def test_test(driver):
+    dynamic_controls = DynamicControlsPage(driver)
+
+    # dynamic_controls.get_dynamic_controls_page()
+    dynamic_controls.click_on_element(dynamic_controls._CHECKBOX_ADD_REMOVE_BUTTON)
+
