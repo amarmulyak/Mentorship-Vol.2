@@ -120,7 +120,7 @@ class BasePage:
             message=f"Locator {locator} is not clickable",
         )
 
-    @retry(5)
+    @retry(10)
     def click_on_element(self, locator: Tuple[By, str]):
         """
         Click on element.

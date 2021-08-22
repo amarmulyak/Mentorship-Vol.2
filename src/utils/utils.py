@@ -119,21 +119,3 @@ def retry(time_out: int):
         return wrapper
 
     return decorator
-
-
-# def retry(seconds: int):
-#     def decorator(func):
-#         def wrapper(*args, **kwargs):
-#             e = None
-#             start = time.time()
-#             while seconds - (time.time() - start) >= 0:
-#                 try:
-#                     func_result = func(*args, **kwargs)
-#                     return func_result
-#                 except exceptions as e:
-#                     continue
-#             raise e
-#
-#         return wrapper
-#
-#     return decorator
