@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Running Tests') {
             steps {
-                sh 'pytest tests/the_cat_api'
+                sh 'pytest tests/the_internet'
             }
         }
     }
