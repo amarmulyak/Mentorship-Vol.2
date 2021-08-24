@@ -3,7 +3,7 @@ Exit Intent module.
 """
 
 from src.the_internet.pages.modal import Modal
-# from src.utils.utils import move_mouse_to
+from src.utils.utils import move_mouse_to
 
 
 class ExitIntent(Modal):
@@ -20,14 +20,14 @@ class ExitIntent(Modal):
 
         self.driver.get(f"{self.url}/exit_intent")
 
-    # @staticmethod
-    # def move_mouse_out_of_viewport() -> None:
-    #     """
-    #     Move mouse cursor from the top of the screen to down and
-    #     back to the top of the screen
-    #
-    #     :return: None
-    #     """
-    #
-    #     move_mouse_to(500, 500)
-    #     move_mouse_to(500, 0)
+    @staticmethod
+    def move_mouse_out_of_viewport() -> None:
+        """
+        Move mouse cursor from the top of the screen to down and
+        back to the top of the screen
+
+        :return: None
+        """
+
+        move_mouse_to(500, 500)
+        move_mouse_to(500, 0)
