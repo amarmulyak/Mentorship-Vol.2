@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Running Tests') {
             steps {
-                sh 'pytest tests/the_internet/test_exit_intent.py'
+                sh 'pytest tests/the_internet'
             }
         }
     }
