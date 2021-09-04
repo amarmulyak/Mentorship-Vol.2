@@ -8,9 +8,11 @@ pipeline {
     stages {
         stage('Setting URL') {
             steps {
-                echo "Reading yaml ..."
-                def datas = readYaml file: 'cfg/cfg.yml'
-                echo "URL is ${datas.base_url} "
+                echo "Something..."
+                script {
+                    def datas = readYaml file: 'cfg/cfg.yml'
+                    echo "URL is ${datas.base_url} "
+                }
             }
         }
         stage('Installing requirements') {
