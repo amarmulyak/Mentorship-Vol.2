@@ -13,7 +13,6 @@ pipeline {
                 // echo "Setting virtualenv..."
                 // sh 'virtualenv .venv --python=python3.8'
                 // sh 'source .venv/bin/activate'
-
                 script {
                     echo "Configuring cfg.yaml: setting base_url to ${data.base_url} "
 
