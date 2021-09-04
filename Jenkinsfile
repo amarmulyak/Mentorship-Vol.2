@@ -12,10 +12,9 @@ pipeline {
                 echo "Setting virtualenv..."
                 sh 'virtualenv .venv --python=python3.8'
                 sh 'source .venv/bin/activate'
-            }
-            steps {
+
                 script {
-                    echo "Setting URL to ${data.base_url} "
+                    echo "Configuring cfg.yaml: setting base_url to ${data.base_url} "
 
                     def filename = 'cfg/cfg.yaml'
                     def data = readYaml file: filename
