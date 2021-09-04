@@ -7,13 +7,13 @@ pipeline {
 
     stages {
         stage('Setting URL') {
-          steps {
-            script {
-              def datas = readYaml file: 'cfg/cfg.yml'
-              echo "URL is ${datas.base_url}"
+            steps {
+                script {
+                    def datas = readYaml file: 'cfg/cfg.yml'
+                    echo "URL is ${datas.base_url}"
+                }
+                echo "Running tests on ${params.ENV_URL}"
             }
-            echo "Running tests on ${params.ENV_URL}"
-          }
         }
         stage('Installing requirements') {
             steps {
