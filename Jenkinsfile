@@ -7,9 +7,16 @@ pipeline {
     }
 
     stages {
-        stage('Setting URL') {
+        stage('Setting Environment') {
+            steps {
+                echo "Setting virtualenv..."
+                sh 'virtualenv .venv --python=python3.8'
+                sh 'source .venv/bin/activate'
+            }
             steps {
                 script {
+                    echo "Setting URL to ${data.base_url} "
+
                     def filename = 'cfg/cfg.yaml'
                     def data = readYaml file: filename
 
@@ -18,8 +25,6 @@ pipeline {
 
                     // sh "rm $filename"
                     writeYaml file: filename, overwrite: true, data: data
-
-                    echo "URL is ${data.base_url} "
                 }
             }
         }
