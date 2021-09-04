@@ -7,15 +7,9 @@ pipeline {
     }
 
     stages {
-        stage('Setting Environment') {
+        stage('Setting URL') {
             steps {
-                // *** My Jenkins is already running under virtualenv ***
-                // echo "Setting virtualenv..."
-                // sh 'virtualenv .venv --python=python3.8'
-                // sh 'source .venv/bin/activate'
                 script {
-                    echo "Configuring cfg.yaml: setting base_url to ${data.base_url} "
-
                     def filename = 'cfg/cfg.yaml'
                     def data = readYaml file: filename
 
@@ -24,6 +18,8 @@ pipeline {
 
                     // sh "rm $filename"
                     writeYaml file: filename, overwrite: true, data: data
+
+                    echo "URL is ${data.base_url} "
                 }
             }
         }
