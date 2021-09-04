@@ -16,8 +16,8 @@ pipeline {
                     // Change something in the file
                     data.base_url = "${params.ENV_URL}"
 
-                    sh "rm $filename"
-                    writeYaml file: filename, data: data
+                    // sh "rm $filename"
+                    writeYaml file: filename, overwrite: true, data: data
 
                     echo "URL is ${data.base_url} "
                 }
