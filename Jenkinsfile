@@ -10,7 +10,7 @@ pipeline {
             steps {
                 echo "Something..."
                 script {
-                    def datas = readYaml file: 'cfg/cfg.yml'
+                    def datas = readYaml file: 'cfg/cfg.yaml'
                     echo "URL is ${datas.base_url} "
                 }
             }
