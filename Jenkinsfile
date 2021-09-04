@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Running Tests') {
             steps {
-                sh 'pytest tests/the_internet/test_add_remove_elements.py'
+                sh 'pytest tests/the_internet/test_add_remove_elements.py::test_add_element'
             }
         }
     }
