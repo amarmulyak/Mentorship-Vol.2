@@ -9,6 +9,10 @@ pipeline {
     stages {
         stage('Setting URL') {
             steps {
+                // No need to set up venv as Jenkins is already running under venv
+                // sh 'virtualenv .venv --python=python3.8'
+                // sh 'source .venv/bin/activate'
+
                 script {
                     def filename = 'cfg/cfg.yaml'
                     def data = readYaml file: filename
