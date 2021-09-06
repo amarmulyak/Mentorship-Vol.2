@@ -10,9 +10,8 @@ pipeline {
         stage('Setting URL') {
             steps {
                 // No need to set up venv as Jenkins is already running under venv
-                sh 'cd /home/andrii/.jenkins/workspace/"Pipeline write yaml"'
-                sh 'virtualenv .venv --python=python3.8'
-                sh 'source /home/andrii/.jenkins/workspace/"Pipeline write yaml"/.venv/bin/activate'
+                sh 'virtualenv venv --python=python3.8'
+                sh 'source venv/bin/activate'
 
                 script {
                     def filename = 'cfg/cfg.yaml'
