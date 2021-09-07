@@ -12,9 +12,11 @@ pipeline {
                 // Create and activate virtualenv
                 // sh '. activate_venv.sh'
 
-                sh 'virtualenv venv --python=python3.8'
-                sh '. /home/andrii/.jenkins/workspace/"Pipeline write yaml"/venv/bin/activate'
-                sh 'python --version'
+                sh """
+                virtualenv venv --python=python3.8
+                . /home/andrii/.jenkins/workspace/"Pipeline write yaml"/venv/bin/activate
+                python --version
+                """
 
                 script {
                     def filename = 'cfg/cfg.yaml'
