@@ -9,9 +9,6 @@ pipeline {
     stages {
         stage('Setting URL') {
             steps {
-                // Create and activate virtualenv
-                // sh '. activate_venv.sh'
-
                 script {
                     def filename = 'cfg/cfg.yaml'
                     def data = readYaml file: filename
@@ -26,13 +23,19 @@ pipeline {
                 }
             }
         }
-        stage('Installing requirements / Running Tests') {
+        stage('Setting environment') {
             steps {
                 sh """
                 virtualenv venv --python=python3.8
                 . venv/bin/activate
-                python --version
                 pip install -r requirements.txt
+                """
+            }
+        }
+        stage('Running Tests') {
+            steps {
+                sh """
+                . venv/bin/activate
                 pytest tests/the_internet/test_add_remove_elements.py::test_add_element
                 """
             }
