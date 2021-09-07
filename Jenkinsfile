@@ -13,7 +13,7 @@ pipeline {
                 // sh '. activate_venv.sh'
 
                 sh 'virtualenv venv --python=python3.8'
-                sh '. /home/andrii/.jenkins/workspace/Pipeline write yaml/venv/bin/activate'
+                sh '. /home/andrii/.jenkins/workspace/"Pipeline write yaml"/venv/bin/activate'
                 sh 'python --version'
 
                 script {
