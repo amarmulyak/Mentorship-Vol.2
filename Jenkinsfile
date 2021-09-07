@@ -12,12 +12,6 @@ pipeline {
                 // Create and activate virtualenv
                 // sh '. activate_venv.sh'
 
-                sh """
-                virtualenv venv --python=python3.8
-                . /home/andrii/.jenkins/workspace/"Pipeline write yaml"/venv/bin/activate
-                python --version
-                """
-
                 script {
                     def filename = 'cfg/cfg.yaml'
                     def data = readYaml file: filename
@@ -32,14 +26,15 @@ pipeline {
                 }
             }
         }
-        stage('Installing requirements') {
+        stage('Installing requirements / Running Tests') {
             steps {
-                sh 'pip install -r requirements.txt'
-            }
-        }
-        stage('Running Tests') {
-            steps {
-                sh 'pytest tests/the_internet/test_add_remove_elements.py::test_add_element'
+                sh """
+                virtualenv venv --python=python3.8
+                . /home/andrii/.jenkins/workspace/"Pipeline write yaml"/venv/bin/activate
+                python --version
+                pip install -r requirements.txt
+                pytest tests/the_internet/test_add_remove_elements.py::test_add_element
+                """
             }
         }
     }
