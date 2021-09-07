@@ -10,7 +10,7 @@ pipeline {
         stage('Setting URL') {
             steps {
                 // Create and activate virtualenv
-                bash -c '. activate_venv.sh'
+                bash '. activate_venv.sh'
 
                 script {
                     def filename = 'cfg/cfg.yaml'
