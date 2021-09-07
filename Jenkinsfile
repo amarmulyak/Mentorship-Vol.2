@@ -30,7 +30,7 @@ pipeline {
             steps {
                 sh """
                 virtualenv venv --python=python3.8
-                . /venv/bin/activate
+                . venv/bin/activate
                 python --version
                 pip install -r requirements.txt
                 pytest tests/the_internet/test_add_remove_elements.py::test_add_element
