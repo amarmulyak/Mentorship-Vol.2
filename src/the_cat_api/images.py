@@ -4,6 +4,7 @@ Module to represent Images endpoint
 
 import logging
 from http import HTTPStatus
+from typing import Any
 
 import requests
 
@@ -21,9 +22,10 @@ class Images:
 
     PATH = "images/search"
 
-    def __init__(self, endpoint: str, x_api_key: str):
+    def __init__(self, endpoint: str, x_api_key: str, http_client: Any = requests):
         self.endpoint = f'{endpoint}/{self.PATH}'
         self.x_api_key = x_api_key
+        self.http_client = http_client
 
     def get_images(self, limit: int = None, size: SizeParam = None) -> CustomResponseV2:
         """
@@ -41,9 +43,9 @@ class Images:
         if size:
             params['size'] = size.value
 
-        response = CustomResponseV2(requests.get(self.endpoint,
-                                                 headers={"x-api-key": self.x_api_key},
-                                                 params=params))
+        response = CustomResponseV2(self.http_client.get(self.endpoint,
+                                                         headers={"x-api-key": self.x_api_key},
+                                                         params=params))
 
         logger.debug(f'Request: GET {self.endpoint} |'
                      f' Params: limit={limit}, size={size})'
