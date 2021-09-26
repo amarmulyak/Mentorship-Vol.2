@@ -4,9 +4,10 @@ Module to represent Images endpoint
 
 import logging
 from http import HTTPStatus
-from typing import Any
+from typing import Union
 
 import requests
+from locust import HttpUser
 
 from src.the_cat_api.image_params_data import SizeParam
 from src.the_cat_api.schema import GET_IMAGES_SCHEMA
@@ -22,7 +23,7 @@ class Images:
 
     PATH = "images/search"
 
-    def __init__(self, endpoint: str, x_api_key: str, http_client: Any = requests):
+    def __init__(self, endpoint: str, x_api_key: str, http_client = requests):
         self.endpoint = f'{endpoint}/{self.PATH}'
         self.x_api_key = x_api_key
         self.http_client = http_client

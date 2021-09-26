@@ -5,8 +5,10 @@ Module to represent Votes endpoint
 import json
 import logging
 from http import HTTPStatus
+from typing import Union
 
 import requests
+from locust import HttpUser
 from requests import Response
 
 from src.the_cat_api.schema import GET_VOTES_SCHEMA, POST_CREATE_VOTE_SCHEMA, GET_SPECIFIC_VOTE_SCHEMA,\
@@ -24,9 +26,10 @@ class Votes:
 
     PATH = "votes"
 
-    def __init__(self, endpoint: str, x_api_key: str):
+    def __init__(self, endpoint: str, x_api_key: str, http_client = requests):
         self.endpoint = f'{endpoint}/{self.PATH}'
         self.x_api_key = x_api_key
+        self.http_client = http_client
 
     def get_votes(self, limit: int = None) -> CustomResponseV2:
         """
@@ -41,9 +44,9 @@ class Votes:
         if limit:
             params['limit'] = limit
 
-        response = CustomResponseV2(requests.get(self.endpoint,
-                                                 headers={"x-api-key": self.x_api_key},
-                                                 params=params))
+        response = CustomResponseV2(self.http_client.get(self.endpoint,
+                                                     headers={"x-api-key": self.x_api_key},
+                                                     params=params))
 
         logger.debug(f'Request: GET {self.endpoint} | Params: limit={limit}'
                      f' | Status Code: {response.status_code} | Response: {response.text}')
@@ -67,9 +70,9 @@ class Votes:
                 'value': vote.value,
                 "sub_id": "my-user-1234"}
 
-        response = CustomResponseV2(requests.post(self.endpoint,
-                                                  headers={'x-api-key': self.x_api_key, 'Content-Type': 'application/json'},
-                                                  data=json.dumps(body)))
+        response = CustomResponseV2(self.http_client.post(self.endpoint,
+                                                          headers={'x-api-key': self.x_api_key, 'Content-Type': 'application/json'},
+                                                          data=json.dumps(body)))
 
         logger.debug(f'Request: POST {self.endpoint} | Body: image_id: {image_id}, value: {vote}'
                      f' | Status Code: {response.status_code} | Response: {response.text}')
@@ -91,8 +94,8 @@ class Votes:
 
         endpoint = f"{self.endpoint}/{vote_id}"
 
-        response = CustomResponseV2(requests.get(endpoint,
-                                                 headers={"x-api-key": self.x_api_key}))
+        response = CustomResponseV2(self.http_client.get(endpoint,
+                                                         headers={"x-api-key": self.x_api_key}))
 
         logger.debug(f'Request: GET {endpoint}'
                      f' | Status Code: {response.status_code} | Response: {response.text}')
@@ -112,8 +115,8 @@ class Votes:
         """
 
         endpoint = f"{self.endpoint}/{vote_id}"
-        response = CustomResponseV2(requests.delete(endpoint,
-                                                    headers={"x-api-key": self.x_api_key}))
+        response = CustomResponseV2(self.http_client.delete(endpoint,
+                                                            headers={"x-api-key": self.x_api_key}))
 
         logger.debug(f'Request: DELETE {endpoint}'
                      f' | Status Code: {response.status_code} | Response: {response.text}')

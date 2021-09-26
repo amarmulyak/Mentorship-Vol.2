@@ -1,34 +1,20 @@
-import json
-
 from locust import HttpUser, task, TaskSet, between
 
+from src.the_cat_api.images import Images
+from src.the_cat_api.vote_params_data import VoteValueParam
+from src.the_cat_api.votes import Votes
 from src.utils.utils import cfg
-
-from src.utils.api import CustomResponseV2
 
 
 class GetImage(TaskSet):
-    def __init__(self, parent):
-        super().__init__(parent)
-        self.token = cfg().the_cat_api.x_api_key
 
     @task
     def test_images_search(self):
-        image_resp = CustomResponseV2(self.client.get('/images/search',
-                                                      headers={'x-api-key': self.token}))
-        image_id = image_resp.get_response_item('$.[0].id')
-
-        print(image_id)
-
-        body = {'image_id': image_id,
-                'value': 1,
-                "sub_id": "my-user-1234"}
-
-        vote_resp = CustomResponseV2(self.client.post('/votes',
-                                                      headers={'x-api-key': self.token, 'Content-Type': 'application/json'},
-                                                      data=json.dumps(body)))
-
-        print(vote_resp.text)
+        images = Images(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key, http_client=self.client)
+        votes = Votes(cfg().the_cat_api.url, cfg().the_cat_api.x_api_key, http_client=self.client)
+        image_id = images.get_images().get_response_item('$.[0].id')
+        resp = votes.create_vote(image_id, VoteValueParam.VALUE_UP)
+        print(resp.text)
 
 
 class User(HttpUser):
