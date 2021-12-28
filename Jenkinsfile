@@ -26,8 +26,6 @@ pipeline {
         stage('Setting environment') {
             steps {
                 sh """
-                virtualenv venv
-                . venv/bin/activate
                 pip install -r requirements.txt
                 """
             }
@@ -35,7 +33,6 @@ pipeline {
         stage('Running Tests') {
             steps {
                 sh """
-                . venv/bin/activate
                 pytest tests/the_internet/test_add_remove_elements.py::test_add_element
                 """
             }
