@@ -46,8 +46,8 @@ def driver(download_dir):
         }
         options.add_experimental_option("prefs", prefs)
 
-        driver = webdriver.Chrome(
-            executable_path=f"{base_path}/drivers/chromedriver", options=options
+        driver = webdriver.Chrome(options=options
+            # executable_path=f"{base_path}/drivers/chromedriver", options=options
         )
     yield driver
     driver.quit()

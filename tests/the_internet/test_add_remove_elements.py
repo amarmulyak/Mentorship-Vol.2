@@ -5,6 +5,7 @@ def test_add_element(driver):
     add_remove_elements = AddRemoveElementsPage(driver)
     add_remove_elements.get_add_remove_elements_page()
     add_remove_elements.add_element()
+    # assert len(add_remove_elements.get_delete_buttons()) == 1
     assert len(add_remove_elements.get_delete_buttons()) == 1
 
 

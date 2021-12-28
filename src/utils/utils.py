@@ -10,7 +10,7 @@ from typing import Dict, Any, List
 import aumbry
 import pyautogui
 import yaml
-from PIL import Image
+# from PIL import Image
 # from selenium.common.exceptions import ErrorInResponseException
 from selenium.common import exceptions
 
