@@ -26,7 +26,6 @@ pipeline {
         stage('Setting environment') {
             steps {
                 sh """
-//                 virtualenv venv --python=python3.8
                 virtualenv venv
                 . venv/bin/activate
                 pip install -r requirements.txt
