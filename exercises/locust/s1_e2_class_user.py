@@ -47,5 +47,3 @@ class MySecondUser(User):
 # wee need to add parameter 'weight' e.g. = 2 to make run of two classes (weight is a priority ot pick up the task)
 # to wait between running the task wee need to add parameter 'wait_time' e.g = constant(1)
 # run the test with number: 4 (it will mean the priority will be 50% for each task), spawn: 4
-
-
