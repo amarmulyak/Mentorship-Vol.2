@@ -30,9 +30,9 @@ class MyAnotherHTTPCat(TaskSet):
         self.interrupt(reschedule=False)
 
 
-class MyLoadTest(HttpUser, MyAnotherHTTPCat):
+class MyLoadTest(HttpUser):
     host = 'https://http.cat'
-    tasks = [MyHTTPCat]
+    tasks = [MyHTTPCat, MyAnotherHTTPCat]
     wait_time = constant(1)
 
 
