@@ -2,9 +2,10 @@
 class TaskSet
 
 Executes a set of tasks
+It helps to structure the hierarchical
 Picks up a task -> Executes it -> wait_time in TaskSet, else wait in User
-
 TaskSet can be nested
+
 client: instance of HttpSession
 interrupt
 on_start(): run something on start of instantiating a class
