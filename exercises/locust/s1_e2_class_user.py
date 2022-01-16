@@ -24,10 +24,10 @@ class MyFirstScript(User):
         print('Searching')
 
 
-# launch in terminal: locust -f ./exercises/locust/s1_e2_class_user.py
+# Launch in terminal: locust -f ./exercises/locust/s1_e2_class_user.py
 # e.g. number: 2, spawn: 1
-# it will spawn 1 user per second, total number of users will be 2
-# take a look at the PyCharm terminal to see what happens
+# It will spawn 1 user per second, total number of users will be 2
+# Take a look at the PyCharm terminal to see what happens
 
 
 class MySecondUser(User):
@@ -43,7 +43,7 @@ class MySecondUser(User):
         print('Searching 2')
 
 
-# in case of launching, the test will pick up only the first class
-# wee need to add parameter 'weight' e.g. = 2 to make run of two classes (weight is a priority ot pick up the task)
-# to wait between running the task wee need to add parameter 'wait_time' e.g = constant(1)
-# run the test with number: 4 (it will mean the priority will be 50% for each task), spawn: 4
+# In case of launching, the test will pick up only the first class
+# We need to add parameter 'weight' e.g. = 2 to make run of two classes (weight is a priority of pick up the task)
+# To wait between running the task we need to add parameter 'wait_time' e.g = constant(1)
+# Run the test with number: 4 (it will mean the priority will be 50% for each task), spawn: 4
