@@ -30,7 +30,7 @@ class WinButton(Button):
         // Render a button in Windows style.
         '''
         # pass
-        print("WinButton -> Paint")
+        return "WinButton -> Paint"
 
 
 class MacButton(Button):
@@ -43,7 +43,7 @@ class MacButton(Button):
         // Render a button in macOS style.
         '''
         # pass
-        print("MacButton -> Paint")
+        return "MacButton -> Paint"
 
 
 class Checkbox:
@@ -70,7 +70,7 @@ class WinCheckbox(Checkbox):
         // Render a checkbox in Windows style.
         '''
         # pass
-        print("WinCheckbox -> Paint")
+        return "WinCheckbox -> Paint"
 
 
 class MacCheckbox(Checkbox):
@@ -83,4 +83,4 @@ class MacCheckbox(Checkbox):
         // Render a checkbox in macOS style.
         '''
         # pass
-        print("MacCheckbox -> Paint")
+        return "MacCheckbox -> Paint"

@@ -23,14 +23,14 @@ class Application:
         Docsting
         '''
 
-        self._button.paint()
+        return self._button.paint()
 
     def paint_checkbox(self):
         '''
         Docsting
         '''
 
-        self._checkbox.paint()
+        return self._checkbox.paint()
 
 
 class ApplicationConfigurator:
@@ -43,7 +43,7 @@ class ApplicationConfigurator:
     def __init__(self, o_s):
         self.o_s = o_s
 
-    def create_factory(self):
+    def create_factory(self) -> Application:
         '''
         Docsting
         '''
@@ -57,10 +57,11 @@ class ApplicationConfigurator:
 
         return Application(factory)
 
+
 windows_app = ApplicationConfigurator(o_s='Windows').create_factory()
-windows_app.paint_button()
-windows_app.paint_checkbox()
+print(windows_app.paint_button())
+print(windows_app.paint_checkbox())
 
 mac_app = ApplicationConfigurator(o_s='Mac').create_factory()
-mac_app.paint_button()
-mac_app.paint_checkbox()
+print(mac_app.paint_button())
+print(mac_app.paint_checkbox())
