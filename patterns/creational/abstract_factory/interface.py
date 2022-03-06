@@ -1,3 +1,7 @@
+'''
+Docsting
+'''
+
 from abc import ABCMeta, abstractmethod
 
 
@@ -10,7 +14,9 @@ class Button(metaclass=ABCMeta):
 
     @abstractmethod
     def paint(self):
-        pass
+        '''
+        Docsting
+        '''
 
 
 class WinButton(Button):
@@ -28,6 +34,9 @@ class WinButton(Button):
 
 
 class MacButton(Button):
+    '''
+    Docsting
+    '''
 
     def paint(self):
         '''
@@ -46,10 +55,15 @@ class Checkbox:
 
     @abstractmethod
     def paint(self):
-        pass
+        '''
+        Docsting
+        '''
 
 
 class WinCheckbox(Checkbox):
+    '''
+    Docsting
+    '''
 
     def paint(self):
         '''
@@ -60,6 +74,9 @@ class WinCheckbox(Checkbox):
 
 
 class MacCheckbox(Checkbox):
+    '''
+    Docsting
+    '''
 
     def paint(self):
         '''

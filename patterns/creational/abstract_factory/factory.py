@@ -1,3 +1,7 @@
+'''
+Docsting
+'''
+
 from abc import ABCMeta, abstractmethod
 
 from patterns.creational.abstract_factory.interface import Button, Checkbox, WinButton, WinCheckbox, MacButton, \
@@ -17,11 +21,15 @@ class GUIFactory(metaclass=ABCMeta):
 
     @abstractmethod
     def create_button(self) -> Button:
-        pass
+        '''
+        Docsting
+        '''
 
     @abstractmethod
     def create_checkbox(self) -> Checkbox:
-        pass
+        '''
+        Docsting
+        '''
 
 
 class WinFactory(GUIFactory):

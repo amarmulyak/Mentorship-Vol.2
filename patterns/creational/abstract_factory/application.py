@@ -1,3 +1,7 @@
+'''
+Docsting
+'''
+
 from patterns.creational.abstract_factory.factory import GUIFactory, WinFactory, MacFactory
 
 
@@ -11,15 +15,21 @@ class Application:
 
     def __init__(self, factory: GUIFactory):
         self._factory = factory
-
-    def create_ui(self):
         self._button = self._factory.create_button()
         self._checkbox = self._factory.create_checkbox()
 
     def paint_button(self):
+        '''
+        Docsting
+        '''
+
         self._button.paint()
 
     def paint_checkbox(self):
+        '''
+        Docsting
+        '''
+
         self._checkbox.paint()
 
 
@@ -30,25 +40,27 @@ class ApplicationConfigurator:
     // at runtime (usually at the initialization stage).
     '''
 
-    def __init__(self, os):
-        self.os = os
+    def __init__(self, o_s):
+        self.o_s = o_s
 
     def create_factory(self):
-        if self.os == "Windows":
+        '''
+        Docsting
+        '''
+
+        if self.o_s == "Windows":
             factory = WinFactory()
-        elif self.os == "Mac":
+        elif self.o_s == "Mac":
             factory = MacFactory()
         else:
             raise Exception("Error! Unknown operating system.")
 
         return Application(factory)
 
-windows_app = ApplicationConfigurator(os='Windows').create_factory()
-windows_app.create_ui()
+windows_app = ApplicationConfigurator(o_s='Windows').create_factory()
 windows_app.paint_button()
 windows_app.paint_checkbox()
 
-mac_app = ApplicationConfigurator(os='Mac').create_factory()
-mac_app.create_ui()
+mac_app = ApplicationConfigurator(o_s='Mac').create_factory()
 mac_app.paint_button()
 mac_app.paint_checkbox()
