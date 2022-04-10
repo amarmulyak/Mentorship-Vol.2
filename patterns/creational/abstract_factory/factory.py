@@ -4,8 +4,8 @@ Docsting
 
 from abc import ABCMeta, abstractmethod
 
-from patterns.creational.abstract_factory.interface import Button, Checkbox, WinButton, WinCheckbox, MacButton, \
-    MacCheckbox
+from patterns.creational.abstract_factory.factory_interface import Button, Checkbox, WinButton, WinCheckbox, \
+    MacButton, MacCheckbox
 
 
 class GUIFactory(metaclass=ABCMeta):
