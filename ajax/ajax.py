@@ -1,4 +1,5 @@
 import pytest
+from hamcrest import assert_that, equal_to
 
 payload = "10FA0E00"
 
@@ -125,10 +126,38 @@ expected_payload_1_parsed = {'field1': 'Low',
                              'field9': '00',
                              'field10': '00'}
 
+payload_2 = 'A9C52100'
+expected_payload_2_parsed = {'field1': 'Medium',
+                             'field2': '01',
+                             'field3': '00',
+                             'field4': '50',
+                             'field5': '01',
+                             'field6': '00',
+                             'field7': '01',
+                             'field8': 'Very Low',
+                             'field9': '01',
+                             'field10': '01'}
+
+payload_3 = 'C7EBDB00'
+expected_payload_3_parsed = {'field1': 'High',
+                             'field2': '00',
+                             'field3': '00',
+                             'field4': '30',
+                             'field5': '01',
+                             'field6': '01',
+                             'field7': '00',
+                             'field8': 'Low',
+                             'field9': '01',
+                             'field10': '00'}
 
 @pytest.mark.parametrize('payload, expected_parsed_payload',
-                         [(payload_1, expected_payload_1_parsed)])
+                         [
+                             (payload_1, expected_payload_1_parsed),
+                             (payload_2, expected_payload_2_parsed),
+                             (payload_2, expected_payload_2_parsed)
+                         ])
 def test_payload(payload, expected_parsed_payload):
     actual_parsed_payload = get_data_from_payload(payload)
 
-    assert actual_parsed_payload == expected_payload_1_parsed
+    for key in expected_parsed_payload:
+        assert_that(expected_parsed_payload[key], equal_to(actual_parsed_payload[key]), f'Fields with key "{key}" are not equal')
