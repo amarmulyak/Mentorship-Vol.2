@@ -1,7 +1,5 @@
 import pytest
-from hamcrest import assert_that, equal_to
 
-payload = "10FA0E00"
 
 field1_data = {
     '0': 'Low',
@@ -138,7 +136,7 @@ expected_payload_2_parsed = {'field1': 'Medium',
                              'field9': '01',
                              'field10': '01'}
 
-payload_3 = 'C7EBDB00'
+payload_3 = 'C7D3DB00'
 expected_payload_3_parsed = {'field1': 'High',
                              'field2': '00',
                              'field3': '00',
@@ -154,10 +152,10 @@ expected_payload_3_parsed = {'field1': 'High',
                          [
                              (payload_1, expected_payload_1_parsed),
                              (payload_2, expected_payload_2_parsed),
-                             (payload_2, expected_payload_2_parsed)
+                             (payload_3, expected_payload_3_parsed)
                          ])
 def test_payload(payload, expected_parsed_payload):
     actual_parsed_payload = get_data_from_payload(payload)
 
     for key in expected_parsed_payload:
-        assert_that(expected_parsed_payload[key], equal_to(actual_parsed_payload[key]), f'Fields with key "{key}" are not equal')
+        assert expected_parsed_payload[key] == actual_parsed_payload[key], f'Fields with key "{key}" are not equal'
