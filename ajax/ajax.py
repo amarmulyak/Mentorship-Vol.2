@@ -1,3 +1,5 @@
+import pytest
+
 payload = "10FA0E00"
 
 field1_data = {
@@ -111,3 +113,22 @@ def get_data_from_payload(payload: str):
 
     return parsed_data
 
+payload_1 = '10FA0E00'
+expected_payload_1_parsed = {'field1': 'Low',
+                             'field2': '00',
+                             'field3': '01',
+                             'field4': '00',
+                             'field5': '00',
+                             'field6': '01',
+                             'field7': '00',
+                             'field8': 'Very High',
+                             'field9': '00',
+                             'field10': '00'}
+
+
+@pytest.mark.parametrize('payload, expected_parsed_payload',
+                         [(payload_1, expected_payload_1_parsed)])
+def test_payload(payload, expected_parsed_payload):
+    actual_parsed_payload = get_data_from_payload(payload)
+
+    assert actual_parsed_payload == expected_payload_1_parsed
