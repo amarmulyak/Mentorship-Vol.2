@@ -1,4 +1,5 @@
 from enum import Enum
+from abc import abstractmethod, ABCMeta
 
 
 class Color(Enum):
@@ -14,7 +15,7 @@ class Size(Enum):
 
 
 class Product:
-    def __init__(self, name, color, size):
+    def __init__(self, name: str, color: Color, size: Size):
         self.name = name
         self.color = color
         self.size = size
@@ -41,7 +42,9 @@ class ProductFilter:
     # OCP = open for extension, closed for modification
 
 
-class Specification:
+class Specification(metaclass=ABCMeta):
+
+    @abstractmethod
     def is_satisfied(self, item):
         pass
 
@@ -50,13 +53,15 @@ class Specification:
         return AndSpecification(self, other)
 
 
-class Filter:
-    def filter(self, items, spec):
+class Filter(metaclass=ABCMeta):
+
+    @abstractmethod
+    def filter(self, items: list[Product], spec: Specification):
         pass
 
 
 class ColorSpecification(Specification):
-    def __init__(self, color):
+    def __init__(self, color: Color):
         self.color = color
 
     def is_satisfied(self, item):
@@ -64,7 +69,7 @@ class ColorSpecification(Specification):
 
 
 class SizeSpecification(Specification):
-    def __init__(self, size):
+    def __init__(self, size: Size):
         self.size = size
 
     def is_satisfied(self, item):
@@ -90,7 +95,8 @@ class AndSpecification(Specification):
 
 
 class BetterFilter(Filter):
-    def filter(self, items, spec):
+
+    def filter(self, items: list[Product], spec: Specification):
         for item in items:
             if spec.is_satisfied(item):
                 yield item
