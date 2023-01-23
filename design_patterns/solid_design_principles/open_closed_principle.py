@@ -86,12 +86,11 @@ class SizeSpecification(Specification):
 #                self.spec2.is_satisfied(item)
 
 class AndSpecification(Specification):
-    def __init__(self, *args):
-        self.args = args
+    def __init__(self, *specs):
+        self.specs = specs
 
     def is_satisfied(self, item):
-        return all(map(
-            lambda spec: spec.is_satisfied(item), self.args))
+        return all(map(lambda spec: spec.is_satisfied(item), self.specs))
 
 
 class BetterFilter(Filter):
@@ -110,8 +109,8 @@ products = [apple, tree, house]
 
 pf = ProductFilter()
 print('Green products (old):')
-for p in pf.filter_by_color(products, Color.GREEN):
-    print(f' - {p.name} is green')
+# for p in pf.filter_by_color(products, Color.GREEN):
+#     print(f' - {p.name} is green')
 
 # ^ BEFORE
 
