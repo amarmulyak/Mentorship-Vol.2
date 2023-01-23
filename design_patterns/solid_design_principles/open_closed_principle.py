@@ -132,3 +132,4 @@ print('Large blue items:')
 large_blue = large & ColorSpecification(Color.BLUE)
 for p in bf.filter(products, large_blue):
     print(f' - {p.name} is large and blue')
+
