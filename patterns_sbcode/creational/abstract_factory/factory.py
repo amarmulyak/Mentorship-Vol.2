@@ -4,7 +4,7 @@ Docsting
 
 from abc import ABCMeta, abstractmethod
 
-from patterns.creational.abstract_factory.factory_interface import Button, Checkbox, WinButton, WinCheckbox, \
+from patterns_sbcode.creational.abstract_factory.factory_interface import Button, Checkbox, WinButton, WinCheckbox, \
     MacButton, MacCheckbox
 
 

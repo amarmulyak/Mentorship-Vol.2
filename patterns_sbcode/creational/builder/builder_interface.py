@@ -5,7 +5,7 @@
 
 from abc import ABCMeta, abstractmethod
 
-from patterns.creational.builder.builder_module import Car, Manual, Engine
+from patterns_sbcode.creational.builder.builder_module import Car, Manual, Engine
 
 
 class Builder(metaclass=ABCMeta):
@@ -115,7 +115,7 @@ class CarBuilder(Builder):
 
 class CarManualBuilder(Builder):
     '''
-    // Unlike other creational patterns, builder lets you construct
+    // Unlike other creational patterns_sbcode, builder lets you construct
     // products that don't follow the common interface.
     '''
 

@@ -6,8 +6,8 @@
 // client can control builders directly.
 '''
 
-from patterns.creational.builder.builder_module import SportEngine, RegularEngine
-from patterns.creational.builder.builder_interface import Builder
+from patterns_sbcode.creational.builder.builder_module import SportEngine, RegularEngine
+from patterns_sbcode.creational.builder.builder_interface import Builder
 
 
 class Director:

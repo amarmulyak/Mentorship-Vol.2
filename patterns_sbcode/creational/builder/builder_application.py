@@ -1,8 +1,8 @@
 '''
 Application module
 '''
-from patterns.creational.builder.builder_director import Director
-from patterns.creational.builder.builder_interface import CarBuilder, CarManualBuilder
+from patterns_sbcode.creational.builder.builder_director import Director
+from patterns_sbcode.creational.builder.builder_interface import CarBuilder, CarManualBuilder
 
 
 class Application:

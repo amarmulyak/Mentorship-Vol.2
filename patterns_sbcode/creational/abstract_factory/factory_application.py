@@ -2,7 +2,7 @@
 Docsting
 '''
 
-from patterns.creational.abstract_factory.factory import GUIFactory, WinFactory, MacFactory
+from patterns_sbcode.creational.abstract_factory.factory import GUIFactory, WinFactory, MacFactory
 
 
 class Application:
