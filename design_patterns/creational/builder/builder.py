@@ -56,6 +56,9 @@ class HtmlBuilder:
         return str(self.__root)
 
 
+# ul - unordered list
+# li = list item
+
 # if you want to build a simple HTML paragraph using a list
 hello = 'hello'
 parts = ['<p>', hello, '</p>']
@@ -79,7 +82,8 @@ print(builder)
 
 # fluent builder
 builder.clear()
-builder.add_child_fluent('li', 'hello') \
+builder \
+    .add_child_fluent('li', 'hello') \
     .add_child_fluent('li', 'world')
 print('Fluent builder:')
 print(builder)
