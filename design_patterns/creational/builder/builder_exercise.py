@@ -23,7 +23,7 @@ class Field:
         self.value = value
 
     def __str__(self):
-        return 'self.%s = %s' % (self.name, self.value)
+        return f'self.{self.name} = {self.value}'
 
 
 class Class:
@@ -32,14 +32,14 @@ class Class:
         self.fields = []
 
     def __str__(self):
-        lines = ['class %s:' % self.name]
+        lines = [f'class {self.name}:']
 
         if not self.fields:
             lines.append('  pass')
         else:
             lines.append('  def __init__(self):')
             for f in self.fields:
-                lines.append('    %s' % f)
+                lines.append(f'    {f}')
 
         return '\n'.join(lines)
 
@@ -56,11 +56,11 @@ class CodeBuilder:
         return self.__class.__str__()
 
 
-cb = CodeBuilder('Person') \
+cb_1 = CodeBuilder('Person') \
         .add_field('name', '""') \
         .add_field('age', '0')
 
-# cb = CodeBuilder('Person')
+cb_2 = CodeBuilder('Person')
 
-print(cb)
-
+print(cb_1)
+print(cb_2)
