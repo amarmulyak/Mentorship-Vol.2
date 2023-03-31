@@ -7,7 +7,6 @@ class Point:
 def draw_point(p):
     print('.', end='')
 
-
 # ^^ you are given this
 
 # vv you are working with this
@@ -39,22 +38,22 @@ class LineToPointAdapter:
 
         super().__init__()
         self.count += 1
-        print(f'{self.count}: Generating points for line ' +
+        print(f'\n{self.count}: Generating points for line ' +
               f'[{line.start.x},{line.start.y}]→[{line.end.x},{line.end.y}]')
 
         left = min(line.start.x, line.end.x)
         right = max(line.start.x, line.end.x)
-        top = min(line.start.y, line.end.y)
         bottom = min(line.start.y, line.end.y)
+        top = max(line.start.y, line.end.y)
 
         points = []
 
         if right - left == 0:
-            for y in range(top, bottom):
-                points.append(Point(left, y))
-        elif line.end.y - line.start.y == 0:
+            for y in range(bottom, top):
+                points.append(Point(right, y))
+        elif top - bottom == 0:
             for x in range(left, right):
-                points.append(Point(x, top))
+                points.append(Point(x, bottom))
 
         self.cache[self.h] = points
 
